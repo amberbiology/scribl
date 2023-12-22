@@ -229,6 +229,13 @@ The [code](/scribl/scribl.py) for the `scribl` command contains more
 examples of use of the API. In addition, more details can be found
 in the main documentation.
 
+## Copyright and license
+
+scribl is Copyright (C) 2023. Amber Biology LLC
+
+scribl is distributed under the terms of [AGPL-3.0 license](LICENSE)
+
+
 ## Acknowledgements
 
 The development of the scribl platform was made possible by the
