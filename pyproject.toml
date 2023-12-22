@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "scribl"
+description = "A system for the semantic capture of relationships in biological literature"
+dynamic = ["version", "readme"]  # version generated dynamically
+authors = [
+    { name = "Amber Biology", email = "info@amberbiology.com" }
+]
+keywords = ["systems biology", "network biology", "literature database"]
+license = {text = "GNU AGPLv3+"}
+
+classifiers = [
+"Programming Language :: Python :: 3",
+"Intended Audience :: Science/Research",
+"Topic :: Scientific/Engineering :: Bio-Informatics",
+"License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
+]
+
+dependencies = [
+    "pyparsing <= 3.1.1",
+    "pandas <= 2.1.4",
+    "pyzotero <= 1.5.18",
+    "networkx <= 3.2.1",
+    "matplotlib <= 3.8.2"
+]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[project.scripts]
+scribl="scribl.scribl:main"
+
+[project.urls]
+Homepage = "http://amberbiology.com"
+Source = 'https://github.com/amberbiology/scribl/'
+
+[tool.setuptools]
+packages = ["scribl"]
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.md"]}	
+
+[tool.setuptools_scm]
+version_file = "scribl/_version.py"
+version_scheme = "post-release"
+
+[tool.pytest.ini_options]
+addopts = ["--import-mode=importlib",]
+testpaths = ["tests",]
