@@ -73,7 +73,8 @@ jobs:
         mkdir tests/test_sandbox
         pytest -v tests
     - name: Upload artifact
-      if: github.event_name == 'release' # && github.event.action == 'published' && github.event.release.prerelease == false
-      uses: actions/upload-artifact@v3
+      # if: github.event_name == 'release' && github.event.action == 'published' && github.event.release.prerelease == false
+      uses: actions/upload-artifact@v4
       with:
+        name: scribl-wheels-${{ matrix.os }}-${{ matrix.python-version }}
         path: dist/*
