@@ -5,7 +5,33 @@ name: Scribl Python package
 
 on:
   push:
+    paths-ignore:
+      - '**.md'
+      - '**.rst'
+      - '**.pdf'
+      - '**.png'
+      - 'CITATION.cff'
+      - '.zenodo.json'
+      - '.github/dependabot.yml'
+      - '.github/release-drafter.yml'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/release-drafter.yml'
+      - '.gitattributes'
+
   pull_request:
+    paths-ignore:
+      - '**.md'
+      - '**.rst'
+      - '**.pdf'
+      - '**.png'
+      - 'CITATION.cff'
+      - '.zenodo.json'
+      - '.github/dependabot.yml'
+      - '.github/release-drafter.yml'
+      - '.github/ISSUE_TEMPLATE/**'
+      - '.github/workflows/release-drafter.yml'
+      - '.gitattributes'
+
   release:
     #types:
     #  - published
