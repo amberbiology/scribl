@@ -146,16 +146,17 @@ jobs:
         # FIXME: manually create the sandbox, otherwise they fail
         mkdir tests/test_sandbox
         pytest -v tests
-    - name: Upload artifact
-      # if: github.event_name == 'release' && github.event.action == 'published' && github.event.release.prerelease == false
-      uses: actions/upload-artifact@v4
-      with:
-        name: scribl-wheels-${{ matrix.os }}-python-${{ matrix.python-version }}
-        path: dist/*.whl
+    # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
+    #- name: Upload artifact
+    #
+    #  uses: actions/upload-artifact@v4
+    #  with:
+    #    name: scribl-wheels-${{ matrix.os }}-python-${{ matrix.python-version }}
+    #    path: dist/*.whl
 
   dist:
     name: Create wheel and sdist for distribution
-    needs: [ci_build]  # make sure it passe the CI first
+    needs: [ci_build]  # make sure it passes the CI first
     runs-on: ubuntu-latest
     if: always() && !cancelled() && !failure()    
     steps:
