@@ -5,7 +5,6 @@
       "name": "Webster, Gordon",
       "orcid": "0009-0009-2862-0467"
     },
-	
     {
       "affiliations": [
         {
@@ -18,9 +17,9 @@
       ],
       "name": "Lancaster, Alexander K.",
       "orcid": "0000-0002-0002-9263"
-    },
+    }
   ],
-    "description": "<p>scribl is a system for the semantic capture of relationships in biological literature. scribl statements are added as tags to articles in a literature database ( currently <a href='https://www.zotero.org/'>Zotero</a>. These tags are parsed and used to create a graph data structure that can be then be exported for use in a graph database platform such as <a href='https://neo4j.com'>Neo4j</a>, or Python's <a href='https://networkx.org/'>NetworkX</a></p>",
+    "description": "<p>scribl is a system for the semantic capture of relationships in biological literature. scribl statements are added as tags to articles in a literature database ( currently <a href=\"https://www.zotero.org/\">Zotero</a>. These tags are parsed and used to create a graph data structure that can be then be exported for use in a graph database platform such as <a href=\"https://neo4j.com\">Neo4j</a>, or Python's <a href=\"https://networkx.org/\">NetworkX</a></p>",
   "keywords": [
     "systems biology",
     "network biology",
@@ -49,7 +48,7 @@
       "identifier": "https://pypi.org/project/bioscribl/0.8.0",
       "relation": "isSourceOf",
       "resource_type": "software"
-    },
+    }
   ],
   "additional_descriptions": [
     {
