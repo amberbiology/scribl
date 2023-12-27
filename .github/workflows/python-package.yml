@@ -109,15 +109,15 @@ jobs:
           upsert-location: doi
           verbose: true
   
-  build:
+  ci_build:
     needs: [publish_zenodo, skip_publish_zenodo]
     if: always() && !cancelled() && !failure()    
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
+        os: [ubuntu-latest] #, macos-latest, windows-latest]
+        python-version: ["3.12"] #, "3.11", "3.10", "3.9"]
 
     steps:
     - uses: actions/checkout@v4
@@ -151,29 +151,22 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: scribl-wheels-${{ matrix.os }}-python-${{ matrix.python-version }}
-        path: dist/*
+        path: dist/*.whl
 
-  merged_artifact:
-    name: test merged artifact
-    needs: [build]
+  dist:
+    name: Create wheel and sdist for distribution
+    needs: [ci_build]  # make sure it passe the CI first
     runs-on: ubuntu-latest
     if: always() && !cancelled() && !failure()    
     steps:
-    - uses: actions/download-artifact@v4
-      with:
-        # unpacks default artifact into all_artifacts
-        # each wheel and sdist should be the same
-        path: all_artifacts
-        merge-multiple: true
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: wheel_and_sdist
-        path: all_artifacts
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: hynek/build-and-inspect-python-package@v2    
         
   upload_test_pypi:
     name: Upload to Test_PyPI
-    needs: [build]
+    needs: [dist]
     runs-on: ubuntu-latest
     environment: test_pypi
     permissions:
@@ -183,7 +176,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          # unpacks default artifact into dist/
+          name: Packages
           path: dist
           merge-multiple: true          
       - uses: pypa/gh-action-pypi-publish@release/v1
