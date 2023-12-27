@@ -1,4 +1,4 @@
-name: Scribl Python package + Zenodo + PyPI
+name: Scribl Python package
 
 on:
   push:
