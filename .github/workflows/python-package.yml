@@ -34,8 +34,6 @@ on:
     #  - published
 
 jobs:
-
-jobs:
   skip_publish_zenodo:
     name: Non publication, Zenodo skip
     runs-on: ubuntu-latest
