@@ -157,6 +157,7 @@ jobs:
     name: test merged artifact
     needs: [build]
     runs-on: ubuntu-latest
+    if: always() && !cancelled() && !failure()    
     steps:
     - uses: actions/download-artifact@v4
       with:
