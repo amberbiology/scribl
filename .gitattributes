@@ -1,0 +1,6 @@
+# exclude certain files from the zip archive
+# FIXME: for directories, need two patterns, one for the contents, one
+# for the directory itself
+.gitattributes export-ignore
+/.github export-ignore
+/.github/** export-ignore
