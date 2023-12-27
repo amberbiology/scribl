@@ -173,7 +173,7 @@ jobs:
     permissions:
       id-token: write
     # drop requirement of 'main', release to test_pypi to test releases
-    if false:
+    if: false:
     #if: github.event_name == 'release' && github.event.action == 'published' && always() && !cancelled() && !failure()
     steps:
       - uses: actions/download-artifact@v4
