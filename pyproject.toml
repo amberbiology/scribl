@@ -48,5 +48,9 @@ version_file = "scribl/_version.py"
 version_scheme = "post-release"
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib",]
+addopts = ["--import-mode=importlib", "-ra", "--strict-config", "--strict-markers"]
 testpaths = ["tests",]
+minversion = "7"
+log_cli_level = "INFO"
+xfail_strict = true
+#filterwarnings = ["error"]
