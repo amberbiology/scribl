@@ -35,4 +35,3 @@ def test_default_keymap():
     ref = {'zotero_keys': ['Key', 'Title', 'Url', 'Publication Year', 'Author', 'Publication Title', 'Journal Abbreviation', 'Abstract Note'],
            'cypher_keys': ['zotero_key', 'title', 'url', 'year', 'author', 'journal_title', 'journal_abreviation', 'abstract']}
     assert scribl.default_keymap == ref
-

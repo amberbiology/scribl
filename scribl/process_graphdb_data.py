@@ -308,7 +308,7 @@ class GraphDB:
     def _generate_xml_node(self, node_db, node_name=""):
 
         xmlnode_list = []
-        
+
         for node in node_db:
             edit = self.edit_only(node)
             name = edit['name']
@@ -323,7 +323,7 @@ class GraphDB:
             xmlnode_list.append(graphml_text)
 
         return '\n'.join(xmlnode_list)
-            
+
     def generate_graphml(self, diff_db=None):
         use_db = self.db
         graphml = []
@@ -333,7 +333,7 @@ class GraphDB:
 
         # NODE TYPE
         graphml.append("""<key id="desc" for="node" attr.name="desc" attr.type="string"/>""")
-                       
+
         # ARTICLE, RESOURCE, AGENT, PROCESS
 
         # FIXME: not sure why plural 'urls' and 'notes' are not defined in the default_keymap
@@ -346,7 +346,7 @@ class GraphDB:
         # RELATIONSHIP
         graphml.append("""<key id="relationship" for="edge" attr.name="label" attr.type="string"/>""")
 
-            
+
         graphml.append("<graph id='G' edgedefault='directed'>")
         for article_key in use_db['article']:
             edit = self.edit_only(article_key)
@@ -354,7 +354,7 @@ class GraphDB:
             graphml_list = ["<node id='{}'>\n".format(name)]
             graphml_list.append("<desc>ARTICLE</desc>\n")
             ## NetworkX doesn't support '<desc>' GraphML element well, so repeat it here
-            graphml_list.append("""<data key="desc">ARTICLE</data>\n""") 
+            graphml_list.append("""<data key="desc">ARTICLE</data>\n""")
             for field in use_db['article'][article_key]:
                 value = use_db['article'][article_key][field]
                 # make sure to escape any inline XML characters, e.g. '&', '>' etc.
@@ -365,7 +365,7 @@ class GraphDB:
             graphml.append(graphml_text)
 
         # node generation the same for all remaining nodes
-            
+
         category_xml = self._generate_xml_node(use_db['category'], node_name="CATEGORY")
         graphml.append(category_xml)
 
@@ -374,10 +374,10 @@ class GraphDB:
 
         process_xml = self._generate_xml_node(use_db['process'], node_name="PROCESS")
         graphml.append(process_xml)
-        
+
         agent_xml = self._generate_xml_node(use_db['agent'], node_name="AGENT")
         graphml.append(agent_xml)
-        
+
         for rtype in use_db['relationships']:
             partner1_type = scribl.cypher_relationships[rtype][0]
             partner2_type = scribl.cypher_relationships[rtype][1]
@@ -393,10 +393,10 @@ class GraphDB:
                 graphml_list.append("</edge>")
                 graphml_text = '\n'.join(graphml_list)
                 graphml.append(graphml_text)
-            
+
         graphml.append("</graph>")
         graphml.append("</graphml>")
         return graphml
-    
+
     def export_graphml_text(self, graphml):
         return '\n'.join(graphml)

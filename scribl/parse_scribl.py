@@ -157,4 +157,3 @@ class ScriblParser:
         for item_type in self.data:
             result[item_type] = len(self.data[item_type])
         return result
-
