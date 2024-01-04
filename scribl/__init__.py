@@ -3,7 +3,7 @@ __author__ = 'Amber Biology'
 __pkgname__ = 'scribl'
 __version_scheme__ = 'post-release'
 
-try: 
+try:
     import importlib.metadata as metadata_lib # look for built-in
 except (ModuleNotFoundError, ImportError):
     import importlib_metadata as metadata_lib  # otherwise need the backport

@@ -208,4 +208,3 @@ def test_agent_label_checking():
     gdb = GraphDB(updated_csv_data)
     label_check = gdb.check_agent_labels()
     assert label_check == ['ca2+', 'rapamycin']
-

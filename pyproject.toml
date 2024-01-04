@@ -41,12 +41,16 @@ Source = 'https://github.com/amberbiology/scribl/'
 packages = ["scribl"]
 
 [tool.setuptools.dynamic]
-readme = {file = ["README.md"]}	
+readme = {file = ["README.md"]}
 
 [tool.setuptools_scm]
 version_file = "scribl/_version.py"
 version_scheme = "post-release"
 
 [tool.pytest.ini_options]
-addopts = ["--import-mode=importlib",]
+addopts = ["--import-mode=importlib", "-ra", "--strict-config", "--strict-markers"]
 testpaths = ["tests",]
+minversion = "7"
+log_cli_level = "INFO"
+xfail_strict = true
+#filterwarnings = ["error"]
