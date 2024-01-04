@@ -152,10 +152,10 @@ how to find out your library ID and creating an API key.
 scribl -g new_graphdb --zoterofile <ZOTERO_CSV>
 ```
 
-This populates the database from a local CSV file `ZOTERO_CSV` exported 
+This populates the database from a local CSV file `ZOTERO_CSV` exported
 from a Zotero library.  Note that the above two commands, just create (or
-read from an existing) database, but generate no output. (Note that the 
-`new_graphdb` database is not overwritten if it already exists, unless the 
+read from an existing) database, but generate no output. (Note that the
+`new_graphdb` database is not overwritten if it already exists, unless the
 `--overwrite` flag is also supplied)
 
 To generate outputs, there are a number of options. All assume at

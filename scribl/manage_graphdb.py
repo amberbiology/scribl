@@ -34,7 +34,7 @@ class GraphDBInstance:
         self.graphdb = None
 
         create_new = False
-        
+
         if os.path.exists(self.db_folder_path):
             # first check for presence of 'metadata.txt' file see if this is an actual database
             if os.path.exists(os.path.join(self.db_folder_path, 'config', 'metadata.txt')):
@@ -44,11 +44,11 @@ class GraphDBInstance:
                     create_new = True
             else:  # path exists but does not contain a scribl database
                 raise FileExistsError(self.db_folder_path + ' directory exists but does not contain a valid existing scribl database')
-                return 
+                return
         else:
             create_new = True
 
-        if create_new:    
+        if create_new:
             self.initialize_db()
             if verbose:
                 print('Initializing graph DB at', self.db_folder_path)
@@ -63,7 +63,7 @@ class GraphDBInstance:
                     self.metadata = []
                     for line in metadata:
                         self.metadata.append(line.strip())
-                        
+
         return
 
     def initialize_db(self):
@@ -125,14 +125,14 @@ class GraphDBInstance:
 
         if verbose:
             print('Importing Zotero CSV ', import_filepath)
-            
+
         if os.path.exists(import_filepath):
             now = generate_timestamp()
             new_import_filename = '{}_zotero_data.csv'.format(now)
 
             if overwrite:
                 # FIXME: this list is empty because the zotero export is removed upon overwriting the db
-                try: 
+                try:
                     new_import_filename = self.get_zotero_csv_exports()[-1]
                 except IndexError:
                     # revert to the original new import path defined above
@@ -143,7 +143,7 @@ class GraphDBInstance:
 
             if verbose:
                 print('{} added to Zotero exports folder'.format(new_import_filepath))
-            
+
             return new_import_filepath
         else:
             if verbose:
@@ -159,7 +159,7 @@ class GraphDBInstance:
 
             # now call import_zotero_csv() on the temporary file
             self.import_zotero_csv(zotero_csv.name, overwrite=overwrite, verbose=verbose)
-        
+
     def get_zotero_csv_exports(self):
         exports = []
         for file in (os.listdir(self.zotero_csv_exports_folder)):
@@ -171,7 +171,7 @@ class GraphDBInstance:
 
         if verbose:
             print('Loading csv data into graph DB ...')
-        
+
         exports = self.get_zotero_csv_exports()
         #print(exports)
         if zotero_csv_filename == None:
@@ -189,8 +189,8 @@ class GraphDBInstance:
         self.graphdb = GraphDB(self.current_zotero_csv, zotero_keys=zotero_keys, cypher_keys=cypher_keys)
 
         # save summary
-        summary = self.graphdb.db['warnings'], self.graphdb.db['errors']        
-        
+        summary = self.graphdb.db['warnings'], self.graphdb.db['errors']
+
         if verbose:
             print('{} loaded into graph DB'.format(os.path.basename(self.current_zotero_csv)))
             nwarning = 0
@@ -208,7 +208,7 @@ class GraphDBInstance:
                     nerror += 1
                     print(error)
             print('Summary: number of warnings: {}, number of errors: {}'.format(nwarning, nerror))
-        
+
         return(summary[0], summary[1])
 
     def get_current_timestamp(self):
@@ -239,7 +239,7 @@ class GraphDBInstance:
     def load_db_snapshot(self, db_snapshot_filename=None, verbose=False):
         if verbose:
             print('Loading graph DB snapshot ...')
-            
+
         if db_snapshot_filename == None:
             snapshots = self.get_db_snapshots()
             db_snapshot_filename = snapshots[-1]
@@ -249,7 +249,7 @@ class GraphDBInstance:
 
         if verbose:
             print('Graph DB snapshot loaded from file: {}'.format(db_snapshot_path))
-        
+
         return db_snapshot
 
     def export_cypher_text(self, diff=None, verbose=False, filepath=None):
@@ -276,7 +276,7 @@ class GraphDBInstance:
         self.graphdb.save_db(new_db_backup_filepath)
         if verbose:
             print('Graph DB backup saved to file: {}'.format(new_db_backup_filepath))
-        
+
         return new_db_backup_filepath
 
     def generate_db_diff(self, db_snapshot_filename=None, verbose=False):
@@ -289,7 +289,7 @@ class GraphDBInstance:
         if verbose:
             print('\nExported DB Diff Cypher Text -----\n')
             print(db_diff)
-            
+
         return db_diff
 
     def inspect_db(self, list_contents=[], verbose=False, contents_length=5):
@@ -335,12 +335,12 @@ class GraphDBInstance:
                                 if nitem == contents_length:
                                     print()
                                     nitem = 0
-        
+
         return result
 
     def check_synonyms(self, verbose=False):
         syn_check = self.graphdb.check_synonyms()
-        
+
         if verbose:
             check = 'synonym appears in different agents'
             print('\n{} ...'.format(check))
@@ -360,9 +360,9 @@ class GraphDBInstance:
             print('Agents with no labels:')
             for name in label_check:
                 print('::agent {}'.format(name))
-                
+
         return label_check
-                
+
     def export_graphml_text(self, diff=None, verbose=False, filepath=None):
         graphml = self.graphdb.generate_graphml(diff_db=diff)
         graphml_text = self.graphdb.export_graphml_text(graphml)
@@ -374,13 +374,13 @@ class GraphDBInstance:
             if verbose:
                 print('\nExported GraphML XML -----\n')
                 print(graphml_text)
-        
+
         return graphml_text
 
     def export_graphml_figure(self, verbose=False, filepath=None):
         # read GraphML into NetworkX for visualization
         graphml_text = self.export_graphml_text(verbose=verbose)
-        
+
         G = nx.parse_graphml(graphml_text, force_multigraph=True)
 
         # get info needed for labels and node colours
@@ -388,7 +388,7 @@ class GraphDBInstance:
         article_nodes = []
         category_nodes = []
         resource_nodes = []
-        agent_nodes = []            
+        agent_nodes = []
         other_nodes = []
         for node in G.nodes.items():
             key, d = node

@@ -74,7 +74,7 @@ def zotero_library_to_csv(library_id, library_type, api_key=None, zotero_csv_fil
         # delete original 'creators'
         del item['data']['creators']
 
-        # flatten tags 
+        # flatten tags
         item['data']['manualTags'] = '; '.join([tag_item['tag'] for tag_item in item['data']['tags']])
         # delete original 'tags'
         del item['data']['tags']
@@ -82,7 +82,7 @@ def zotero_library_to_csv(library_id, library_type, api_key=None, zotero_csv_fil
         # convert 'date' -> 'publicationYear'
         item['data']['publicationYear'] = item['data']['date']
         del item['data']['date']
-        
+
         zotero_list.append(item['data'])
 
     json_zotero_output = json.dumps(zotero_list)
@@ -95,5 +95,3 @@ def zotero_library_to_csv(library_id, library_type, api_key=None, zotero_csv_fil
     zotero_df.to_csv(zotero_csv_filename, encoding='utf-8', index=False)
 
     return
-    
-    

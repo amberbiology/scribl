@@ -163,7 +163,7 @@ def test_graphml_generation():
     assert type(parsed_xml) == ET.Element  # make sure XML is well-formed
     assert len(parsed_xml.findall("gml:graph/gml:node", ns)) == 154  # total nodes
     assert len(parsed_xml.findall("gml:graph/gml:edge", ns)) == 344  # total nodes
-    
+
 def test_graphdb_backup():
     print('Testing graph DB backup ...')
     empty_sandbox()

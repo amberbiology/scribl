@@ -1,6 +1,11 @@
 name: Scribl Python package
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 on:
+  workflow_dispatch:
   push:
     paths-ignore:
       - '**.md'
@@ -69,7 +74,7 @@ jobs:
           # update the version number
           echo "{\"version\": \"$GITHUB_REF_NAME\"}" | cat .zenodo.mod.json - | jq -s add > .zenodo.json
           # debugging only
-          cat .zenodo.json 
+          cat .zenodo.json
           rm .zenodo.mod.json
       - name: Upsert the version in the metadata in CITATION.cff
         run: |
@@ -100,7 +105,7 @@ jobs:
         # uses: zenodraft/action@0.10.0
         uses: alexlancaster/zenodraft-action@0.10.2
         with:
-          # collection: 
+          # collection:
           metadata: .zenodo.json
           publish: false
           sandbox: true
@@ -108,10 +113,10 @@ jobs:
           upsert-doi: true
           upsert-location: doi
           verbose: true
-  
+
   ci_build:
     needs: [publish_zenodo, skip_publish_zenodo]
-    if: always() && !cancelled() && !failure()    
+    if: always() && !cancelled() && !failure()
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
@@ -158,13 +163,13 @@ jobs:
     name: Create wheel and sdist for distribution
     needs: [ci_build]  # make sure it passes the CI first
     runs-on: ubuntu-latest
-    if: always() && !cancelled() && !failure()    
+    if: always() && !cancelled() && !failure()
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - uses: hynek/build-and-inspect-python-package@v2    
-        
+      - uses: hynek/build-and-inspect-python-package@v2
+
   upload_test_pypi:
     name: Upload to Test_PyPI
     needs: [dist]
@@ -180,8 +185,7 @@ jobs:
         with:
           name: Packages
           path: dist
-          merge-multiple: true          
+          merge-multiple: true
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository_url: https://test.pypi.org/legacy/
-        

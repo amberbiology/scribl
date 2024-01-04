@@ -32,7 +32,7 @@ def main(argv=sys.argv):
     gp_db.add_argument("-n", "--namedb", help="Name of your database", default="", required=False)
     gp_db.add_argument("-c", "--curator", help="Person/group who curated your database", default="", required=False)
     gp_db.add_argument("-d", "--description", help="Description of your database", default="", required=False)
-    
+
     gp_zotero = parser.add_argument_group('Mutually exclusive Zotero inputs')
     gp_zotero_xor = gp_zotero.add_mutually_exclusive_group() # (required=True)
     gp_zotero_xor.add_argument("-z", "--zoterofile", help="path to Zotero input file", default=None)
@@ -41,7 +41,7 @@ def main(argv=sys.argv):
                        default=None)
     gp_zotero_api = parser.add_argument_group('Zotero library options. Only valid to use if --zotero-library also supplied')
     gp_zotero_api.add_argument("--zotero-api-key", metavar="ZOTERO_API_KEY", help="If accessing a private Zotero library, use this API_KEY. ", default=None)
-    
+
     gp_outputs = parser.add_argument_group('Optional generated outputs')
     gp_outputs.add_argument("--cyphertextfile", help="optional path to Cypher text output file", default=None, required=False)
     gp_outputs.add_argument("--graphmlfile", help="optional path to GraphML output file", default=None, required=False)
@@ -50,23 +50,23 @@ def main(argv=sys.argv):
     gp_checks = parser.add_argument_group('Optional checks')
     gp_checks.add_argument('--check-synonyms', help='run synonym check', default=False, required=False)
     gp_checks.add_argument('--check-agentlabels', help='run agent label check', default=False, required=False)
-    
+
     parser.add_argument("-v", "--verbose", help="output verbosity", action="store_true", default=False)
     parser.add_argument("--overwrite", help="overwrite any existing database", action="store_true", default=False)
     parser.add_argument("-V", "--version", action="version", version="%(prog)s {version}\n".format(version=version))
 
-    args = parser.parse_args(argv[1:])                        
-                        
+    args = parser.parse_args(argv[1:])
+
     # path to your scribl graph db
     scribl_graphdb_path = args.graphdb
-    
+
     # metadata details for your scribl database here
     db_name = args.namedb # 'Name of your database'
     db_curator = args.curator # 'Person/group who curated your database'
     db_description = args.description # 'Description of your database'
-    
+
     # path to the input Zotero file
-    default_zotero_export_path = args.zoterofile 
+    default_zotero_export_path = args.zoterofile
 
     # path to optional output files
     cyphertext_filename = args.cyphertextfile
@@ -75,7 +75,7 @@ def main(argv=sys.argv):
 
     check_synonyms = args.check_synonyms
     check_agentlabels = args.check_agentlabels
-    
+
     overwrite = args.overwrite
     verbosity = args.verbose
 
@@ -92,16 +92,16 @@ def main(argv=sys.argv):
         zotero_library_id, zotero_library_type, zotero_api_key = None, None, None
 
     # end argument parsing
-        
+
     # initialize (or read from existing) graph DB
     try:
         gdb = GraphDBInstance(scribl_graphdb_path, overwrite=overwrite, verbose=verbosity)
     except FileExistsError:
         print('directory "%s" exists, but is not a valid existing scribl database, so cannot be either read or overwritten, aborting' % scribl_graphdb_path)
         return
-        
+
     gdb.set_metadata(db_name, db_curator, db_description)
-    
+
     if default_zotero_export_path:
         # import locally supplied CSV
         gdb.import_zotero_csv(default_zotero_export_path, overwrite=overwrite, verbose=verbosity)
@@ -136,7 +136,7 @@ def main(argv=sys.argv):
 
     # load graph DB snapshot
     gdb.load_db_snapshot(verbose=verbosity)
-    
+
     # export cypher text file
     if cyphertext_filename:
         gdb.export_cypher_text(verbose=verbosity, filepath=cyphertext_filename)
@@ -154,8 +154,7 @@ def main(argv=sys.argv):
     if networkx_fig:
         # generate visualization using NetworkX
         gdb.export_graphml_figure(verbose=verbosity, filepath=networkx_fig)
-            
+
 if __name__ == '__main__':
 
     main()
-    
