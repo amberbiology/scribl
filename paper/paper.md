@@ -17,9 +17,9 @@ authors:
     equal-contrib: true
 affiliations:
   - name: Amber Biology LLC, USA
-  - index: 1
+    index: 1
   - name: Ronin Institute, USA
-  - index: 2
+    index: 2
 date: 28 February 2024
 bibliography: paper.bib
 ---
