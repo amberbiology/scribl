@@ -45,14 +45,14 @@
     },
     {
       "scheme": "url",
-      "identifier": "https://pypi.org/project/bioscribl/0.7.11",
+      "identifier": "https://pypi.org/project/scribl/0.7.11",
       "relation": "isSourceOf",
       "resource_type": "software"
     }
   ],
   "additional_descriptions": [
     {
-      "description": "<p><p>Development is on GitHub: <a href=\"https://github.com/amberbiology/scribl\">https://github.com/amberbiology/scribl</a></p><p>Binary packages are available on PyPI: <a href=\"https://pypi.org/project/bioscribl/\">https://pypi.org/project/bioscribl/</a>.&nbsp;</p>",
+      "description": "<p><p>Development is on GitHub: <a href=\"https://github.com/amberbiology/scribl\">https://github.com/amberbiology/scribl</a></p><p>Binary packages are available on PyPI: <a href=\"https://pypi.org/project/scribl/\">https://pypi.org/project/scribl/</a>.&nbsp;</p>",
       "type": {
         "id": "notes"
       }

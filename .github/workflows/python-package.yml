@@ -71,7 +71,7 @@ jobs:
           echo "VERSION_PYTHON_STYLE = $VERSION_PYTHON_STYLE"
           # cp .zenodo.json .zenodo.orig.json
           # update the 'related_identifiers' to use exact tree and pypi packaage
-          cat .zenodo.json | jq "(.related_identifiers[] | (select (.relation == \"isSourceOf\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://pypi.org/project/bioscribl\")).identifier) |= \"https://pypi.org/project/bioscribl/$VERSION_PYTHON_STYLE\""  |  jq "(.related_identifiers[] | (select (.relation == \"isSupplementTo\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://github.com/amberbiology/scribl\")).identifier) |= \"https://github.com/amberbiology/scribl/tree/$GITHUB_REF_NAME\"" > .zenodo.mod.json
+          cat .zenodo.json | jq "(.related_identifiers[] | (select (.relation == \"isSourceOf\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://pypi.org/project/scribl\")).identifier) |= \"https://pypi.org/project/scribl/$VERSION_PYTHON_STYLE\""  |  jq "(.related_identifiers[] | (select (.relation == \"isSupplementTo\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://github.com/amberbiology/scribl\")).identifier) |= \"https://github.com/amberbiology/scribl/tree/$GITHUB_REF_NAME\"" > .zenodo.mod.json
           # update the version number
           echo "{\"version\": \"$GITHUB_REF_NAME\"}" | cat .zenodo.mod.json - | jq -s add > .zenodo.json
           # debugging only
