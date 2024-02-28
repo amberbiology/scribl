@@ -36,6 +36,7 @@ scribl="scribl.scribl:main"
 [project.urls]
 Homepage = "http://amberbiology.com"
 Source = 'https://github.com/amberbiology/scribl/'
+Tracker = 'https://github.com/amberbiology/scribl/issues'
 
 [tool.setuptools]
 packages = ["scribl"]
