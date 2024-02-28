@@ -57,8 +57,8 @@ jobs:
     name: Production release, Zenodo publication
     runs-on: ubuntu-latest
     # "else" we *are* publishing something, only works for non-pre-releases on the main branch
-    if: false
-    # if: github.event.release.target_commitish == 'github_actions_upgrade' && github.event_name == 'release' && github.event.action == 'published' && github.event.release.prerelease == false
+    # if: false
+    if: github.event.release.target_commitish == 'main' && github.event_name == 'release' && github.event.action == 'published' && github.event.release.prerelease == false
     steps:
       - name: Checkout the contents of your repository
         uses: actions/checkout@v4
@@ -71,7 +71,7 @@ jobs:
           echo "VERSION_PYTHON_STYLE = $VERSION_PYTHON_STYLE"
           # cp .zenodo.json .zenodo.orig.json
           # update the 'related_identifiers' to use exact tree and pypi packaage
-          cat .zenodo.json | jq "(.related_identifiers[] | (select (.relation == \"isSourceOf\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://pypi.org/project/bioscribl\")).identifier) |= \"https://pypi.org/project/bioscribl/$VERSION_PYTHON_STYLE\""  |  jq "(.related_identifiers[] | (select (.relation == \"isSupplementTo\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://github.com/amberbiology/scribl\")).identifier) |= \"https://github.com/amberbiology/scribl/tree/$GITHUB_REF_NAME\"" > .zenodo.mod.json
+          cat .zenodo.json | jq "(.related_identifiers[] | (select (.relation == \"isSourceOf\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://pypi.org/project/scribl\")).identifier) |= \"https://pypi.org/project/scribl/$VERSION_PYTHON_STYLE\""  |  jq "(.related_identifiers[] | (select (.relation == \"isSupplementTo\" and .resource_type == \"software\")) | select (.identifier | startswith(\"https://github.com/amberbiology/scribl\")).identifier) |= \"https://github.com/amberbiology/scribl/tree/$GITHUB_REF_NAME\"" > .zenodo.mod.json
           # update the version number
           echo "{\"version\": \"$GITHUB_REF_NAME\"}" | cat .zenodo.mod.json - | jq -s add > .zenodo.json
           # debugging only
@@ -103,10 +103,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_SCRIBL_ACCESS_TOKEN }}
-        # uses: zenodraft/action@0.10.0
-        uses: alexlancaster/zenodraft-action@0.10.2
+        uses: zenodraft/action@0.13.3
+        # uses: alexlancaster/zenodraft-action@0.10.2
         with:
-          # collection:
+          # concept:
           metadata: .zenodo.json
           publish: false
           sandbox: true
@@ -179,8 +179,8 @@ jobs:
     permissions:
       id-token: write
     # drop requirement of 'main', release to test_pypi to test releases
-    if: false
-    #if: github.event_name == 'release' && github.event.action == 'published' && always() && !cancelled() && !failure()
+    #if: false
+    if: github.event_name == 'release' && github.event.action == 'published' && always() && !cancelled() && !failure()
     steps:
       - uses: actions/download-artifact@v4
         with:
@@ -189,4 +189,4 @@ jobs:
           merge-multiple: true
       - uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository_url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/legacy/

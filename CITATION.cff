@@ -18,7 +18,6 @@ title: >-
   scribl: A system for the semantic capture of relationships in biological
   literature
 url: https://amberbiology.com
-# repository-artifact: https://pypi.org/project/<tbd>
 repository-code: https://github.com/amberbiology/scribl
 type: software
 keywords:
