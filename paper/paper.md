@@ -96,12 +96,10 @@ example:
 ::process smcr8 mutation > ulk1 phosphorylation < autophagy = smcr8 expression
 ```
 
-These tags are
-parsed and used to create a graph data structure that can be then be
-exported for use in a graph database platform such as
+These tags are parsed and used to create a graph data structure that
+can be then be exported for use in a graph database platform such as
 [neo4j](https://neo4j.com), or Python's
 [NetworkX](https://networkx.org/), see \autoref{fig:graph-networkx}.
-
 
 ![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png)
 
