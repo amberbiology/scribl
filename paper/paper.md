@@ -22,7 +22,6 @@ affiliations:
   - index: 2
 date: 28 February 2024
 bibliography: paper.bib
-
 ---
 
 # Summary
