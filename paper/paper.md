@@ -67,6 +67,7 @@ literature database to represent aspects of causual relationships
 identified by the curator. \autoref{fig:scribl-examples} shows some
 example statements.
 
+|:--|
 | `::agent c9orf72 :gene :protein :url https://www.uniprot.org/uniprot/Q96LT7`     |
 | `::agent gtp :tag nucleoside, purine, nucleoside triphosphate`                   |
 | `::process exportin releases cargo into cytoplasm @ exportin-1`                  |
