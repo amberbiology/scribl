@@ -103,8 +103,9 @@ Zotero database, or via a file export from a local Zotero
 installation. Once the literature database has been queried and
 parsed, the resulting graph data structure can be then be exported for
 use in a graph database platforms
-(\autoref{scribl-workflow}). `scribl` also supports the incremental
-updating of the graph database based on new Zotero entries.
+(\autoref{fig:scribl-workflow}). `scribl` also supports the
+incremental updating of the graph database based on new Zotero
+entries.
 
 `scribl` currently supports output in one of two formats:
 
