@@ -65,16 +65,14 @@ biological agents and processes that they describe. `scribl`
 statements are added as tags by a curator to each article in a
 literature database to represent aspects of causual relationships
 identified by the curator. \autoref{fig:scribl-examples} shows some
-examples:
+example statements.
+
+| `::agent c9orf72 :gene :protein :url https://www.uniprot.org/uniprot/Q96LT7`     |
+| `::agent gtp :tag nucleoside, purine, nucleoside triphosphate`                   |
+| `::process exportin releases cargo into cytoplasm @ exportin-1`                  |
+| `::process smcr8 mutation > ulk1 phosphorylation < autophagy = smcr8 expression` |
 
 : Example scribl statements []{label="fig:scribl-examples"}
-
-```
-::agent c9orf72 :gene :protein :url https://www.uniprot.org/uniprot/Q96LT7
-::agent gtp :tag nucleoside, purine, nucleoside triphosphate
-::process exportin releases cargo into cytoplasm @ exportin-1
-::process smcr8 mutation > ulk1 phosphorylation < autophagy = smcr8 expression
-```
 
 This example shows two types of entities: (1) agents (`::agent`): are
 actual biochemical entities (e.g. proteins) described in the
