@@ -6,6 +6,7 @@ tags:
   - literature mining
   - bioinformatics
   - computational biology
+  - Zotero
 authors:
   - name: Gordon D. Webster
     orcid: 0009-0009-2862-0467
@@ -63,7 +64,10 @@ from scientific articles, of the relationships between the various
 biological agents and processes that they describe. `scribl`
 statements are added as tags by a curator to each article in a
 literature database to represent aspects of causual relationships
-identified by the curator. Below is an example:
+identified by the curator. \autoref{fig:scribl-examples} shows some
+examples:
+
+: Example scribl statements []{label="fig:scribl-examples"}
 
 ```
 ::agent c9orf72 :gene :protein :url https://www.uniprot.org/uniprot/Q96LT7
@@ -81,14 +85,17 @@ more likely are more of a coarser-grained nature.
 
 **The `scribl` Python package**.  The `scribl` Python package can
 query a [Zotero](https://zotero.org) database containing declarative
-statements in `scribl` syntax described above, and generate an output
-graph database. The resulting graph data structure can be then be
-exported for use in a graph database platforms. `scribl` currently
-supports output in one of two formats:
+statements in `scribl` syntax described above, and generate a graph
+database. The resulting graph data structure can be then be exported
+for use in a graph database platforms. `scribl` currently supports
+output in one of two formats:
 
 1. [Cypher query
 language](https://opencypher.org/)[@francis_cypher_2018] used by the
-graph database platform [neo4j](https://neo4j.com)
+graph database platform [neo4j](https://neo4j.com). The output Cypher
+query can be used directly to initialize a Neo4j database.  The Neo4j
+setup itself it not done by `scribl`, but must be installed
+separately.
 
 2.  [GraphML](http://graphml.graphdrawing.org/)
 [@brandes_graphml_2002] format. This format can be read and used for
@@ -98,6 +105,12 @@ processing and visualization by packages such as Python's
 
 ![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png)
 
+Once created, it is possible to searches on the graph database not
+possible with traditional keyword searching. For example, once the
+scribl output is loaded into a Neo4j database, it is possible to write
+Cypher queries of the kind: "Show me all of the agents that are
+involved in the process `exportin` and the articles that describe
+them".
 
 # Statement of need
 
