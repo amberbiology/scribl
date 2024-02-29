@@ -29,17 +29,16 @@ bibliography: paper.bib
 
 # Summary
 
-Searchable catalogs of curated scientific literature and metadata
-often lack semantic detail contained in the curated articles. Typical
-literature searches based upon text and keywords are a blunt
-instrument, generating large sets of articles of potential interest
-that need to be read more closely to determine if they are relevant to
-the researcher. In life science research, most scientific literature
-databases are most immediately useful to scientists looking for
-information in two categories (1) those looking general literature on
-a broad research area, or (2) those looking for a precise terms,
-e.g. specific genes [@krallinger_linking_2008]. A third category of
-literature search exists in between these two extremes: searches where
+Searchable catalogs of curated scientific literature often lack
+semantic detail contained in the curated articles. Typical text and
+keyword literature searches are a blunt instrument, generating large
+sets of articles that need to be read more closely to determine if
+they are relevant to the researcher. In life science research, most
+literature databases are most immediately useful to scientists looking
+for information in two categories (1) those looking for general
+literature on a broad research area, or (2) those looking for a
+precise terms, e.g. specific genes [@krallinger_linking_2008]. A third
+category of literature search is in between these two extremes: where
 the desired results involve a small set of agents (e.g., proteins,
 genes, compounds, receptor complexes) or biological processes (e.g,
 autophagy, cell cycle), but that are themselves components of much
@@ -48,16 +47,15 @@ larger systems, as needed in systems biology models
 
 It is extremely valuable for life researchers, especially those
 involved in systems biology, to be able to query a literature database
-to extract and visualize relationships between any specified agents
-and processes. Here we develop a system that supports the annotation
-of scientific articles, to represent and visualize these
+to extract and visualize relationships between specified agents and
+processes. Here we develop a system that supports the annotation of
+scientific articles, to represent and visualize these
 relationships. This system, `scribl`, consists of two parts: (1) a
 simple syntax that can be used to curation of biological relationships
 within the text of those articles, (2) a Python software pipeline that
-can transform a literature database (currently supporting the free,
-open-source [Zotero](https://www.zotero.org/) database) with entries
-annotated with this syntax into graph database suitable for
-relationship queries.
+can transform a [Zotero](https://www.zotero.org/) literature database,
+with entries annotated with this syntax into database suitable
+graph-based relationship queries.
 
 # Features
 
@@ -67,13 +65,11 @@ The language was designed for the curation of scientific articles to
 include documentation of the relationships between the various
 biological agents and processes that they describe. Valid
 relationships for each entity are shown in
-\autoref{fig:scribl-schema}.
+\autoref{fig:scribl-schema}. `scribl` statements are added as tags by
+a curator to each article in a literature database to represent
+aspects of causal relationships identified by the curator.
 
-![The scribl schema comprises a hierarchy of give basic entities: article, category, resource, process, and agent.\label{fig:scribl-schema}](scribl-schema.png)
-
-`scribl` statements are added as tags by a curator to each article in
-a literature database to represent aspects of causal relationships
-identified by the curator.
+![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`.\label{fig:scribl-schema}](scribl-schema.png)
 
 |   |
 |:--|
@@ -86,22 +82,22 @@ identified by the curator.
 \autoref{scribl-examples} shows two types of entities: (1) agents
 (`::agent`): are actual biochemical entities (e.g. proteins) described
 in the literature article in question, along with some metadata about
-the agent in question, (2) processes (`::process`) which represent
-biological processes, which may be a mechanistic biochemical process,
-but more likely more phenomenological in nature (like `autophagy`).
+the agent, (2) processes (`::process`) which represent biological
+processes, which may be a mechanistic biochemical process, but more
+likely more phenomenological in nature (like `autophagy`).
 
 ## The `scribl` Python package.
 
-The `scribl` Python package can query a [Zotero](https://zotero.org)
+The `scribl` Python package queries a [Zotero](https://zotero.org)
 database where each literature record has been annotated using
-Zotero's "tag" feature with declarative statements in `scribl` syntax
-described above. `scribl` input: currently the literature source can
-be either a remote Zotero database, or a file export from a local
-Zotero installation. Once the Zotero data has been queried and parsed,
-the resulting graph data structure can be then be exported for use in
-a graph database platforms (\autoref{fig:scribl-workflow}). `scribl`
-also supports the incremental updating of the graph database based on
-new Zotero entries.
+declarative statements in the `scribl` syntax described
+above. Currently the literature source for `scribl` input can be
+either a remote Zotero database, or a file export from a local Zotero
+installation. Once the Zotero data has been parsed, the resulting
+graph data structure can be then be exported for use in a graph
+database platforms (\autoref{fig:scribl-workflow}). `scribl` also
+supports the incremental updating of the graph database as new Zotero
+entries come in.
 
 ![The two major workflows for the scribl software are creating a new graph database and updating an existing one\label{fig:scribl-workflow}](scribl-workflow.png)
 
@@ -117,7 +113,7 @@ not done by `scribl`, but must be installed separately.
 [@brandes_graphml_2002] format. This format can be read and used for
 processing and visualization by packages such as Python's
 [NetworkX](https://networkx.org/) [@hagberg_exploring_2008]. (see
-\autoref{fig:graph-networkx} for example).
+\autoref{fig:graph-networkx} for an example).
 
 ![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png)
 
@@ -138,9 +134,7 @@ relationships embedded in literature records, and to rapidly translate
 those relationships into queryable graph networks. The `scribl` syntax
 was designed to be simple enough to learn, but rich enough to
 represent important relationships relevant to molecular and systems
-biology. The relationships captured in `scribl` are not intended to
-replace a reading of the literature but rather to further narrow down
-the search for relevant biological agents and processes.
+biology.
 
 Zotero was also chosen as the initial backend, because it is simple to
 add tags to each literature record, and supports the web-based
@@ -148,20 +142,9 @@ curation features, and doesn't require a heavy-duty database to
 maintain. `scribl` allows a researcher, or group of researchers, to
 rapidly build and visualize important relationships useful for
 understanding the celluar and systems biology within a chosen
-subdomain.  It is also often desirable for researchers to curate
-literature databases that are focused on narrower, more specific areas
-of interest, including those that may also be underrepresented in
-larger data repositories. In fact our main use-case for `scribl` was
-building a relationship database of neurodegenerative disease pathways
-for the frontotemporal degeneration (FTD) community.
-
-At the time of writing, even though a biological system can be
-described in great detail in a scientific article, natural language
-processing technology, such as large-language models, required to
-extract an accurate, formal model of that system from the article text
-has yet to reach the level at which this could realistically be
-achieved algorithmically. Thus some level of manual, but structured,
-curation is likely to be useful for in the immediate future.
+subdomain. In fact our main use-case for `scribl` was building a such
+a relationship database of neurodegenerative disease pathways for the
+frontotemporal degeneration (FTD) community.
 
 ## What `scribl` is not
 
@@ -180,10 +163,10 @@ order to build those detailed models.
 `scribl` is also not intended to be a replacement for biological graph
 databases such as [Reactome](https://reactome.org)
 [@gillespie_reactome_2022]. The Reactome database is actually based
-upon the same graph database engine that is the current default
-supported by scribl, so `scribl` could actually help facilitate the
-curation of biological pathways from newly-published literature, in a
-format that is ready for graph data repositories like Reactome.
+upon the same Neo4j graph database engine supported by scribl, so
+`scribl` could actually help facilitate the curation of biological
+pathways from newly-published literature, in a format that is ready
+for graph data repositories like Reactome.
 
 # Availability
 
