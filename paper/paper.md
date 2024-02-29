@@ -7,19 +7,21 @@ tags:
   - bioinformatics
   - computational biology
 authors:
-  - name: Gordon Webster
+  - name: Gordon D. Webster
     orcid: 0009-0009-2862-0467
     affiliation: "1, 2"
     equal-contrib: true
   - name: Alexander K. Lancaster
     orcid: 0000-0002-0002-9263
-    affiliation: "1, 2"
+    affiliation: "1, 2, 3"
     equal-contrib: true
 affiliations:
   - name: Amber Biology LLC, USA
     index: 1
   - name: Ronin Institute, USA
     index: 2
+  - name: Institute for Globally Distributed Open Research and Education
+    index: 3
 date: 28 February 2024
 bibliography: paper.bib
 ---
