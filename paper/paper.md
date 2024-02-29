@@ -38,12 +38,13 @@ the researcher. In life science research, most scientific literature
 databases are most immediately useful to scientists looking for
 information in two categories (1) those looking general literature on
 a broad research area, or (2) those looking for a precise terms,
-e.g. a specific gene or author. A third category of literature search
-exists in between these two extremes: searches where the desired
-results involve a small set of agents (e.g., proteins, genes,
-compounds, receptor complexes) or biological processes (e.g,
+e.g. specific genes [@krallinger_linking_2008]. A third category of
+literature search exists in between these two extremes: searches where
+the desired results involve a small set of agents (e.g., proteins,
+genes, compounds, receptor complexes) or biological processes (e.g,
 autophagy, cell cycle), but that are themselves components of much
-larger systems, as needed in systems biology models.
+larger systems, as needed in systems biology models
+[@cary_pathway_2005].
 
 It is extremely valuable for life researchers, especially those
 involved in systems biology, to be able to query a literature database
@@ -84,37 +85,33 @@ identified by the curator.
 
 \autoref{scribl-examples} shows two types of entities: (1) agents
 (`::agent`): are actual biochemical entities (e.g. proteins) described
-in the literature article in question, allow with some metadata about
+in the literature article in question, along with some metadata about
 the agent in question, (2) processes (`::process`) which represent
-biological processes, which may be a specific biochemical process, but
-more likely are more of a coarser-grained nature.
+biological processes, which may be a mechanistic biochemical process,
+but more likely more phenomenological in nature (like `autophagy`).
 
 ## The `scribl` Python package.
 
 The `scribl` Python package can query a [Zotero](https://zotero.org)
 database where each literature record has been annotated using
 Zotero's "tag" feature with declarative statements in `scribl` syntax
-described above.
+described above. `scribl` input: currently the literature source can
+be either a remote Zotero database, or a file export from a local
+Zotero installation. Once the Zotero data has been queried and parsed,
+the resulting graph data structure can be then be exported for use in
+a graph database platforms (\autoref{fig:scribl-workflow}). `scribl`
+also supports the incremental updating of the graph database based on
+new Zotero entries.
 
 ![The two major workflows for the scribl software are creating a new graph database and updating an existing one\label{fig:scribl-workflow}](scribl-workflow.png)
 
-`scribl` input: currently the literature source can be either a remote
-Zotero database, or via a file export from a local Zotero
-installation. Once the literature database has been queried and
-parsed, the resulting graph data structure can be then be exported for
-use in a graph database platforms
-(\autoref{fig:scribl-workflow}). `scribl` also supports the
-incremental updating of the graph database based on new Zotero
-entries.
-
 `scribl` currently supports output in one of two formats:
 
-1. [Cypher query
-language](https://opencypher.org/)[@francis_cypher_2018] used by the
-graph database platform [neo4j](https://neo4j.com). The output Cypher
-query can be used directly to initialize a Neo4j database.  The Neo4j
-setup itself it not done by `scribl`, but must be installed
-separately.
+1. [Cypher query language](https://opencypher.org/)
+[@francis_cypher_2018] used by the graph database platform
+[neo4j](https://neo4j.com). The output Cypher query can be used
+directly to initialize a Neo4j database.  The Neo4j setup itself it
+not done by `scribl`, but must be installed separately.
 
 2.  [GraphML](http://graphml.graphdrawing.org/)
 [@brandes_graphml_2002] format. This format can be read and used for
@@ -156,7 +153,7 @@ literature databases that are focused on narrower, more specific areas
 of interest, including those that may also be underrepresented in
 larger data repositories. In fact our main use-case for `scribl` was
 building a relationship database of neurodegenerative disease pathways
-for the FTD community.
+for the frontotemporal degeneration (FTD) community.
 
 At the time of writing, even though a biological system can be
 described in great detail in a scientific article, natural language
