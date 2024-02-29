@@ -53,8 +53,8 @@ parts: (1) a simple syntax that can be used to curation of biological
 relationships within the text of those articles, (2) a Python software
 pipeline that can transform a literature database (currently
 supporting the free, open-source [Zotero](https://www.zotero.org/)
-database) with entries annotated with this syntax into graph
-relational database.
+database) with entries annotated with this syntax into graph database
+suitable for the kind of relationship queries.
 
 # Features
 
@@ -86,12 +86,14 @@ graph database. The resulting graph data structure can be then be
 exported for use in a graph database platforms. `scribl` currently
 supports output in one of two formats:
 
-1. [Cypher query language](https://opencypher.org/) used by the graph
-database platform [neo4j](https://neo4j.com)
+1. [Cypher query
+language](https://opencypher.org/)[@francis_cypher_2018] used by the
+graph database platform [neo4j](https://neo4j.com)
 
-2.  [GraphML](http://graphml.graphdrawing.org/) format. This format
-can be read and used for processing and visualization by packages such
-as Python's [NetworkX](https://networkx.org/). (see
+2.  [GraphML](http://graphml.graphdrawing.org/)
+[@brandes_graphml_2002] format. This format can be read and used for
+processing and visualization by packages such as Python's
+[NetworkX](https://networkx.org/) [@hagberg_exploring_2008]. (see
 \autoref{fig:graph-networkx} for example).
 
 ![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png)
@@ -105,18 +107,20 @@ the search for relevant biological agents and processes.
 
 Nor is `scribl` intended to provide a semantic platform for the
 construction of formal models of biological process and interacting
-agents such as the modeling languages Kappa3 and SBML4. The
-development of such models requires a much narrower focus on a
-specific set of agents and reactions, and is significantly constrained
-by the requirement for a level of specific, quantitative detail that
-most life science articles do not provide. In this sense then,
-`scribl` could be considered a platform for the development of a kind
-of coarse-grained model of biological systems that sits somewhere
-between the very low resolution representation of a system by keywords
-and literature terms, and the very high resolution representation of a
-formal, kinetic model. It is worth noting that at the time of writing,
-even though a biological system might be comprehensively described in
-great detail by a particular scientific article, the kind of natural
+agents such as the modeling languages
+[Kappa](https://kappalanguage.org/) [@boutillier_kappa_2020] and
+[SBML](https://sbml.org/) [@keating_sbml_2020]. The development of
+such models requires a much narrower focus on a specific set of agents
+and reactions, and is significantly constrained by the requirement for
+a level of specific, quantitative detail that most life science
+articles do not provide. In this sense then, `scribl` could be
+considered a platform for the development of a kind of coarse-grained
+model of biological systems that sits somewhere between the very low
+resolution representation of a system by keywords and literature
+terms, and the very high resolution representation of a formal,
+kinetic model. It is worth noting that at the time of writing, even
+though a biological system might be comprehensively described in great
+detail by a particular scientific article, the kind of natural
 language processing5 technology required to extract an accurate,
 formal model of that system from the article text has yet to reach the
 level at which this could realistically be achieved algorithmically.
@@ -137,7 +141,7 @@ the larger data repositories.
 
 The development of the scribl platform was made possible with the
 support of the [Association for Frontotemporal Degeneration
-(AFTD)](https://aftd.org/). We are grateful to AFTD members Debra
+(AFTD)](https://theaftd.org/). We are grateful to AFTD members Debra
 Niehoff and Penny Dacks for their support.
 
 # References
