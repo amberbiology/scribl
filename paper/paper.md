@@ -115,7 +115,7 @@ processing and visualization by packages such as Python's
 [NetworkX](https://networkx.org/) [@hagberg_exploring_2008]. (see
 \autoref{fig:graph-networkx} for an example).
 
-![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png)
+![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
 
 Once created, it is possible to create searches on the graph database
 not possible with traditional keyword searching. For example, once the
