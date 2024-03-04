@@ -34,8 +34,7 @@ to go beyond simple keyword-based queries of biological agents (e.g.,
 proteins, genes, compounds, receptor complexes) and processes (e.g,
 autophagy, cell cycle) [@krallinger_linking_2008] that return a bare
 list of papers, to extracting and visualize relationships documented
-within those papers
-[@cary_pathway_2005,@suderman_tools_2007,@pavlopoulos_visualizing_2015].
+within those papers [@cary_pathway_2005; @suderman_tools_2007; @pavlopoulos_visualizing_2015].
 Here we develop a system that supports the annotation of scientific
 articles, that represent and visualize these relationships. This
 system, `scribl`, consists of two parts: (1) a simple syntax that can
@@ -45,9 +44,7 @@ transform a [Zotero](https://www.zotero.org/) literature database,
 with entries annotated with this syntax into database suitable
 graph-based relationship queries.
 
-# Features
-
-## The `scribl` language
+# The `scribl` language
 
 The language was designed for the curation of scientific articles to
 include documentation of the relationships between the various
@@ -57,7 +54,7 @@ relationships for each of the five basic entities are shown in
 by a curator to each article in a literature database to represent
 aspects of causal relationships identified by the curator.
 
-![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships.\label{fig:scribl-schema}](scribl-schema.png)
+![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships.\label{fig:scribl-schema}](scribl-schema.png){ width=75% }
 
 |   |
 |:--|
@@ -74,7 +71,7 @@ the agent, (2) processes (`::process`) which represent broad
 mechanistic, or phenomenological biological processes (e.g.,
 `autophagy`).
 
-## The `scribl` Python package.
+# The `scribl` Python package
 
 The `scribl` Python package queries a [Zotero](https://zotero.org)
 database where each literature record has been annotated using
@@ -114,7 +111,7 @@ them".
 
 # Statement of need
 
-## Why `scribl`?
+### Why `scribl`?
 
 The `scribl` platform was developed to fill a need for a simple way to
 enable global sharing and collaborative curation of biological
@@ -133,7 +130,7 @@ within a chosen subdomain. In fact our main use-case for `scribl` was
 building a such a relationship database of neurodegenerative disease
 pathways for the frontotemporal degeneration (FTD) community.
 
-## What `scribl` is not
+### What `scribl` is not
 
 `scribl` is not primarily intended for the construction of formal
 kinetic systems biology models such as the modeling languages
