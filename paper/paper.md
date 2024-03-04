@@ -47,14 +47,16 @@ graph-based relationship queries.
 # The `scribl` language
 
 The language was designed for the curation of scientific articles to
-include documentation of the relationships between the various
-biological agents and processes that they describe. Examples of
-relationships for each of the five basic entities are shown in
-\autoref{fig:scribl-schema}. `scribl` statements can be added as tags
-by a curator to each article in a literature database to represent
-aspects of causal relationships identified by the curator.
+document the relationships between the various biological agents and
+processes that they describe. Examples of relationships for each of
+the five basic entities for a single article are shown in
+\autoref{fig:scribl-schema}.
 
-![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships.\label{fig:scribl-schema}](scribl-schema.png){ width=75% }
+![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships for a single `article`.\label{fig:scribl-schema}](scribl-schema.png){ width=80% }
+
+`scribl` statements can be added as tags by a curator to each article
+in a literature database to represent aspects of causal relationships
+identified by the curator.
 
 |   |
 |:--|
@@ -84,7 +86,7 @@ use in a graph database platforms. `scribl` also supports the
 incremental updating of the graph database as new Zotero entries come
 in (\autoref{fig:scribl-workflow}).
 
-![Two major workflows for the scribl software include creating a new graph database and updating an existing one\label{fig:scribl-workflow}](scribl-workflow.png)
+![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). Note that "Zotero csv export" could be replaced by a query to a remove Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png)
 
 `scribl` currently supports output in one of two formats:
 
@@ -100,7 +102,7 @@ processing and visualization by packages such as Python's
 [NetworkX](https://networkx.org/) [@hagberg_exploring_2008] (e.g,
 \autoref{fig:graph-networkx}).
 
-![Visualization of scribl database via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
+![Visualization of scribl database exported as GraphML via NetworkX.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
 
 Once a graph database is created, it is possible to create searches
 not possible with traditional keyword searching. For example, once the
