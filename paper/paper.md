@@ -75,7 +75,7 @@ mechanistic, or phenomenological biological processes (e.g.,
 
 # The `scribl` Python package
 
-The `scribl` Python package queries a [Zotero](https://zotero.org)
+The `scribl` Python package provides an API to query a [Zotero](https://zotero.org)
 database where each literature record has been annotated using
 declarative statements in the `scribl` syntax described in
 \autoref{scribl-examples}. Currently, the literature source for
@@ -86,9 +86,11 @@ use in graph database platforms. `scribl` also supports the
 incremental updating of the graph database as new Zotero entries come
 in (\autoref{fig:scribl-workflow}).
 
-![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). Note that "Zotero csv export" could be replaced by a query to a remote Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png)
+![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). The workflow contains a step that identifies possible syntactic errors in `scribl` statements so that they can be fixed in the Zotero database before database generation. Note that "Zotero csv export" could be replaced by a query to a remote Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png)
 
-`scribl` currently supports output in one of two graph formats:
+`scribl` functions can be accessed programatically through writing a Python script
+that calls the `scribl` API, or via a command-line program `scribl` contained
+within the distribution. `scribl` currently supports output in one of two graph formats:
 
 1. [Cypher query language](https://opencypher.org/)
 [@francis_cypher_2018] used by the graph database platform
