@@ -229,6 +229,10 @@ The [code](/scribl/scribl.py) for the `scribl` command contains more
 examples of use of the API. In addition, more details can be found
 in the main documentation.
 
+## Contributing to `scribl`
+
+Read our [CONTRIBUTING guide](CONTRIBUTING.md).
+
 ## Copyright and license
 
 scribl is Copyright (C) 2023. Amber Biology LLC
