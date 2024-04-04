@@ -10,7 +10,7 @@ tags:
 authors:
   - name: Gordon D. Webster
     orcid: 0009-0009-2862-0467
-    affiliation: "1, 2"
+    affiliation: "1, 3"
     equal-contrib: true
   - name: Alexander K. Lancaster
     orcid: 0000-0002-0002-9263
@@ -19,9 +19,9 @@ authors:
 affiliations:
   - name: Amber Biology LLC, USA
     index: 1
-  - name: Ronin Institute, USA
-    index: 2
   - name: Institute for Globally Distributed Open Research and Education
+    index: 2
+  - name: Ronin Institute, USA
     index: 3
 date: 03 March 2024
 bibliography: paper.bib
@@ -47,9 +47,9 @@ graph-based relationship queries.
 # The `scribl` language
 
 The language was designed for the curation of scientific articles to
-document the relationships between the various biological agents and
-processes that they describe. Examples of relationships for each of
-the five basic entities for a single article are shown in
+document the relationships between biological agents and processes
+that they describe. Examples of relationships for each of the five
+basic entities for a single article are shown in
 \autoref{fig:scribl-schema}.
 
 ![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships for a single `article`.\label{fig:scribl-schema}](scribl-schema.png){ width=80% }
