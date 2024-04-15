@@ -7,23 +7,22 @@ tags:
   - bioinformatics
   - computational biology
   - Zotero
+  - graph database
 authors:
   - name: Gordon D. Webster
     orcid: 0009-0009-2862-0467
-    affiliation: "1, 3"
+    affiliation: "1"
     equal-contrib: true
   - name: Alexander K. Lancaster
     orcid: 0000-0002-0002-9263
-    affiliation: "1, 2, 3"
+    affiliation: "1, 2"
     equal-contrib: true
 affiliations:
   - name: Amber Biology LLC, USA
     index: 1
   - name: Institute for Globally Distributed Open Research and Education
     index: 2
-  - name: Ronin Institute, USA
-    index: 3
-date: 03 March 2024
+date: 15 April 2024
 bibliography: paper.bib
 ---
 
