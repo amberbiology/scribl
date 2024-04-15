@@ -1,3 +1,5 @@
+[![status](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51/status.svg)](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51)
+
 # scribl
 ## A system for the semantic capture of relationships in biological literature
 
