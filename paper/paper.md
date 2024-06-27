@@ -45,7 +45,7 @@ graph-based relationship queries.
 
 # The `scribl` language
 
-![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships for a single `article`.\label{fig:scribl-schema}](scribl-schema.png){ width=90% }
+![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships for a single `article`.\label{fig:scribl-schema}](scribl-schema.png){ width=92% }
 
 The language was designed for the curation of scientific articles to
 document the relationships between biological agents and processes
@@ -85,7 +85,7 @@ use in graph database platforms. `scribl` also supports the
 incremental updating of the graph database as new Zotero entries come
 in (\autoref{fig:scribl-workflow}).
 
-![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). The workflow contains a step that identifies possible syntactic errors in `scribl` statements so that they can be fixed in the Zotero database before database generation. Note that "Zotero csv export" could be replaced by a query to a remote Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png){ width=102% }
+![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). The workflow contains a step that identifies possible syntactic errors in `scribl` statements so that they can be fixed in the Zotero database before database generation. Note that "Zotero csv export" could be replaced by a query to a remote Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png){ width=104% }
 
 `scribl` functions can be accessed programatically through writing a
 Python script that calls the `scribl` API, or via the included
