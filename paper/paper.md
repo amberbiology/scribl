@@ -145,15 +145,18 @@ pathways for the frontotemporal degeneration (FTD) research community.
 ### What `scribl` is not
 
 `scribl` is not primarily intended for the construction of formal,
-kinetic models of biological systems in the way that modeling languages such as
-[Kappa](https://kappalanguage.org/) [@boutillier_kappa_2020] and
-[SBML](https://sbml.org/) [@keating_sbml_2020] are. However, these
-networks can be considered a coarse-grained model of biological
-systems that sit somewhere between low resolution, keyword-based
-representations; and high resolution, formal, kinetic
-models. `scribl`-enabled networks may also help researchers identify
-interactions or parameters that require measurement in order to build
-those detailed models.
+kinetic models of biological systems in the way that modeling
+languages such as [Kappa](https://kappalanguage.org/)
+[@boutillier_kappa_2020] and [SBML](https://sbml.org/)
+[@keating_sbml_2020] are. However, these networks can be considered a
+coarse-grained model of biological systems that sit somewhere between
+low resolution, keyword-based representations; and high resolution,
+formal, kinetic models. `scribl`-enabled networks may also help
+researchers identify interactions or parameters that require
+measurement in order to build those detailed models, and in-principle,
+`scribl` could be extended to directly generate models in Kappa or
+SBML format for the subset of entries with sufficient kinetic
+annotations to form a self-contained network.
 
 `scribl` is also not intended to be a replacement for an interactive
 visualization engine such as [Cytoscape](https://cytoscape.org/)
