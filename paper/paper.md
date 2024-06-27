@@ -156,16 +156,15 @@ interactions or parameters that require measurement in order to build
 those detailed models.
 
 `scribl` is also not intended to be a replacement for an interactive
-visualization engine such as
-[Cytoscape](https://cytoscape.org/)[@shannon_cytoscape_2003], in fact
-there are plugins to Cytoscape that allow import of Neo4j and GraphML
-output by `scribl`. Nor is it a substitute for biological graph
-databases such as [Reactome](https://reactome.org)
-[@gillespie_reactome_2022]. The Reactome database is actually based
-upon the Neo4j graph database engine, so `scribl` could actually help
-facilitate the curation of biological pathways from newly-published
-literature, in a format that is ready for graph data repositories like
-Reactome.
+visualization engine such as [Cytoscape](https://cytoscape.org/)
+[@shannon_cytoscape_2003], in fact there are plugins to Cytoscape that
+allow the import of both the Neo4j and GraphML formats that `scribl`
+produces. Nor is it a substitute for biological graph databases such
+as [Reactome](https://reactome.org) [@gillespie_reactome_2022]. The
+Reactome database is actually based upon the Neo4j graph database
+engine, so `scribl` could actually help facilitate the curation of
+biological pathways from newly-published literature, in a format that
+is ready for graph data repositories like Reactome.
 
 # Availability
 
