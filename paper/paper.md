@@ -87,9 +87,16 @@ in (\autoref{fig:scribl-workflow}).
 
 ![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). The workflow contains a step that identifies possible syntactic errors in `scribl` statements so that they can be fixed in the Zotero database before database generation. Note that "Zotero csv export" could be replaced by a query to a remote Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png)
 
-`scribl` functions can be accessed programatically through writing a Python script
-that calls the `scribl` API, or via a command-line program `scribl` contained
-within the distribution. `scribl` currently supports output in one of two graph formats:
+`scribl` functions can be accessed programatically through writing a
+Python script that calls the `scribl` API, or simply invoked via the
+command-line program `scribl` contained within the distribution, a
+basic example of which is shown, below:
+
+``` shell
+scribl -g new_graphdb --zotero-library 5251557:group --networkx-fig graphdb-visual.png --graphmlfile graphdb.xml --cyphertextfile graphdb.cypher
+```
+
+`scribl` currently supports output in one of two graph formats:
 
 1. [Cypher query language](https://opencypher.org/)
 [@francis_cypher_2018] used by the graph database platform
@@ -102,7 +109,8 @@ not automated by `scribl` and must be installed separately.
 processing and visualization by packages such as Python's
 [NetworkX](https://networkx.org/) [@hagberg_exploring_2008]. `scribl`
 can generate visualizations from GraphML output, directly (e.g,
-\autoref{fig:graph-networkx}).
+\autoref{fig:graph-networkx}), as noted in the command-line program,
+above.
 
 ![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
 
