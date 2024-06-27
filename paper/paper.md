@@ -112,7 +112,7 @@ command-line program `scribl`.
    scribl -g new_graphdb -z zotero.csv --networkx-fig graphdb-visual.png
    ```
 
-![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
+![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=75% }
 
 Once a graph database has been created, queries can be created
 that are not possible with traditional keyword searching. For example, once the
