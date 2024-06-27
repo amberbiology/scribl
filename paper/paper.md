@@ -109,7 +109,7 @@ command-line program `scribl`.
    directly, a basic example of which is shown below:
 
    ``` shell
-   scribl -g db --z zotero.csv --networkx-fig graphdb-visual.png
+   scribl -g new_graphdb -z zotero.csv --networkx-fig graphdb-visual.png
    ```
 
 ![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
@@ -155,13 +155,17 @@ models. `scribl`-enabled networks may also help researchers identify
 interactions or parameters that require measurement in order to build
 those detailed models.
 
-`scribl` is also not intended to be a replacement for biological graph
+`scribl` is also not intended to be a replacement for an interactive
+visualization engine such as
+[Cytoscape](https://cytoscape.org/)[@shannon_cytoscape_2003], in fact
+there are plugins to Cytoscape that allow import of Neo4j and GraphML
+output by `scribl`. Nor is it a substitute for biological graph
 databases such as [Reactome](https://reactome.org)
 [@gillespie_reactome_2022]. The Reactome database is actually based
-upon the same Neo4j graph database engine supported by scribl, so
-`scribl` could actually help facilitate the curation of biological
-pathways from newly-published literature, in a format that is ready
-for graph data repositories like Reactome.
+upon the Neo4j graph database engine, so `scribl` could actually help
+facilitate the curation of biological pathways from newly-published
+literature, in a format that is ready for graph data repositories like
+Reactome.
 
 # Availability
 
