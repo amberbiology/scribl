@@ -40,7 +40,7 @@ system, `scribl`, consists of two parts: (1) a simple syntax that can
 be used to curate the biological relationships described within the text of
 those articles, (2) a Python software API and pipeline that can
 transform a [Zotero](https://www.zotero.org/) literature database,
-with entries annotated with this syntax, into a database suitable
+with entries annotated with this syntax, into a database suitable for
 graph-based relationship queries.
 
 # The `scribl` language
@@ -129,7 +129,7 @@ Zotero was chosen as the initial backend, because it is simple to
 install and run, as well as supporting the tagging of literature records and
 web-based curation. `scribl` allows a researcher or
 group of researchers, to rapidly build and visualize important
-relationships useful for understanding the celluar and systems biology
+relationships useful for understanding the cellular and systems biology
 within a chosen subdomain. In fact our main use-case for `scribl` was
 the building of a relationship database of neurodegenerative disease
 pathways for the frontotemporal degeneration (FTD) research community.
