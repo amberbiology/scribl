@@ -94,23 +94,24 @@ command-line program `scribl`.
 `scribl` currently supports output in one of two graph formats:
 
 1. [Cypher query language](https://opencypher.org/)
-[@francis_cypher_2018] used by the graph database platform
-[neo4j](https://neo4j.com). The output Cypher query text can be used
-directly to initialize a Neo4j database.  The Neo4j setup itself is
-not automated by `scribl` and must be installed separately.
+   [@francis_cypher_2018] used by the graph database platform
+   [neo4j](https://neo4j.com). The output Cypher query text can be
+   used directly to initialize a Neo4j database.  The Neo4j setup
+   itself is not automated by `scribl` and must be installed
+   separately.
 
-2.  [GraphML](http://graphml.graphdrawing.org/)
-[@brandes_graphml_2002] format that can be read and used for
-processing and visualization by packages such as Python's
-[NetworkX](https://networkx.org/) [@hagberg_exploring_2008]. The
-`scribl` command-line program can generate visualizations (e.g,
-\autoref{fig:graph-networkx}) from GraphML output, and from an input
-Zotero file in CSV format directly, a basic example of which is shown
-below:
+2. [GraphML](http://graphml.graphdrawing.org/) [@brandes_graphml_2002]
+   format that can be read and used for processing and visualization
+   by packages such as Python's [NetworkX](https://networkx.org/)
+   [@hagberg_exploring_2008]. The `scribl` command-line program can
+   generate visualizations (e.g, \autoref{fig:graph-networkx}) from
+   GraphML output, and from an input Zotero file in CSV format
+   directly, a basic example of which is shown below:
 
-``` shell
-scribl -g db --z zotero.csv --networkx-fig graphdb-visual.png
-```
+   ``` shell
+   scribl -g db --z zotero.csv --networkx-fig graphdb-visual.png
+   ```
+
 ![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=70% }
 
 Once a graph database has been created, queries can be created
