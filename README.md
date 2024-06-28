@@ -245,7 +245,13 @@ in the main documentation.
    pip install .[test]
    ```
 
-3. run `pytest`
+3. create the testing sandbox:
+
+   ``` shell
+   mkdir tests/test_sandbox
+   ```
+
+4. run `pytest`
 
 ## Contributing to `scribl`
 
