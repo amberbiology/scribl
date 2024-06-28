@@ -20,7 +20,7 @@ authors:
 affiliations:
   - name: Amber Biology LLC, USA
     index: 1
-  - name: Institute for Globally Distributed Open Research and Education
+  - name: Institute for Globally Distributed Open Research and Education (IGDORE)
     index: 2
 date: 15 April 2024
 bibliography: paper.bib
