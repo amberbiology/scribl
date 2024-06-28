@@ -231,6 +231,28 @@ The [code](/scribl/scribl.py) for the `scribl` command contains more
 examples of use of the API. In addition, more details can be found
 in the main documentation.
 
+## Running unit tests with `pytest`
+
+1. clone the repo:
+
+   ``` shell
+   git clone https://github.com/amberbiology/scribl.git
+   ```
+
+2. install with `pip` with the option `test` package :
+
+   ``` shell
+   pip install .[test]
+   ```
+
+3. create the testing sandbox:
+
+   ``` shell
+   mkdir tests/test_sandbox
+   ```
+
+4. run `pytest`
+
 ## Contributing to `scribl`
 
 Read our [CONTRIBUTING guide](CONTRIBUTING.md).
