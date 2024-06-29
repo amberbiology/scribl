@@ -1,44 +1,40 @@
 __author__ = 'Amber Biology'
 
 
-import scribl, os, datetime, shutil, time
+import scribl
+import os
+import datetime
+import shutil
+import time
+import pytest
 from xml.etree import ElementTree as ET  # for GraphML checking
 from scribl.manage_graphdb import GraphDBInstance, generate_timestamp
 
 test_data_dir = os.path.join('tests', 'test_data')
-test_sandbox_dir = os.path.join('tests', 'test_sandbox')
-test_db_dir = os.path.join(test_sandbox_dir, 'test_graphdb')
 test_data_file = 'zotero_export_1.csv'
 updated_test_data_file = 'zotero_export_2.csv'
 zotero_csv_data = os.path.join(test_data_dir, test_data_file)
 updated_csv_data = os.path.join(test_data_dir, updated_test_data_file)
 
-# utility function to empty sandbox directory
-def empty_sandbox():
-    for tempfile in os.listdir(test_sandbox_dir):
-        rmfilepath = os.path.join(test_sandbox_dir, tempfile)
-        try:
-            os.remove(rmfilepath)
-        except:
-            shutil.rmtree(rmfilepath)
+# fixture function to create unique sandbox directories
+@pytest.fixture(scope="function")
+def sandbox_paths(tmpdir_factory):
+    test_sandbox_dir = tmpdir_factory.mktemp("scribl_sandbox")
+    test_db_dir = os.path.join(test_sandbox_dir, 'test_graphdb')
+    return test_sandbox_dir, test_db_dir
 
-def test_start():
-    print('\n\nTesting management of graph DB ...')
-    # empty sandbox directory
-    empty_sandbox()
-
-def test_graphdb_initialization():
+def test_graphdb_initialization(sandbox_paths):
     print('Testing graph DB initialization ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     assert os.path.exists(test_db_dir)
     for folder in ['backup', 'config', 'db_snapshots', 'zotero_csv_exports']:
         folder_path = os.path.join(test_db_dir, folder)
         assert os.path.exists(folder_path)
 
-def test_graphdb_metadata():
+def test_graphdb_metadata(sandbox_paths):
     print('Testing graph DB metadata ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -66,9 +62,9 @@ def test_graphdb_metadata():
     assert lines[2][36:].strip() == "That's what she said"
     assert len(gdb.generate_metadata_cypher()) == 653
 
-def test_graphdb_import():
+def test_graphdb_import(sandbox_paths):
     print('Testing graph DB import ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -91,9 +87,9 @@ def test_graphdb_import():
     assert len(gdb.graphdb.db['article']) == 13
 
 
-def test_graphdb_reimport():
+def test_graphdb_reimport(sandbox_paths):
     print('Testing graph DB re-import ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -112,9 +108,9 @@ def test_graphdb_reimport():
     assert len(os.listdir(folder_path)) == 1
     assert os.listdir(gdb.zotero_csv_exports_folder) == imports
 
-def test_graphdb_snapshots():
+def test_graphdb_snapshots(sandbox_paths):
     print('Testing graph DB snapshots ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -131,9 +127,9 @@ def test_graphdb_snapshots():
     loaded_db = gdb.load_db_snapshot(os.path.basename(snapshotpath))
     assert loaded_db == gdb.graphdb.db
 
-def test_cypher_generation():
+def test_cypher_generation(sandbox_paths):
     print('Testing cypher generation ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -146,9 +142,9 @@ def test_cypher_generation():
     assert cypher_text[:100] == 'MERGE (:ARTICLE {key:"9JHZ54TS", zotero_key:"9JHZ54TS" , title:"Frontotemporal Dementias" , url:"htt'
     assert cypher_text[-100:] == 'MATCH (a1:AGENT)-[r1:BINDS]->(a2:AGENT) WITH a1,a2 MATCH(a1:AGENT)<-[r2:BINDS]-(a2:AGENT) DELETE r2;'
 
-def test_graphml_generation():
+def test_graphml_generation(sandbox_paths):
     print('Testing GraphML generation ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -164,9 +160,9 @@ def test_graphml_generation():
     assert len(parsed_xml.findall("gml:graph/gml:node", ns)) == 154  # total nodes
     assert len(parsed_xml.findall("gml:graph/gml:edge", ns)) == 344  # total nodes
 
-def test_graphdb_backup():
+def test_graphdb_backup(sandbox_paths):
     print('Testing graph DB backup ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -183,9 +179,9 @@ def test_graphdb_backup():
     folder_path = os.path.join(test_db_dir, 'db_snapshots')
     assert os.listdir(folder_path)[0][:17] == gdb.get_current_timestamp()
 
-def test_cypher_diff():
+def test_cypher_diff(sandbox_paths):
     print('Testing generation of cypher diff text ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
@@ -202,9 +198,9 @@ def test_cypher_diff():
     assert diff_cypher[:66] == 'MERGE (:ARTICLE {key:"255SUP2B", zotero_key:"255SUP2B" , title:"Co'
     assert diff_cypher[-50:] == ' MATCH(a1:AGENT)<-[r2:BINDS]-(a2:AGENT) DELETE r2;'
 
-def test_inspect_db():
+def test_inspect_db(sandbox_paths):
     print('Testing inspection of db contents ...')
-    empty_sandbox()
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDBInstance(test_db_dir)
     db_name = 'Systems Biology Literature DB for testing'
     curator = 'Amber Biology (info@amberbiology.com)'
