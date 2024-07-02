@@ -256,7 +256,7 @@ in the main documentation.
 
 `scribl` is completely open-source and being developed by Amber Biology LLC (@amberbiology).
 
-If you're interested in conttributing, please read our [CONTRIBUTING guide](CONTRIBUTING.md).
+If you're interested in contributing, please read our [CONTRIBUTING guide](CONTRIBUTING.md).
 
 ## Copyright and license
 
