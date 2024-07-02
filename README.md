@@ -245,13 +245,14 @@ in the main documentation.
    pip install .[test]
    ```
 
-3. create the testing sandbox:
+3. run `pytest`
 
-   ``` shell
-   mkdir tests/test_sandbox
-   ```
-
-4. run `pytest`
+   Note that the output sandbox test files are created in the system
+   temporary directory, e.g. on Linux
+   [`pytest` creates a directory structure](https://docs.pytest.org/en/6.2.x/tmpdir.html#the-default-base-temporary-directory)
+   `/tmp/pytest-of-USER/pytest-NUM/scribl_sandboxNUM` where `USER` is
+   the current user and `NUM` is incremented on each run. Only the
+   last three directories are retained.
 
 ## Contributing to `scribl`
 
