@@ -151,8 +151,6 @@ jobs:
         # use the find-links feature to look in the directory and pick the correct wheel
         # works also on Windows
         pip install --find-links=dist scribl
-        # FIXME: manually create the sandbox, otherwise they fail
-        mkdir tests/test_sandbox
         pytest -v tests
     # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
     #- name: Upload artifact

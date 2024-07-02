@@ -1,10 +1,13 @@
 __author__ = 'Amber Biology'
 
-import scribl, os, shutil, datetime
+import scribl
+import os
+import shutil
+import datetime
+import pytest
 from scribl.process_graphdb_data import GraphDB
 
 test_data_dir = 'tests/test_data'
-test_sandbox_dir = 'tests/test_sandbox'
 test_data_file = 'zotero_export_1.csv'
 updated_test_data_file = 'zotero_export_2.csv'
 error_data_file = 'zotero_errors.csv'
@@ -12,14 +15,12 @@ zotero_csv_data = os.path.join(test_data_dir, test_data_file)
 updated_csv_data = os.path.join(test_data_dir, updated_test_data_file)
 error_csv_data = os.path.join(test_data_dir, error_data_file)
 
-# utility function to empty sandbox directory
-def empty_sandbox():
-    for tempfile in os.listdir(test_sandbox_dir):
-        rmfilepath = os.path.join(test_sandbox_dir, tempfile)
-        try:
-            os.remove(rmfilepath)
-        except:
-            shutil.rmtree(rmfilepath)
+# fixture function to create unique sandbox directories
+@pytest.fixture(scope="function")
+def sandbox_paths(tmpdir_factory):
+    test_sandbox_dir = tmpdir_factory.mktemp("scribl_sandbox")
+    test_db_dir = os.path.join(test_sandbox_dir, 'test_graphdb')
+    return test_sandbox_dir, test_db_dir
 
 # utility function to generate timestamps
 def generate_timestamp(text_format=False):
@@ -31,8 +32,6 @@ def generate_timestamp(text_format=False):
 
 def test_start():
     print('\n\nTesting scribl graph DB data processing ...')
-    # empty sandbox directory
-    empty_sandbox()
 
 def test_graphdb_processing():
     print('Testing graph DB processing ...')
@@ -79,8 +78,9 @@ def test_export_cypher_text():
     cypher_lines = cypher_text.split('\n')
     assert len(cypher_lines) == 1081
 
-def test_db_snapshots():
+def test_db_snapshots(sandbox_paths):
     print('Testing save and load DB snapshot ...')
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDB(zotero_csv_data)
     now = generate_timestamp()
     snapshot_filename = '{}_db_snapshot.dat'.format(now)
@@ -90,8 +90,9 @@ def test_db_snapshots():
     loaded_snapshot = gdb.load_db(snapshot_filepath)
     assert loaded_snapshot == gdb.db
 
-def test_db_diff():
+def test_db_diff(sandbox_paths):
     print('Testing generate DB diff ...')
+    test_sandbox_dir, test_db_dir = sandbox_paths
     gdb = GraphDB(zotero_csv_data)
     now = generate_timestamp()
     snapshot_filename = '{}_db_snapshot.dat'.format(now)
