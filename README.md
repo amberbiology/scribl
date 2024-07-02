@@ -3,8 +3,6 @@
 # scribl
 ## A system for the semantic capture of relationships in biological literature
 
-**Amber Biology LLC**
-
 The **scribl** language was designed for the curation from scientific
 articles, of the relationships between the various biological agents
 and processes that they describe, with a view to generating a graph
@@ -254,13 +252,15 @@ in the main documentation.
    the current user and `NUM` is incremented on each run. Only the
    last three directories are retained.
 
-## Contributing to `scribl`
+## Development and contributing to `scribl`
 
-Read our [CONTRIBUTING guide](CONTRIBUTING.md).
+`scribl` is completely open-source and being developed by Amber Biology LLC (@amberbiology).
+
+If you're interested in conttributing, please read our [CONTRIBUTING guide](CONTRIBUTING.md).
 
 ## Copyright and license
 
-scribl is Copyright (C) 2023. Amber Biology LLC
+scribl is Copyright (C) 2023, 2024. Amber Biology LLC
 
 scribl is distributed under the terms of [AGPL-3.0 license](LICENSE)
 
