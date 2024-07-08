@@ -3,8 +3,6 @@
 # scribl
 ## A system for the semantic capture of relationships in biological literature
 
-**Amber Biology LLC**
-
 The **scribl** language was designed for the curation from scientific
 articles, of the relationships between the various biological agents
 and processes that they describe, with a view to generating a graph
@@ -27,8 +25,8 @@ For example:
 ::process smcr8 mutation > ulk1 phosphorylation < autophagy = smcr8 expression
 ```
 
-Full details of the language are available in the
-[scribl.pdf](scribl.pdf) document.
+Full details of the language are available in the full documentation contained in
+[scribl.pdf](https://github.com/amberbiology/scribl/blob/main/scribl.pdf).
 
 ## Quickstart install and test
 
@@ -36,9 +34,13 @@ We recommend installing in a virtual environment.
 
 ### Install from PyPI (not yet available)
 
+<strike>
+
 ``` shell
 pip install scribl
 ```
+
+</strike>
 
 ### Install via GitHub repo
 
@@ -245,21 +247,24 @@ in the main documentation.
    pip install .[test]
    ```
 
-3. create the testing sandbox:
+3. run `pytest`
 
-   ``` shell
-   mkdir tests/test_sandbox
-   ```
+   Note that `pytest` creates output sandbox test files
+   [in the system temporary directory](https://docs.pytest.org/en/6.2.x/tmpdir.html#the-default-base-temporary-directory),
+   e.g. on Linux `pytest` creates a directory structure
+   `/tmp/pytest-of-USER/pytest-NUM/scribl_sandboxNUM` where `USER` is
+   the current user and `NUM` is incremented on each run. Only the
+   last three directories are retained.
 
-4. run `pytest`
+## Development and contributing to `scribl`
 
-## Contributing to `scribl`
+`scribl` is completely open-source and being developed by Amber Biology LLC (@amberbiology).
 
-Read our [CONTRIBUTING guide](CONTRIBUTING.md).
+If you're interested in contributing, please read our [CONTRIBUTING guide](CONTRIBUTING.md).
 
 ## Copyright and license
 
-scribl is Copyright (C) 2023. Amber Biology LLC
+scribl is Copyright (C) 2023, 2024. Amber Biology LLC
 
 scribl is distributed under the terms of [AGPL-3.0 license](LICENSE)
 
