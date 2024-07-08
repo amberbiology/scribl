@@ -1,10 +1,6 @@
 cff-version: 1.2.0
 abstract: >-
-  A system for the semantic capture of relationships in biological literature.
-  The **scribl** language was designed for the curation from scientific
-  articles, of the relationships between the various biological agents and
-  processes that they describe, with a view to generating a graph database that
-  captures these relationships as a connected network.
+  A system for the semantic capture of relationships in biological literature. The **scribl** language was designed for the curation from scientific articles, of the relationships between the various biological agents and processes that they describe, with a view to generating a graph database that captures these relationships as a connected network.
 authors:
   - family-names: Webster
     given-names: Gordon
@@ -26,3 +22,4 @@ keywords:
   - bioinformatics
   - computational biology
 license: AGPL-3.0-or-later
+version: v0.7.16
