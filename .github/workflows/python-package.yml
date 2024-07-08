@@ -145,9 +145,10 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
+      # force use of bash on all platforms, so wildcard expansion works on Windows
+      # (otherwise would use powershell on Windows, which fails)
+      shell: bash
       run: |
-        # use the find-links feature to look in the directory and pick the correct wheel
-        # works also on Windows
         pip install dist/scribl*.whl
         pytest -v tests
     # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
