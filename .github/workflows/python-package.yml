@@ -104,14 +104,14 @@ jobs:
               from repository file .zenodo.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          ZENODO_SANDBOX_ACCESS_TOKEN: ${{ secrets.ZENODO_SANDBOX_SCRIBL_ACCESS_TOKEN }}
+          ZENODO_ACCESS_TOKEN: ${{ secrets.ZENODO_SCRIBL_ACCESS_TOKEN }}
         uses: zenodraft/action@0.13.3
         # uses: alexlancaster/zenodraft-action@0.10.2
         with:
           # concept:
           metadata: .zenodo.json
           publish: false
-          sandbox: true
+          sandbox: false
           compression: zip
           upsert-doi: true
           upsert-location: doi
@@ -147,10 +147,11 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
+      # force use of bash on all platforms, so wildcard expansion works on Windows
+      # (otherwise would use powershell on Windows, which fails)
+      shell: bash
       run: |
-        # use the find-links feature to look in the directory and pick the correct wheel
-        # works also on Windows
-        pip install --find-links=dist scribl
+        pip install dist/scribl*.whl
         pytest -v tests
     # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
     #- name: Upload artifact
