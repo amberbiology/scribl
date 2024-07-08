@@ -149,7 +149,7 @@ jobs:
       run: |
         # use the find-links feature to look in the directory and pick the correct wheel
         # works also on Windows
-        pip install dist/scribl*.wh
+        pip install dist/scribl*.whl
         pytest -v tests
     # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
     #- name: Upload artifact
