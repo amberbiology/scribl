@@ -25,8 +25,8 @@ For example:
 ::process smcr8 mutation > ulk1 phosphorylation < autophagy = smcr8 expression
 ```
 
-Full details of the language are available in the
-[scribl.pdf](scribl.pdf) document.
+Full details of the language are available in the full documentation contained in
+[scribl.pdf](https://github.com/amberbiology/scribl/blob/main/scribl.pdf).
 
 ## Quickstart install and test
 
@@ -34,9 +34,13 @@ We recommend installing in a virtual environment.
 
 ### Install from PyPI (not yet available)
 
+<strike>
+
 ``` shell
 pip install scribl
 ```
+
+</strike>
 
 ### Install via GitHub repo
 
@@ -245,9 +249,9 @@ in the main documentation.
 
 3. run `pytest`
 
-   Note that the output sandbox test files are created in the system
-   temporary directory, e.g. on Linux
-   [`pytest` creates a directory structure](https://docs.pytest.org/en/6.2.x/tmpdir.html#the-default-base-temporary-directory)
+   Note that `pytest` creates output sandbox test files
+   [in the system temporary directory](https://docs.pytest.org/en/6.2.x/tmpdir.html#the-default-base-temporary-directory),
+   e.g. on Linux `pytest` creates a directory structure
    `/tmp/pytest-of-USER/pytest-NUM/scribl_sandboxNUM` where `USER` is
    the current user and `NUM` is incremented on each run. Only the
    last three directories are retained.
