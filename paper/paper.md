@@ -28,14 +28,15 @@ bibliography: paper.bib
 
 # Summary
 
-When using literature databases, researchers in systems biology need
-to go beyond simple keyword-based queries of biological agents (e.g.,
+In systems biology research, utilizing literature databases involves
+more than simple keyword queries for biological agents (e.g.,
 proteins, genes, compounds, receptor complexes) and processes (e.g,
-autophagy, cell cycle) [@krallinger_linking_2008] that return
-lists of articles, to extracting and visualizing relationships documented
-within those papers [@cary_pathway_2005; @suderman_tools_2007; @pavlopoulos_visualizing_2015].
-Here we describe a system that supports the annotation of scientific
-articles, that represent and visualize these relationships. This
+autophagy, cell cycle) [@krallinger_linking_2008], which typically only 
+return lists of articles. Advanced methods are necessary for extracting 
+and visualizing the relationships detailed within these documents 
+[@cary_pathway_2005; @suderman_tools_2007; @pavlopoulos_visualizing_2015].
+Here, we introduce a system that supports the annotation of scientific
+articles and represents and visualizes these relationships. This
 system, `scribl`, consists of two parts: (1) a simple syntax that can
 be used to curate the biological relationships described within the text of
 those articles, (2) a Python software API and pipeline that can
@@ -45,7 +46,7 @@ graph-based relationship queries.
 
 # The `scribl` language
 
-![The scribl schema comprises a hierarchy of five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships for a single `article`.\label{fig:scribl-schema}](scribl-schema.png){ width=100% }
+![The `scribl` schema comprises five basic entities: `article`, `category`, `resource`, `process`, and `agent`. Here we depict an example network of entities and possible relationships for a single `article`.\label{fig:scribl-schema}](scribl-schema.png){ width=100% }
 
 The language was designed for the curation of scientific articles to
 document the relationships between biological agents and processes
@@ -63,7 +64,7 @@ that are described in the article.
 | `::agent gtp :tag nucleoside, purine, nucleoside triphosphate`                   |
 | `::process exportin releases cargo into cytoplasm @ exportin-1`                  |
 | `::process smcr8 mutation > ulk1 phosphorylation < autophagy = smcr8 expression` |
-: Example scribl statements included in Zotero tags\label{scribl-examples}
+: Example `scribl` statements included in Zotero tags\label{scribl-examples}
 
 \autoref{scribl-examples} shows two types of entities: (1) agents
 (`::agent`): are actual biochemical entities (e.g. proteins) described
@@ -80,14 +81,14 @@ declarative statements in the `scribl` syntax described in
 \autoref{scribl-examples}. Currently, the literature source for
 `scribl` input can be either a remote Zotero database, or a file
 export from a local Zotero installation. Once the Zotero data has been
-parsed, the resulting graph data structure can be then be exported for
+parsed, the resulting graph data structure can then be exported for
 use in graph database platforms. `scribl` also supports the
 incremental updating of the graph database as new Zotero entries come
 in (\autoref{fig:scribl-workflow}).
 
 ![Two major workflows for the `scribl` software: creating a new graph database (left) and updating an existing one (right). The workflow contains a step that identifies possible syntactic errors in `scribl` statements so that they can be fixed in the Zotero database before database generation. Note that "Zotero csv export" could be replaced by a query to a remote Zotero library  \label{fig:scribl-workflow}](scribl-workflow.png){ width=104% }
 
-`scribl` functions can be accessed programatically through writing a
+`scribl` functions can be accessed programmatically by writing a
 Python script that calls the `scribl` API, or via the included
 command-line program `scribl`.
 
@@ -114,10 +115,10 @@ command-line program `scribl`.
 
 ![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=75% }
 
-Once a graph database has been created, queries can be created
-that are not possible with traditional keyword searching. For example, once the
-scribl output is loaded into a Neo4j database, it is possible to write
-Cypher queries of the kind: "Show me all of the agents that are
+Once a graph database has been created, it can be queried with prompts that go beyond the capabilities of 
+traditional keyword searches. For example, once the
+`scribl` output is loaded into a Neo4j database, it is possible to write
+Cypher queries such as: "Show me all of the agents that are
 involved in the process `nuclear export` along with the articles that describe
 them".
 
@@ -176,7 +177,7 @@ documentation available at https://github.com/amberbiology/scribl.
 
 # Acknowledgements
 
-The development of the scribl platform was made possible with the
+The development of the `scribl` platform was made possible with the
 support of the [Association for Frontotemporal Degeneration
 (AFTD)](https://theaftd.org/). We are grateful to AFTD members Debra
 Niehoff and Penny Dacks for their support.
