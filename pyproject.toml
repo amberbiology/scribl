@@ -37,6 +37,7 @@ scribl="scribl.scribl:main"
 Homepage = "http://amberbiology.com"
 Source = 'https://github.com/amberbiology/scribl/'
 Tracker = 'https://github.com/amberbiology/scribl/issues'
+Changelog = 'https://github.com/amberbiology/scribl/blob/main/CHANGELOG.md'
 
 [tool.setuptools]
 packages = ["scribl"]
