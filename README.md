@@ -42,7 +42,7 @@ If you write a paper that uses `scribl` in your analysis, please cite
   the software. To cite the correct version, follow these steps:
 
   1)  First visit the DOI for the overall Zenodo record:
-      [10.5281/zenodo.10080667](https://zenodo.org/doi/10.5281/zenodo.12728362).
+      [10.5281/zenodo.12728362](https://zenodo.org/doi/10.5281/zenodo.12728362).
       This DOI represents **all versions**, and will always resolve to
       the latest one.
 
