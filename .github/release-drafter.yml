@@ -1,9 +1,9 @@
-name-template: 'scribl $NEXT_PATCH_VERSION'
-tag-template: 'v$NEXT_PATCH_VERSION'
-#prerelease: true
-include-pre-releases: true
+name-template: 'scribl $RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+prerelease: false
+include-pre-releases: false
 #prerelease-identifier: 'rc'
-#version-template: '$COMPLETE'
+version-template: '$COMPLETE'
 commitish: 'main'
 categories:
   - title: 'Features'
@@ -26,7 +26,7 @@ categories:
 exclude-labels:
   - 'skip-changelog'
 category-template: '### $TITLE'
-change-template: '- $TITLE by @$AUTHOR (#$NUMBER)'
+change-template: '- $TITLE by @$AUTHOR ([#$NUMBER]($URL))'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
   major:
@@ -40,8 +40,20 @@ version-resolver:
       - 'patch'
   default: patch
 template: |
-  ## Changes
+  ## Install via PyPI
+  ```
+  pip install -U scribl
+  ```
+  <!-- START cut-and-paste to CHANGELOG.md -->
+
+  ## [$RESOLVED_VERSION] - YYYY-MM-DD
 
   $CHANGES
 
-  **Full Changelog:** https://github.com/amberbiology/scribl/compare/$PREVIOUS_TAG...v$NEXT_PATCH_VERSION
+  [$RESOLVED_VERSION]: https://github.com/$OWNER/$REPOSITORY/releases/tag/v$RESOLVED_VERSION
+
+  <!-- END cut-and-paste to NEWS.md -->
+
+  A full history of changes is available in [`CHANGELOG.md`](https://github.com/$OWNER/$REPOSITORY/blob/main/CHANGELOG.md).
+
+  **Full Changelog:** https://github.com/amberbiology/scribl/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
