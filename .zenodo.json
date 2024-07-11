@@ -19,7 +19,7 @@
       "orcid": "0000-0002-0002-9263"
     }
   ],
-  "description": "<p>scribl is a system for the semantic capture of relationships in biological literature. scribl statements are added as tags to articles in a literature database ( currently <a href=\"https://www.zotero.org/\">Zotero</a>. These tags are parsed and used to create a graph data structure that can be then be exported for use in a graph database platform such as <a href=\"https://neo4j.com\">Neo4j</a>, or Python's <a href=\"https://networkx.org/\">NetworkX</a></p>",
+  "description": "<p>scribl (Semantic Capture of Relationships in Biological Literature) is a Python software pipeline and API that transforms a <a href=\"https://www.zotero.org/\">Zotero</a> literature database with entries annotated with tags in the scribl language to create a graph data structure, suitable for import into a graph database platform, such as <a href=\"https://neo4j.com\">Neo4j</a>, or Python's <a href=\"https://networkx.org/\">NetworkX</a>.</p> The scribl language was designed for the curation from scientific articles, to capture the relationships between the various biological agents and the processes that they describe in a connected network.",
   "keywords": [
     "systems biology",
     "network biology",
@@ -39,13 +39,13 @@
     },
     {
       "scheme": "url",
-      "identifier": "https://github.com/amberbiology/scribl/tree/v0.7.14",
+      "identifier": "https://github.com/amberbiology/scribl/tree/v0.8.0",
       "relation": "isSupplementTo",
       "resource_type": "software"
     },
     {
       "scheme": "url",
-      "identifier": "https://pypi.org/project/scribl/0.7.14",
+      "identifier": "https://pypi.org/project/scribl/0.8.0",
       "relation": "isSourceOf",
       "resource_type": "software"
     }
@@ -60,5 +60,5 @@
   ],
   "title": "scribl: A system for the semantic capture of relationships in biological literature",
   "upload_type": "software",
-  "version": "v0.7.14"
+  "version": "v0.8.0"
 }
