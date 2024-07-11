@@ -28,19 +28,54 @@ For example:
 Full details of the language are available in the full documentation contained in
 [scribl.pdf](https://github.com/amberbiology/scribl/blob/main/scribl.pdf).
 
+## How to cite `scribl`
+
+If you write a paper that uses `scribl` in your analysis, please cite
+**both**:
+
+- our [2024 article](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51)
+  currently in review in the *Journal of Open Source Software*, when it is published:
+
+  > Webster GD, Lancaster AK. (2024) \"scribl: A system for the semantic capture of relationships in biological literature.\" *J. Open Source Softw.*
+
+- **and** the [Zenodo record](https://zenodo.org/doi/10.5281/zenodo.12728362) for
+  the software. To cite the correct version, follow these steps:
+
+  1)  First visit the DOI for the overall Zenodo record:
+      [10.5281/zenodo.10080667](https://zenodo.org/doi/10.5281/zenodo.12728362).
+      This DOI represents **all versions**, and will always resolve to
+      the latest one.
+
+  2)  When you are viewing the record, look for the **Versions** box
+      in the right-sidebar. Here are listed all versions (including
+      older versions).
+
+  3)  Select and click the version-specific DOI that matches the
+      specific version of scribl that you used for your analysis.
+
+  4)  Once you are visiting the Zenodo record for the specific
+      version, under the **Citation** box in the right-sidebar, select
+      the citation format you wish to use and click to copy the
+      citation. It will contain link to the version-specific DOI, and
+      be of the form:
+
+      > Webster GD, Lancaster, AK. (YYYY) \"scribl: A system for the semantic capture of relationships in biological literature\" (Version X.Y.Z) \[Computer software\]. Zenodo.
+      > <https://doi.org/10.5281/zenodo.XXXXX>
+
+  Note that citation metadata for the current Zenodo record is also
+  stored in
+  [CITATION.cff](https://github.com/amberbiology/scribl/blob/main/CITATION.cff)
+
+
 ## Quickstart install and test
 
 We recommend installing in a virtual environment.
 
-### Install from PyPI (not yet available)
-
-<strike>
+### Install from PyPI
 
 ``` shell
 pip install scribl
 ```
-
-</strike>
 
 ### Install via GitHub repo
 
@@ -259,6 +294,10 @@ in the main documentation.
 ## Development and contributing to `scribl`
 
 `scribl` is completely open-source and being developed by Amber Biology LLC (@amberbiology).
+
+See
+[CHANGELOG.md](https://github.com/amberbiology/scribl/blob/main/CHANGELOG.md)
+for a history of changes.
 
 If you're interested in contributing, please read our [CONTRIBUTING guide](CONTRIBUTING.md).
 
