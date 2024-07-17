@@ -37,7 +37,7 @@ If you write a paper that uses `scribl` in your analysis, please cite
 - our [2024 article](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51)
   published in the *Journal of Open Source Software*:
 
-  > Webster GD, Lancaster AK. (2024) \"scribl: A system for the semantic capture of relationships in biological literature.\" *Journal of Open Source Software* **9**:6645. doi:[10.21105/joss.06645](https://doi.org/10.21105/joss.06645)
+  > Webster GD, Lancaster AK. (2024) \"scribl: A system for the semantic capture of relationships in biological literature.\" *Journal of Open Source Software* **9**(99):6645. doi:[10.21105/joss.06645](https://doi.org/10.21105/joss.06645)
 
 - **and** the [Zenodo record](https://zenodo.org/doi/10.5281/zenodo.12728362) for
   the software. To cite the correct version, follow these steps:
