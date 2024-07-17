@@ -52,7 +52,7 @@
   ],
   "additional_descriptions": [
     {
-      "description": "<p><p>Development is on GitHub: <a href=\"https://github.com/amberbiology/scribl\">https://github.com/amberbiology/scribl</a></p><p>Binary packages are available on PyPI: <a href=\"https://pypi.org/project/scribl/\">https://pypi.org/project/scribl/</a>.&nbsp;</p>",
+	"description": "<p>If you use this software, please cite both the software itself, as well as the article: Webster GD, Lancaster AK. (2024) <a href=\"https://doi.org/10.21105/joss.06645\">scribl: A system for the semantic capture of relationships in biological literature</a>. <i>Journal of Open Source Software.</i> <b>9</b>:6645. doi:10.21105/joss.06645</p><p>Development is on GitHub: <a href=\"https://github.com/amberbiology/scribl\">https://github.com/amberbiology/scribl</a></p><p>Binary packages are available on PyPI: <a href=\"https://pypi.org/project/scribl/\">https://pypi.org/project/scribl/</a>.&nbsp;</p>",
       "type": {
         "id": "notes"
       }

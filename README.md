@@ -1,4 +1,5 @@
-[![status](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51/status.svg)](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51)
+[![status](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51/status.svg)](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51) [![PyPI version shields.io](https://img.shields.io/pypi/v/scribl.svg)](https://pypi.python.org/pypi/scribl/) [![Build scribl](https://github.com/amberbiology/scribl/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/amberbiology/scribl/actions/workflows/python-package.yml) [![GitHub license](https://img.shields.io/github/license/amberbiology/scribl.svg)](https://github.com/amberbiology/scribl/blob/master/LICENSE) [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.21105/joss.06645)](https://juleskreuer.eu/citation-badge/)
+
 
 # scribl
 ## A system for the semantic capture of relationships in biological literature
@@ -34,9 +35,9 @@ If you write a paper that uses `scribl` in your analysis, please cite
 **both**:
 
 - our [2024 article](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51)
-  currently in review in the *Journal of Open Source Software*, when it is published:
+  published in the *Journal of Open Source Software*:
 
-  > Webster GD, Lancaster AK. (2024) \"scribl: A system for the semantic capture of relationships in biological literature.\" *J. Open Source Softw.*
+  > Webster GD, Lancaster AK. (2024) \"scribl: A system for the semantic capture of relationships in biological literature.\" *Journal of Open Source Software* **9**:6645. doi:[10.21105/joss.06645](https://doi.org/10.21105/joss.06645)
 
 - **and** the [Zenodo record](https://zenodo.org/doi/10.5281/zenodo.12728362) for
   the software. To cite the correct version, follow these steps:
