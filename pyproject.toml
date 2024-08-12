@@ -24,7 +24,7 @@ dependencies = [
     "pandas <= 2.2.2",
     "pyzotero <= 1.5.20",
     "networkx <= 3.3",
-    "matplotlib <= 3.9.1"
+    "matplotlib <= 3.9.1.post1"
 ]
 
 [project.optional-dependencies]
