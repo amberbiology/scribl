@@ -159,7 +159,9 @@ class GraphDBInstance:
 
             # now call import_zotero_csv() on the temporary file
             self.import_zotero_csv(zotero_csv.name, overwrite=overwrite, verbose=verbose)
-            zotero_csv.close() # close before deleting
+            # FIXME: close and then delete manually, needed on Windows as per
+            # https://stackoverflow.com/a/43283261
+            zotero_csv.close()
             os.remove(zotero_csv.name)
 
     def get_zotero_csv_exports(self):
