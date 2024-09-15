@@ -153,12 +153,13 @@ class GraphDBInstance:
     def import_zotero_library(self, zotero_library_id, zotero_library_type, zotero_api_key=None, overwrite=False, verbose=False):
         # import directly from the zotero library, by querying the API
         # then generating an intermediate temporary CSV file for importing
-        with tempfile.NamedTemporaryFile(suffix="zotero.csv") as zotero_csv:
+        with tempfile.NamedTemporaryFile(suffix="zotero.csv", delete=False) as zotero_csv:
             # populate the temporary files
             zotero_library_to_csv(zotero_library_id, zotero_library_type, zotero_api_key, zotero_csv_filename=zotero_csv.name, verbose=verbose)
 
             # now call import_zotero_csv() on the temporary file
             self.import_zotero_csv(zotero_csv.name, overwrite=overwrite, verbose=verbose)
+            zotero_csv.close() # close before deleting
 
     def get_zotero_csv_exports(self):
         exports = []
