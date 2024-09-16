@@ -152,7 +152,7 @@ jobs:
       # (otherwise would use powershell on Windows, which fails)
       shell: bash
       run: |
-        pip install --only-binary ":all:" dist/scribl*.whl
+        pip install --only-binary ":all:" --no-binary sgmllib3k,bibtexparser dist/scribl*.whl
         pytest -v tests
     # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
     #- name: Upload artifact
