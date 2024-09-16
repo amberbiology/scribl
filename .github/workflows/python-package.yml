@@ -125,7 +125,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        python-version: ["3.13", "3.12", "3.11", "3.10", "3.9"]
+        # FIXME: disable 3.13 unti pandas available
+        # https://github.com/pandas-dev/pandas/issues/58734
+        python-version: ["3.12", "3.11", "3.10", "3.9"]
 
     steps:
     - uses: actions/checkout@v4
@@ -135,7 +137,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
-        allow-prereleases: true
+        allow-prereleases: false
     - name: Build wheel and sdist
       run: |
         python -m pip install --upgrade pip
@@ -152,7 +154,7 @@ jobs:
       # (otherwise would use powershell on Windows, which fails)
       shell: bash
       run: |
-        pip install dist/scribl*.whl
+        pip install --only-binary ":all:" --no-binary sgmllib3k,bibtexparser dist/scribl*.whl
         pytest -v tests
     # skip uploading separate files for each CI run (need just one wheel/dist done in 'dist' job, below)
     #- name: Upload artifact
