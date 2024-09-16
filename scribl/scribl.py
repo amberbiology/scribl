@@ -98,7 +98,7 @@ def main(argv=sys.argv):
         gdb = GraphDBInstance(scribl_graphdb_path, overwrite=overwrite, verbose=verbosity)
     except FileExistsError:
         print('directory "%s" exists, but is not a valid existing scribl database, so cannot be either read or overwritten, aborting' % scribl_graphdb_path)
-        return
+        return -1
 
     gdb.set_metadata(db_name, db_curator, db_description)
 
@@ -118,7 +118,7 @@ def main(argv=sys.argv):
         print('warnings:', summary[0], 'errors:', summary[1])
     else:
         print('no previously loaded data found')
-        return
+        return -1
 
     if check_synonyms:
         # run synonym check
@@ -154,6 +154,8 @@ def main(argv=sys.argv):
     if networkx_fig:
         # generate visualization using NetworkX
         gdb.export_graphml_figure(verbose=verbosity, filepath=networkx_fig)
+
+    return 0
 
 if __name__ == '__main__':
 

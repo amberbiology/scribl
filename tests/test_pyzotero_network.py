@@ -16,9 +16,13 @@ def test_pyzotero_network(sandbox_paths):
     curr_dir = os.getcwd() # save current directory
 
     os.chdir(test_sandbox_dir) # change current directory
-    main(["scribl", "-g", "new_graphdb", "--zotero-library", "5251557:group",
-          "--networkx-fig", "graphdb-visual.png" ,"--graphmlfile", "graphdb.xml", "--cyphertextfile", "graphdb.cypher"])
+    ret_val = main(["scribl", "-g", "new_graphdb", "--zotero-library", "5251557:group",
+                    "--networkx-fig", "graphdb-visual.png", "--graphmlfile", "graphdb.xml",
+                    "--cyphertextfile", "graphdb.cypher"])
 
+    # did script exit normally?
+    assert ret_val == 0
+    # check generated files
     assert os.path.exists("graphdb-visual.png") == True
     assert os.path.exists("graphdb.xml") == True
     assert os.path.exists("graphdb.cypher") == True
