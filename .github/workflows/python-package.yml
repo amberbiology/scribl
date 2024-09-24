@@ -125,9 +125,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macos-latest, windows-latest]
-        # FIXME: disable 3.13 unti pandas available
-        # https://github.com/pandas-dev/pandas/issues/58734
-        python-version: ["3.12", "3.11", "3.10", "3.9"]
+        python-version: ["3.13", "3.12", "3.11", "3.10", "3.9"]
 
     steps:
     - uses: actions/checkout@v4
