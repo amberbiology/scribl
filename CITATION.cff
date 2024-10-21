@@ -1,6 +1,12 @@
 cff-version: 1.2.0
 abstract: >-
-  scribl (Semantic Capture of Relationships in Biological Literature) is a Python software pipeline and API that transforms a Zotero literature database with entries annotated with tags in the **scribl** language to create a graph data structure, suitable for import into a graph database platform, such as Neo4j or Python's NetworkX. The scribl language was designed for the curation from scientific articles, to capture the relationships between the various biological agents and the processes that they describe in a connected network.
+  scribl (Semantic Capture of Relationships in Biological Literature) is a
+  Python software pipeline and API that transforms a Zotero literature database
+  with entries annotated with tags in the **scribl** language to create a graph
+  data structure, suitable for import into a graph database platform, such as
+  Neo4j or Python's NetworkX. The scribl language was designed for the curation
+  from scientific articles, to capture the relationships between the various
+  biological agents and the processes that they describe in a connected network.
 authors:
   - family-names: Webster
     given-names: Gordon
@@ -10,9 +16,11 @@ authors:
     given-names: Alexander K.
     orcid: https://orcid.org/0000-0002-0002-9263
     affiliation: >-
-      Amber Biology LLC and Institute for Globally Distributed Open Research and Education (IGDORE)
+      Amber Biology LLC and Institute for Globally Distributed Open Research and
+      Education (IGDORE)
 title: >-
-  scribl: A system for the semantic capture of relationships in biological literature
+  scribl: A system for the semantic capture of relationships in biological
+  literature
 url: https://amberbiology.com
 repository-code: https://github.com/amberbiology/scribl
 type: software
@@ -24,16 +32,18 @@ keywords:
   - computational biology
 license: AGPL-3.0-or-later
 version: v0.8.1
-doi: 10.5281/zenodo.12728363
-message: If you use this software, please cite our article in the Journal of Open Source Software.
+doi: 10.5281/zenodo.13963609
+message: >-
+  If you use this software, please cite our article in the Journal of Open
+  Source Software.
 preferred-citation:
   authors:
     - family-names: Webster
       given-names: Gordon D.
-      orcid: "https://orcid.org/0009-0009-2862-0467"
+      orcid: https://orcid.org/0009-0009-2862-0467
     - family-names: Lancaster
       given-names: Alexander K.
-      orcid: "https://orcid.org/0000-0002-0002-9263"
+      orcid: https://orcid.org/0000-0002-0002-9263
   date-published: 2024-07-17
   doi: 10.21105/joss.06645
   issn: 2475-9066
@@ -42,7 +52,9 @@ preferred-citation:
   publisher:
     name: Open Journals
   start: 6645
-  title: "scribl: A system for the semantic capture of relationships in biological literature"
+  title: >-
+    scribl: A system for the semantic capture of relationships in biological
+    literature
   type: article
-  url: "https://joss.theoj.org/papers/10.21105/joss.06645"
+  url: https://joss.theoj.org/papers/10.21105/joss.06645
   volume: 9
