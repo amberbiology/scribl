@@ -108,7 +108,7 @@ jobs:
         uses: zenodraft/action@0.13.3
         # uses: alexlancaster/zenodraft-action@0.10.2
         with:
-          # concept:
+          concept: 12728362
           metadata: .zenodo.json
           publish: false
           sandbox: false
