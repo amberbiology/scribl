@@ -6,6 +6,31 @@ will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.8.1] - 2024-10-21
+
+### Features
+
+- Python 3.13 support by @alexlancaster ([#32](https://github.com/amberbiology/scribl/pull/32))
+
+### Bug Fixes
+
+- Add unit test for accessing Zotero library remotely + ensure binary packages in CI testing by @alexlancaster ([#30](https://github.com/amberbiology/scribl/pull/30))
+
+### Internal
+
+- Update networkx requirement from \<=3.3 to \<=3.4.1 by @dependabot ([#33](https://github.com/amberbiology/scribl/pull/33))
+- Update pyparsing requirement from \<=3.1.4 to \<=3.2.0 by @dependabot ([#34](https://github.com/amberbiology/scribl/pull/34))
+- Update pandas requirement from \<=2.2.2 to \<=2.2.3 by @dependabot ([#31](https://github.com/amberbiology/scribl/pull/31))
+- Update pyzotero requirement from \<=1.5.20 to \<=1.5.25 by @dependabot ([#28](https://github.com/amberbiology/scribl/pull/28))
+- Update pyparsing requirement from \<=3.1.2 to \<=3.1.4 by @dependabot ([#27](https://github.com/amberbiology/scribl/pull/27))
+- Update matplotlib requirement from \<=3.9.1 to \<=3.9.2 by @dependabot ([#26](https://github.com/amberbiology/scribl/pull/26))
+
+### Documentation
+
+- Post-publication updates: add details + DOI + merge in manuscript files by @alexlancaster ([#24](https://github.com/amberbiology/scribl/pull/24))
+
+[0.8.1]: https://github.com/amberbiology/scribl/releases/tag/v0.8.1
+
 ## [0.8.0] - 2024-07-11
 
 First production release of `scribl`
