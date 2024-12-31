@@ -22,7 +22,7 @@ classifiers = [
 dependencies = [
     "pyparsing <= 3.2.0",
     "pandas <= 2.2.3",
-    "pyzotero <= 1.5.28",
+    "pyzotero <= 1.6.1",
     "networkx <= 3.4.2",
     "matplotlib <= 3.10.0"
 ]
