@@ -20,6 +20,14 @@ repos:
       - id: ruff
         args: ["--show-fixes", "--exit-zero"]
       - id: ruff-format
+  - repo: https://github.com/hukkin/mdformat
+    rev: 0.7.21  # Use the ref you want to point at
+    hooks:
+      - id: mdformat
+        # Optionally add plugins
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-black
 
 ci:
   autoupdate_commit_msg: 'chore: update pre-commit hooks'
