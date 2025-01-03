@@ -1,9 +1,11 @@
-__author__ = 'Amber Biology'
+from __future__ import annotations
+
+__author__ = "Amber Biology"
 
 import scribl
 from scribl.parse_scribl import ScriblParser
 
-tags = '''
+tags = """
 ::category stress granules; ::category tdp-43 aggregation; ::category als
 ::category c9orf72 pathology; ::category neuroinflammation; ::category als
 ::category biomarkers; ::category c9orf72 pathology; ::category clinical; ::category mapt/tau pathology; ::category progranulin pathology; ::category tdp-43 aggregation
@@ -23,68 +25,111 @@ tags = '''
 ::category neuroinflammation; ::category progranulin pathology
 ::category neuroinflammation; ::category progranulin pathology
 ::category genetics; ::category neuroinflammation; ::category progranulin pathology; ::category tdp-43 aggregation; ::category als
-::resource protein data bank :url https://www.rcsb.org/search :txt archive of structural data of biological macromolecules'''
+::resource protein data bank :url https://www.rcsb.org/search :txt archive of structural data of biological macromolecules"""
 
-parse_text = tags.split('\n')
+parse_text = tags.split("\n")
 
-ue_error = 'Unknown entity [bloop] in relationship @: [::process phagophore recruits atg proteins > autophagosome formation ::process phagophore recruits atg proteins @ atg101 @ atg13 ::process phagophore recruits atg proteins @ bloop ]'
+ue_error = "Unknown entity [bloop] in relationship @: [::process phagophore recruits atg proteins > autophagosome formation ::process phagophore recruits atg proteins @ atg101 @ atg13 ::process phagophore recruits atg proteins @ bloop ]"
+
 
 def test_start():
-    print('\n\nTesting scribl_code parsing ...')
+    print("\n\nTesting scribl_code parsing ...")
+
 
 def test_parser():
-    print('Testing parser with general parse text ...')
+    print("Testing parser with general parse text ...")
     sp = ScriblParser()
     for line in parse_text:
         sp.reset()
         sp.parse(line, split_text=scribl.tag_delimiter)
-        assert sp.data['errors'] == []
-        assert sp.data['warnings'] == []
+        assert sp.data["errors"] == []
+        assert sp.data["warnings"] == []
+
 
 def test_parser_errors():
-    print('Testing parser error detection and handling ...')
+    print("Testing parser error detection and handling ...")
     sp = ScriblParser()
-    print(' Unparsable line ...')
-    line = '::categry neuroinflammation; ::category progranulin pathology'
+    print(" Unparsable line ...")
+    line = "::categry neuroinflammation; ::category progranulin pathology"
     sp.reset()
     sp.parse(line, split_text=scribl.tag_delimiter)
-    assert len(sp.data['errors']) == 1
-    assert sp.data['errors'][0] == 'Line: 0 Unable to parse statment [::categry neuroinflammation]'
-    print(' Unknown entity in relationship ...')
-    line = '::category lysosomal clearance; ::process autophagosome formation @ ulk1 complex'
+    assert len(sp.data["errors"]) == 1
+    assert (
+        sp.data["errors"][0]
+        == "Line: 0 Unable to parse statment [::categry neuroinflammation]"
+    )
+    print(" Unknown entity in relationship ...")
+    line = "::category lysosomal clearance; ::process autophagosome formation @ ulk1 complex"
     sp.reset()
     sp.parse(line, split_text=scribl.tag_delimiter)
-    assert len(sp.data['errors']) == 1
-    assert sp.data['errors'][0] == 'Unrecognized entity "ulk1 complex" in relationship: ::process autophagosome formation ... @ ulk1 complex'
-    print(' Invalid relationship for item type ...')
-    line = '::category lysosomal clearance; ::process autophagosome formation | ulk1 complex'
+    assert len(sp.data["errors"]) == 1
+    assert (
+        sp.data["errors"][0]
+        == 'Unrecognized entity "ulk1 complex" in relationship: ::process autophagosome formation ... @ ulk1 complex'
+    )
+    print(" Invalid relationship for item type ...")
+    line = "::category lysosomal clearance; ::process autophagosome formation | ulk1 complex"
     sp.reset()
     sp.parse(line, split_text=scribl.tag_delimiter)
-    assert len(sp.data['errors']) == 1
-    assert sp.data['errors'][0] == 'Line: 1 Invalid relationship "| ulk1 complex" for "::process" ignored [::process autophagosome formation | ulk1 complex]'
-    print(' Tag length exceeds Zotero max length ...')
-    line1 = '::category lysosomal clearance; ::process this is a very long process name whose purpose is to exceed the maximum number of characters '
-    line2 = 'that Zotero allows for a tag and to trigger the automatic check that the parser does on tag length for testing purposes blah blah blah '
-    line3 = 'blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah'
+    assert len(sp.data["errors"]) == 1
+    assert (
+        sp.data["errors"][0]
+        == 'Line: 1 Invalid relationship "| ulk1 complex" for "::process" ignored [::process autophagosome formation | ulk1 complex]'
+    )
+    print(" Tag length exceeds Zotero max length ...")
+    line1 = "::category lysosomal clearance; ::process this is a very long process name whose purpose is to exceed the maximum number of characters "
+    line2 = "that Zotero allows for a tag and to trigger the automatic check that the parser does on tag length for testing purposes blah blah blah "
+    line3 = "blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
     line = line1 + line2 + line3
     sp.reset()
     sp.parse(line, split_text=scribl.tag_delimiter)
-    assert len(sp.data['warnings']) == 1
-    assert len(sp.data['errors']) == 0
-    assert sp.data['warnings'][0][:107] == 'Line: 1 Statement length exceeds max. for Zotero syncing: ::process this is a very long process name whose '
-    print(' Test multiple item parsing and parse summary ...')
+    assert len(sp.data["warnings"]) == 1
+    assert len(sp.data["errors"]) == 0
+    assert (
+        sp.data["warnings"][0][:107]
+        == "Line: 1 Statement length exceeds max. for Zotero syncing: ::process this is a very long process name whose "
+    )
+    print(" Test multiple item parsing and parse summary ...")
     sp.reset()
     sp.parse(parse_text[5], split_text=scribl.tag_delimiter)
-    assert sp.parse_summary() == {'::category': 2, '::agent': 35, '::process': 34, '::resource': 0, 'errors': 0, 'warnings': 0}
+    assert sp.parse_summary() == {
+        "::category": 2,
+        "::agent": 35,
+        "::process": 34,
+        "::resource": 0,
+        "errors": 0,
+        "warnings": 0,
+    }
+
 
 def test_parser_tools():
-    print('Testing parser tools ...')
+    print("Testing parser tools ...")
     sp = ScriblParser()
     line = parse_text[5]
     sp.parse(line, split_text=scribl.tag_delimiter)
-    assert sp.data['errors'] == []
-    assert sp.data['warnings'] == []
-    ref = {'urls': ['https://www.uniprot.org/uniprot/Q9Y478'], 'labels': [':protein'], 'tags': [], 'notes': [], 'relationships': [], 'synonyms': []}
-    assert sp.get('::agent', 'ampk') == ref
-    assert sp.catalog('::agent')[:5] == ['ambra', 'ampk', 'atg1-atg13 complex', 'atg13', 'atg14']
-    assert sp.parse_summary() == {'::category': 2, '::agent': 35, '::process': 34, '::resource': 0, 'errors': 0, 'warnings': 0}
+    assert sp.data["errors"] == []
+    assert sp.data["warnings"] == []
+    ref = {
+        "urls": ["https://www.uniprot.org/uniprot/Q9Y478"],
+        "labels": [":protein"],
+        "tags": [],
+        "notes": [],
+        "relationships": [],
+        "synonyms": [],
+    }
+    assert sp.get("::agent", "ampk") == ref
+    assert sp.catalog("::agent")[:5] == [
+        "ambra",
+        "ampk",
+        "atg1-atg13 complex",
+        "atg13",
+        "atg14",
+    ]
+    assert sp.parse_summary() == {
+        "::category": 2,
+        "::agent": 35,
+        "::process": 34,
+        "::resource": 0,
+        "errors": 0,
+        "warnings": 0,
+    }
