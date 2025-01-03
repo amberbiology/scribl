@@ -31,9 +31,9 @@ bibliography: paper.bib
 In systems biology research, utilizing literature databases involves
 more than simple keyword queries for biological agents (e.g.,
 proteins, genes, compounds, receptor complexes) and processes (e.g,
-autophagy, cell cycle) [@krallinger_linking_2008], which typically only 
-return lists of articles. Advanced methods are necessary for extracting 
-and visualizing the relationships detailed within these documents 
+autophagy, cell cycle) [@krallinger_linking_2008], which typically only
+return lists of articles. Advanced methods are necessary for extracting
+and visualizing the relationships detailed within these documents
 [@cary_pathway_2005; @suderman_tools_2007; @pavlopoulos_visualizing_2015].
 Here, we introduce a system that supports the annotation of scientific
 articles and represents and visualizes these relationships. This
@@ -115,7 +115,7 @@ command-line program `scribl`.
 
 ![NetworkX visualization of a graph database exported as GraphML, generated directly by `scribl`.\label{fig:graph-networkx}](../graphdb-visual.png){ width=75% }
 
-Once a graph database has been created, it can be queried with prompts that go beyond the capabilities of 
+Once a graph database has been created, it can be queried with prompts that go beyond the capabilities of
 traditional keyword searches. For example, once the
 `scribl` output is loaded into a Neo4j database, it is possible to write
 Cypher queries such as: "Show me all of the agents that are
