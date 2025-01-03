@@ -1,7 +1,7 @@
 [![status](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51/status.svg)](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51) [![PyPI version shields.io](https://img.shields.io/pypi/v/scribl.svg)](https://pypi.python.org/pypi/scribl/) [![Build scribl](https://github.com/amberbiology/scribl/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/amberbiology/scribl/actions/workflows/python-package.yml) [![GitHub license](https://img.shields.io/github/license/amberbiology/scribl.svg)](https://github.com/amberbiology/scribl/blob/master/LICENSE) <!-- [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.21105/joss.06645)](https://juleskreuer.eu/citation-badge/) -->
 
-
 # scribl
+
 ## A system for the semantic capture of relationships in biological literature
 
 The **scribl** language was designed for the curation from scientific
@@ -37,36 +37,35 @@ If you write a paper that uses `scribl` in your analysis, please cite
 - our [2024 article](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51)
   published in the *Journal of Open Source Software*:
 
-  > Webster GD, Lancaster AK. (2024) \"scribl: A system for the semantic capture of relationships in biological literature.\" *Journal of Open Source Software* **9**(99):6645. doi:[10.21105/joss.06645](https://doi.org/10.21105/joss.06645)
+  > Webster GD, Lancaster AK. (2024) "scribl: A system for the semantic capture of relationships in biological literature." *Journal of Open Source Software* **9**(99):6645. doi:[10.21105/joss.06645](https://doi.org/10.21105/joss.06645)
 
 - **and** the [Zenodo record](https://zenodo.org/doi/10.5281/zenodo.12728362) for
   the software. To cite the correct version, follow these steps:
 
-  1)  First visit the DOI for the overall Zenodo record:
-      [10.5281/zenodo.12728362](https://zenodo.org/doi/10.5281/zenodo.12728362).
-      This DOI represents **all versions**, and will always resolve to
-      the latest one.
+  1. First visit the DOI for the overall Zenodo record:
+     [10.5281/zenodo.12728362](https://zenodo.org/doi/10.5281/zenodo.12728362).
+     This DOI represents **all versions**, and will always resolve to
+     the latest one.
 
-  2)  When you are viewing the record, look for the **Versions** box
-      in the right-sidebar. Here are listed all versions (including
-      older versions).
+  2. When you are viewing the record, look for the **Versions** box
+     in the right-sidebar. Here are listed all versions (including
+     older versions).
 
-  3)  Select and click the version-specific DOI that matches the
-      specific version of scribl that you used for your analysis.
+  3. Select and click the version-specific DOI that matches the
+     specific version of scribl that you used for your analysis.
 
-  4)  Once you are visiting the Zenodo record for the specific
-      version, under the **Citation** box in the right-sidebar, select
-      the citation format you wish to use and click to copy the
-      citation. It will contain link to the version-specific DOI, and
-      be of the form:
+  4. Once you are visiting the Zenodo record for the specific
+     version, under the **Citation** box in the right-sidebar, select
+     the citation format you wish to use and click to copy the
+     citation. It will contain link to the version-specific DOI, and
+     be of the form:
 
-      > Webster GD, Lancaster, AK. (YYYY) \"scribl: A system for the semantic capture of relationships in biological literature\" (Version X.Y.Z) \[Computer software\]. Zenodo.
-      > <https://doi.org/10.5281/zenodo.XXXXX>
+     > Webster GD, Lancaster, AK. (YYYY) "scribl: A system for the semantic capture of relationships in biological literature" (Version X.Y.Z) [Computer software]. Zenodo.
+     > <https://doi.org/10.5281/zenodo.XXXXX>
 
   Note that citation metadata for the current Zenodo record is also
   stored in
   [CITATION.cff](https://github.com/amberbiology/scribl/blob/main/CITATION.cff)
-
 
 ## Quickstart install and test
 
@@ -74,13 +73,13 @@ We recommend installing in a virtual environment.
 
 ### Install from PyPI
 
-``` shell
+```shell
 pip install scribl
 ```
 
 ### Install via GitHub repo
 
-``` shell
+```shell
 git clone https://github.com/amberbiology/scribl.git
 cd scribl
 pip install .
@@ -95,13 +94,13 @@ your virtual environment
 
 When scribl is installed, it contains a command-line program `scribl`
 that can perform some common API tasks, and to help the user jumpstart
-exploring using the system.  After installation here are two example
+exploring using the system. After installation here are two example
 command-line you can cut-and-paste and run from the terminal to check
 installation:
 
 #### Check version
 
-``` shell
+```shell
 scribl --version
 ```
 
@@ -109,30 +108,30 @@ scribl --version
 
 First create a new, empty directory and change into it, e.g.:
 
-``` shell
+```shell
 mkdir /tmp/scribl-test
 cd /tmp/scribl-test
 ```
 
 Then run:
 
-``` shell
+```shell
 scribl -g new_graphdb --zotero-library 5251557:group --networkx-fig graphdb-visual.png --graphmlfile graphdb.xml --cyphertextfile graphdb.cypher
 ```
 
 This will read from a public Zotero `group` collection we have created
 (ID `5251557`) for testing purposes, that includes citations with
-scribl tags.  This example run generates the following outputs:
+scribl tags. This example run generates the following outputs:
 
-* `new_graphdb` - directory containing the new scribl database
+- `new_graphdb` - directory containing the new scribl database
 
-* `graphdb.cypher` - a plain text file in the [Cypher query
+- `graphdb.cypher` - a plain text file in the [Cypher query
   language](https://opencypher.org/)
 
-* `graphdb.xml` - an XML file in
+- `graphdb.xml` - an XML file in
   [GraphML](http://graphml.graphdrawing.org/) format
 
-* `graphdb-visual.png` - a visualization of the GraphML graph in PNG
+- `graphdb-visual.png` - a visualization of the GraphML graph in PNG
   format:
 
   ![Visualization of scribl database via NetworkX](graphdb-visual.png)
@@ -173,7 +172,7 @@ command-line:
 
 ### Create a new database from Zotero library
 
-``` shell
+```shell
 scribl -g new_graphdb --zotero-library <LIBRARY_ID>:<TYPE> --zotero-api-key <API_KEY>
 ```
 
@@ -185,15 +184,14 @@ accessing private libraries, or non-public group libraries. The
 [documentation](https://github.com/urschrei/pyzotero#quickstart) on
 how to find out your library ID and creating an API key.
 
-
 ### Create a new database from a local Zotero CSV file
 
-``` shell
+```shell
 scribl -g new_graphdb --zoterofile <ZOTERO_CSV>
 ```
 
 This populates the database from a local CSV file `ZOTERO_CSV` exported
-from a Zotero library.  Note that the above two commands, just create (or
+from a Zotero library. Note that the above two commands, just create (or
 read from an existing) database, but generate no output. (Note that the
 `new_graphdb` database is not overwritten if it already exists, unless the
 `--overwrite` flag is also supplied)
@@ -206,7 +204,7 @@ the database empty.
 
 ### Output representation of graph in GraphML format
 
-``` shell
+```shell
 scribl -g new_graphdb --graphmlfile <OUTPUT_XML>
 ```
 
@@ -215,12 +213,12 @@ be supplied with the appropriate extension, e.g. `graphdb.xml`).
 
 ### Output a NetworkX visualization
 
-``` shell
+```shell
 scribl -g new_graphdb --networkx-fig <OUTPUT_IMAGE>
 ```
 
 This generates and saves the visualization as as one of the
-`matplotlib` supported `OUTPUT_IMAGE` formts, using data from current
+`matplotlib` supported `OUTPUT_IMAGE` formats, using data from current
 scribl database (for example, using `graphdb-visual.pdf` would
 generate it in PDF format). The visualizations are produced from
 GraphML XML output that is rendered using Python's NetworkX
@@ -228,7 +226,7 @@ library.
 
 ### Output representation of graph as a Cypher file
 
-``` shell
+```shell
 scribl -g new_graphdb --cyphertextfile <OUTPUT_CYPHER>
 ```
 
@@ -239,7 +237,7 @@ into [Neo4J](https://neo4j.com/).
 
 For a full description of all command-line arguments, run:
 
-``` shell
+```shell
 scribl --help
 ```
 
@@ -252,8 +250,7 @@ populates it from the same remote Zotero library, and then generates
 `graphdb.xml` (GraphML), `graphdb.cypher` (Cypher) and
 `graphdb-visual.png` (PNG).
 
-
-``` Python
+```Python
 from scribl.manage_graphdb import GraphDBInstance
 
 gdb = GraphDBInstance("newgraph_db")
@@ -273,13 +270,13 @@ in the main documentation.
 
 1. clone the repo:
 
-   ``` shell
+   ```shell
    git clone https://github.com/amberbiology/scribl.git
    ```
 
 2. install with `pip` with the option `test` package :
 
-   ``` shell
+   ```shell
    pip install .[test]
    ```
 
@@ -308,14 +305,13 @@ scribl is Copyright (C) 2023, 2024. Amber Biology LLC
 
 scribl is distributed under the terms of [AGPL-3.0 license](LICENSE)
 
-
 ## Acknowledgements
 
 The development of the scribl platform was made possible by the
 funding and expertise provided by the Association for Frontotemporal
 Degeneration (AFTD - https://www.theaftd.org/) whose mission is to
 improve the quality of life of people affected by Frontotemporal
-Degeneration and drive research to a cure.  We are particularly
+Degeneration and drive research to a cure. We are particularly
 grateful to AFTD leadership team members Debra Niehoff and Penny Dacks
 for their invaluable direction and guidance, and for getting us access
 to leading researchers in the field of neurodegenerative disease - all

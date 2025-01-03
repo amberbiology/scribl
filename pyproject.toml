@@ -97,6 +97,18 @@ isort.required-imports = ["from __future__ import annotations"]
 [tool.ruff.lint.per-file-ignores]
 "tests/**" = ["T20"]
 
+[tool.codespell]
+skip = './tests/test_data'
+count = true
+quiet-level = 3
+
+[tool.mdformat]
+number = true
+exclude = [
+	"CHANGELOG.md",
+	"paper/**"
+	]
+
 [tool.mypy]
 files = "scribl"
 python_version = "3.9"
