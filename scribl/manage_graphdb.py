@@ -6,6 +6,7 @@ import datetime
 import os
 import shutil
 import tempfile
+from pathlib import Path
 
 import matplotlib.pyplot as plt
 import networkx as nx
@@ -28,22 +29,20 @@ class GraphDBInstance:
     def __init__(self, db_folder_path, overwrite=False, verbose=False):
         self.zotero_keys = scribl.default_keymap["zotero_keys"]
         self.cypher_keys = scribl.default_keymap["cypher_keys"]
-        self.db_folder_path = db_folder_path
-        self.config_folder = os.path.join(self.db_folder_path, "config")
-        self.db_snapshots_folder = os.path.join(self.db_folder_path, "db_snapshots")
-        self.zotero_csv_exports_folder = os.path.join(
-            self.db_folder_path, "zotero_csv_exports"
-        )
-        self.db_backup_folder = os.path.join(self.db_folder_path, "backup")
+        self.db_folder_path = Path(db_folder_path)
+        # self.config_folder = os.path.join(self.db_folder_path, "config")
+        self.config_folder = self.db_folder_path / "config"
+        self.db_snapshots_folder = self.db_folder_path / "db_snapshots"
+        self.zotero_csv_exports_folder = self.db_folder_path / "zotero_csv_exports"
+
+        self.db_backup_folder = self.db_folder_path / "backup"
         self.graphdb = None
 
         create_new = False
 
-        if os.path.exists(self.db_folder_path):
+        if Path.exists(self.db_folder_path):
             # first check for presence of 'metadata.txt' file see if this is an actual database
-            if os.path.exists(
-                os.path.join(self.db_folder_path, "config", "metadata.txt")
-            ):
+            if Path.exists(self.db_folder_path / "config" / "metadata.txt"):
                 if overwrite:
                     print(
                         "Overwrite enabled - removing current version of graph DB in",
@@ -68,12 +67,11 @@ class GraphDBInstance:
         else:  # read from existing database
             if verbose:
                 print(
-                    "DB exists in %s and overwite not enabled, read from existing db"
-                    % self.db_folder_path
+                    f"DB exists {self.db_folder_path} and overwrite not enabled, read from existing db"
                 )
-            metadata_file = os.path.join(self.config_folder, "metadata.txt")
-            if os.path.exists(metadata_file):
-                with open(metadata_file) as metafile:
+            metadata_file = self.config_folder / "metadata.txt"
+            if Path.exists(metadata_file):
+                with Path.open(metadata_file) as metafile:
                     metadata = metafile.readlines()
                     self.metadata = []
                     for line in metadata:
@@ -82,40 +80,40 @@ class GraphDBInstance:
         return
 
     def initialize_db(self):
-        os.mkdir(self.db_folder_path)
-        os.mkdir(self.config_folder)
-        os.mkdir(self.db_snapshots_folder)
-        os.mkdir(self.zotero_csv_exports_folder)
-        os.mkdir(self.db_backup_folder)
+        Path.mkdir(self.db_folder_path)
+        Path.mkdir(self.config_folder)
+        Path.mkdir(self.db_snapshots_folder)
+        Path.mkdir(self.zotero_csv_exports_folder)
+        Path.mkdir(self.db_backup_folder)
 
     def set_metadata(self, db_name, curator, description, overwrite=False):
-        metadata_file = os.path.join(self.config_folder, "metadata.txt")
-        annotations_file = os.path.join(self.config_folder, "annotations.txt")
-        if os.path.exists(metadata_file) and overwrite == False:
+        metadata_file = self.config_folder / "metadata.txt"
+        annotations_file = self.config_folder / "annotations.txt"
+        if Path.exists(metadata_file) and not overwrite:
             return
         now = generate_timestamp(text_format=True)
-        with open(metadata_file, "w") as metafile:
+        with Path.open(metadata_file, "w") as metafile:
             metafile.write(f"Created: {now}\n")
             metafile.write(f"Curator: {curator}\n")
             metafile.write(f"DB Name: {db_name}\n")
             metafile.write(f"Summary: {description}\n")
-        with open(annotations_file, "w") as annofile:
+        with Path.open(annotations_file, "w") as annofile:
             annofile.write(f"Initialized: {now}\n")
         return
 
     def add_annotation(self, your_name, note_text):
-        annotations_file = os.path.join(self.config_folder, "annotations.txt")
+        annotations_file = self.config_folder / "annotations.txt"
         now = generate_timestamp(text_format=True)
         note = f"{your_name}: {now}: {note_text}\n"
-        with open(annotations_file, "a") as annofile:
+        with Path.open(annotations_file, "a") as annofile:
             annofile.write(note)
 
     def generate_metadata_cypher(self):
         cypher = []
         cypher.append("MATCH(m:METADATA)-[r:METADATA]-(a:METADATA) delete r;")
         cypher.append("MATCH(m:METADATA) delete m;")
-        metadata_file = os.path.join(self.config_folder, "metadata.txt")
-        with open(metadata_file) as metafile:
+        metadata_file = self.config_folder / "metadata.txt"
+        with Path.open(metadata_file) as metafile:
             metadata = metafile.readlines()
         date = metadata[0][9:].strip()
         curator = metadata[1][9:].strip()
@@ -124,8 +122,8 @@ class GraphDBInstance:
         cypher.append(
             f"CREATE(:METADATA{{name:'metadata', initialized:'{date}', curator:'{curator}', title:'{title}', description:'{summary}'}});"
         )
-        annotations_file = os.path.join(self.config_folder, "annotations.txt")
-        with open(annotations_file) as annofile:
+        annotations_file = self.config_folder / "annotations.txt"
+        with Path.open(annotations_file) as annofile:
             notes = annofile.readlines()
         nc = notes[0].index(":")
         date = notes[0][nc:].strip()
@@ -142,24 +140,21 @@ class GraphDBInstance:
         return "\n".join(cypher)
 
     def import_zotero_csv(self, import_filepath, overwrite=False, verbose=False):
+        import_filepath = Path(import_filepath)
         if verbose:
             print("Importing Zotero CSV ", import_filepath)
 
-        if os.path.exists(import_filepath):
+        if Path.exists(import_filepath):
             now = generate_timestamp()
             new_import_filename = f"{now}_zotero_data.csv"
 
             if overwrite:
                 # FIXME: this list is empty because the zotero export is removed upon overwriting the db
-                try:
-                    new_import_filename = self.get_zotero_csv_exports()[-1]
-                except IndexError:
-                    # revert to the original new import path defined above
-                    pass
+                exports = self.get_zotero_csv_exports()
+                if exports:
+                    new_import_filename = exports[-1]
 
-            new_import_filepath = os.path.join(
-                self.zotero_csv_exports_folder, new_import_filename
-            )
+            new_import_filepath = self.zotero_csv_exports_folder / new_import_filename
             shutil.copy(import_filepath, new_import_filepath)
 
             if verbose:
@@ -199,7 +194,7 @@ class GraphDBInstance:
             # FIXME: close and then delete manually, needed on Windows as per
             # https://stackoverflow.com/a/43283261
             zotero_csv.close()
-            os.remove(zotero_csv.name)
+            Path.unlink(zotero_csv.name)
 
     def get_zotero_csv_exports(self):
         exports = []
@@ -220,18 +215,16 @@ class GraphDBInstance:
 
         exports = self.get_zotero_csv_exports()
         # print(exports)
-        if zotero_csv_filename == None:
+        if zotero_csv_filename is None:
             if len(exports) > 0:  # at least one Zotero CSV file has been imported
                 zotero_csv_filename = exports[-1]
             else:
                 print("Cancelled! No saved Zotero CSV files")
                 return None
-        elif not os.path.exists(zotero_csv_filename):
+        elif not Path.exists(zotero_csv_filename):
             print("Cancelled! DB data not found at", zotero_csv_filename)
             return None
-        self.current_zotero_csv = os.path.join(
-            self.zotero_csv_exports_folder, zotero_csv_filename
-        )
+        self.current_zotero_csv = self.zotero_csv_exports_folder / zotero_csv_filename
         # load , process, and validate csv data
         self.graphdb = GraphDB(
             self.current_zotero_csv, zotero_keys=zotero_keys, cypher_keys=cypher_keys
@@ -241,7 +234,7 @@ class GraphDBInstance:
         summary = self.graphdb.db["warnings"], self.graphdb.db["errors"]
 
         if verbose:
-            print(f"{os.path.basename(self.current_zotero_csv)} loaded into graph DB")
+            print(f"{Path.name(self.current_zotero_csv)} loaded into graph DB")
             nwarning = 0
             nerror = 0
             for article_key_pair in summary[0]:
@@ -273,24 +266,22 @@ class GraphDBInstance:
         return (summary[0], summary[1])
 
     def get_current_timestamp(self):
-        # FIXME: this is extremely fragile code - it shouldn't hardcode lengths
-        slash = (
-            self.current_zotero_csv.find(
-                os.path.sep + "zotero_csv_exports" + os.path.sep
-            )
-            + 20
+        # Extract the filename from the path
+        filename = self.current_zotero_csv.name
+        # Remove the '_zotero_data.csv' suffix to get the timestamp
+        if filename.endswith("_zotero_data.csv"):
+            return filename[: -len("_zotero_data.csv")]
+        error_message = (
+            "Filename does not follow the expected format '_zotero_data.csv'"
         )
-        current_timestamp = self.current_zotero_csv[slash : slash + 17]
-        return current_timestamp
+        raise ValueError(error_message)
 
-    def save_db_snapshot(self, use_default_db_keys=True, verbose=False):
+    def save_db_snapshot(self, verbose=False):
         if verbose:
             print("Saving graph DB snapshot ...")
         current_timestamp = self.get_current_timestamp()
         new_snapshot_filename = f"{current_timestamp}_db_snapshot.dat"
-        new_snapshot_filepath = os.path.join(
-            self.db_snapshots_folder, new_snapshot_filename
-        )
+        new_snapshot_filepath = self.db_snapshots_folder / new_snapshot_filename
         self.graphdb.save_db(new_snapshot_filepath)
 
         if verbose:
@@ -308,11 +299,11 @@ class GraphDBInstance:
         if verbose:
             print("Loading graph DB snapshot ...")
 
-        if db_snapshot_filename == None:
+        if db_snapshot_filename is None:
             snapshots = self.get_db_snapshots()
             db_snapshot_filename = snapshots[-1]
 
-        db_snapshot_path = os.path.join(self.db_snapshots_folder, db_snapshot_filename)
+        db_snapshot_path = self.db_snapshots_folder / db_snapshot_filename
         db_snapshot = self.graphdb.load_db(db_snapshot_path)
 
         if verbose:
@@ -325,7 +316,7 @@ class GraphDBInstance:
         cypher_text = self.graphdb.export_cypher_text(cypher)
 
         if filepath:
-            with open(filepath, "w") as cypher_file:
+            with Path.open(filepath, "w") as cypher_file:
                 cypher_file.write(cypher_text)
         elif verbose:
             print("\nExported Cypher Text -----\n")
@@ -336,10 +327,10 @@ class GraphDBInstance:
     def backup_db(self, verbose=False):
         if verbose:
             print("Backing up graph DB ...")
-        cypher_text = self.export_cypher_text()
+        self.export_cypher_text()
         current = self.get_current_timestamp()
         db_backup_filename = f"{current}_db_backup.txt"
-        new_db_backup_filepath = os.path.join(self.db_backup_folder, db_backup_filename)
+        new_db_backup_filepath = self.db_backup_folder / db_backup_filename
         self.graphdb.save_db(new_db_backup_filepath)
         if verbose:
             print(f"Graph DB backup saved to file: {new_db_backup_filepath}")
@@ -347,9 +338,9 @@ class GraphDBInstance:
         return new_db_backup_filepath
 
     def generate_db_diff(self, db_snapshot_filename=None, verbose=False):
-        if db_snapshot_filename == None:
+        if db_snapshot_filename is None:
             snapshots = self.get_db_snapshots()
-            db_snapshot_filename = os.path.join(self.db_snapshots_folder, snapshots[-1])
+            db_snapshot_filename = self.db_snapshots_folder / snapshots[-1]
         other_db = GraphDB(db_snapshot_filename, export_type=scribl.DB_EXPORT)
         db_diff = self.graphdb.generate_db_diff(other_db)
 
@@ -359,7 +350,8 @@ class GraphDBInstance:
 
         return db_diff
 
-    def inspect_db(self, list_contents=[], verbose=False, contents_length=5):
+    def inspect_db(self, list_contents=None, verbose=False, contents_length=5):
+        list_contents = list_contents or []
         result = {}
         show = {}
         for key in self.graphdb.db:
@@ -384,10 +376,10 @@ class GraphDBInstance:
 
         if verbose:
             level2 = ["relationships", "list_contents"]
-            for item in result:
-                if item in level2:
+            for key, value in result.items():
+                if key in level2:
                     continue
-                print(f"{item:20} {result[item]:d}")
+                print(f"{key:20} {value:d}")
             for field in level2:
                 print(f"---{field}:")
                 for item in result[field]:
@@ -434,7 +426,7 @@ class GraphDBInstance:
         graphml_text = self.graphdb.export_graphml_text(graphml)
 
         if filepath:
-            with open(filepath, "w") as graphml_file:
+            with Path.open(filepath, "w") as graphml_file:
                 graphml_file.write(graphml_text)
         elif verbose:
             print("\nExported GraphML XML -----\n")
@@ -509,7 +501,8 @@ class GraphDBInstance:
         nx.draw_networkx_edges(G, pos, node_size=node_size, alpha=0.3, width=0.7)
         # can't use `get_edge_attributes()` for multiedge graphs
         # https://stackoverflow.com/questions/75810397/how-to-draw-edge-labels-when-there-are-multi-edges-in-networkx
-        edge_labels = dict([((n1, n2), d["label"]) for n1, n2, d in G.edges(data=True)])
+        edge_labels = {(n1, n2): d["label"] for n1, n2, d in G.edges(data=True)}
+
         nx.draw_networkx_edge_labels(
             G, pos, edge_labels=edge_labels, font_size=font_size
         )

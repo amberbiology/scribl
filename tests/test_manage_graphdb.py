@@ -60,8 +60,8 @@ def test_graphdb_metadata(sandbox_paths):
         lines[3].strip()
         == "Summary: A systems biology literature DB built by Amber Biology for testing"
     )
-    with open(annotations_file) as afile:
-        lines = afile.readlines()
+    with open(annotations_file) as a_file:
+        lines = a_file.readlines()
     assert lines[0][0:13] == "Initialized: "
     assert lines[1][0:15] == "Bill Lumbergh: "
     assert lines[1][36:].strip() == "Hey Peter. What's up?"
@@ -91,7 +91,7 @@ def test_graphdb_import(sandbox_paths):
     assert len(os.listdir(folder_path)) == 2
     importpath = os.path.join(folder_path, sorted(os.listdir(folder_path))[-1])
     gdb.load_zotero_csv()
-    assert gdb.current_zotero_csv == importpath
+    assert str(gdb.current_zotero_csv) == importpath
     assert len(gdb.graphdb.db["article"]) == 13
 
 
