@@ -3,7 +3,6 @@ from __future__ import annotations
 __author__ = "Amber Biology"
 
 import datetime
-import os
 from pathlib import Path
 
 import pytest
@@ -114,7 +113,7 @@ def test_db_snapshots(sandbox_paths):
     snapshot_filename = f"{now}_db_snapshot.dat"
     snapshot_filepath = test_sandbox_dir / snapshot_filename
     gdb.save_db(snapshot_filepath)
-    assert os.path.getsize(snapshot_filepath) == 35445
+    assert Path(snapshot_filepath).stat().st_size == 35445
     loaded_snapshot = gdb.load_db(snapshot_filepath)
     assert loaded_snapshot == gdb.db
 
