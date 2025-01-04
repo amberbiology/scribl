@@ -6,7 +6,6 @@ import csv
 import json
 import re
 from io import StringIO
-from pathlib import Path
 
 import pandas as pd
 from pyzotero import zotero
@@ -23,7 +22,7 @@ class ZoteroCSV:
         self.keymap = None
         self.nrecords = 0
         self.errors = []
-        with Path.open(filepath, encoding="utf-8-sig") as csvfile:
+        with open(filepath, encoding="utf-8-sig") as csvfile:
             rows = []
             csvreader = csv.reader(csvfile, delimiter=self.delimiter)
             for row in csvreader:

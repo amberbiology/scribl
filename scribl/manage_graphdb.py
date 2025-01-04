@@ -71,7 +71,7 @@ class GraphDBInstance:
                 )
             metadata_file = self.config_folder / "metadata.txt"
             if Path.exists(metadata_file):
-                with Path.open(metadata_file) as metafile:
+                with open(metadata_file) as metafile:
                     metadata = metafile.readlines()
                     self.metadata = []
                     for line in metadata:
@@ -92,12 +92,12 @@ class GraphDBInstance:
         if Path.exists(metadata_file) and not overwrite:
             return
         now = generate_timestamp(text_format=True)
-        with Path.open(metadata_file, "w") as metafile:
+        with open(metadata_file, "w") as metafile:
             metafile.write(f"Created: {now}\n")
             metafile.write(f"Curator: {curator}\n")
             metafile.write(f"DB Name: {db_name}\n")
             metafile.write(f"Summary: {description}\n")
-        with Path.open(annotations_file, "w") as annofile:
+        with open(annotations_file, "w") as annofile:
             annofile.write(f"Initialized: {now}\n")
         return
 
@@ -105,7 +105,7 @@ class GraphDBInstance:
         annotations_file = self.config_folder / "annotations.txt"
         now = generate_timestamp(text_format=True)
         note = f"{your_name}: {now}: {note_text}\n"
-        with Path.open(annotations_file, "a") as annofile:
+        with open(annotations_file, "a") as annofile:
             annofile.write(note)
 
     def generate_metadata_cypher(self):
@@ -113,7 +113,7 @@ class GraphDBInstance:
         cypher.append("MATCH(m:METADATA)-[r:METADATA]-(a:METADATA) delete r;")
         cypher.append("MATCH(m:METADATA) delete m;")
         metadata_file = self.config_folder / "metadata.txt"
-        with Path.open(metadata_file) as metafile:
+        with open(metadata_file) as metafile:
             metadata = metafile.readlines()
         date = metadata[0][9:].strip()
         curator = metadata[1][9:].strip()
@@ -123,7 +123,7 @@ class GraphDBInstance:
             f"CREATE(:METADATA{{name:'metadata', initialized:'{date}', curator:'{curator}', title:'{title}', description:'{summary}'}});"
         )
         annotations_file = self.config_folder / "annotations.txt"
-        with Path.open(annotations_file) as annofile:
+        with open(annotations_file) as annofile:
             notes = annofile.readlines()
         nc = notes[0].index(":")
         date = notes[0][nc:].strip()
@@ -316,7 +316,7 @@ class GraphDBInstance:
         cypher_text = self.graphdb.export_cypher_text(cypher)
 
         if filepath:
-            with Path.open(filepath, "w") as cypher_file:
+            with open(filepath, "w") as cypher_file:
                 cypher_file.write(cypher_text)
         elif verbose:
             print("\nExported Cypher Text -----\n")
@@ -426,7 +426,7 @@ class GraphDBInstance:
         graphml_text = self.graphdb.export_graphml_text(graphml)
 
         if filepath:
-            with Path.open(filepath, "w") as graphml_file:
+            with open(filepath, "w") as graphml_file:
                 graphml_file.write(graphml_text)
         elif verbose:
             print("\nExported GraphML XML -----\n")

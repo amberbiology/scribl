@@ -4,7 +4,6 @@ __author__ = "Amber Biology"
 
 import copy
 import pickle
-from pathlib import Path
 from xml.sax.saxutils import escape
 
 import scribl
@@ -155,11 +154,11 @@ class GraphDB:
         return result
 
     def save_db(self, filepath):
-        with Path.open(filepath, "wb") as dbfile:
+        with open(filepath, "wb") as dbfile:
             pickle.dump(self.db, dbfile)
 
     def load_db(self, filepath):
-        with Path.open(filepath, "rb") as dbfile:
+        with open(filepath, "rb") as dbfile:
             return pickle.load(dbfile)
 
     def generate_db_diff(self, other):
