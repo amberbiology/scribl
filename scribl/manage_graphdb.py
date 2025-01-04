@@ -234,7 +234,7 @@ class GraphDBInstance:
         summary = self.graphdb.db["warnings"], self.graphdb.db["errors"]
 
         if verbose:
-            print(f"{Path.name(self.current_zotero_csv)} loaded into graph DB")
+            print(f"{self.current_zotero_csv.name} loaded into graph DB")
             nwarning = 0
             nerror = 0
             for article_key_pair in summary[0]:
