@@ -88,6 +88,7 @@ extend-select = [
 ]
 ignore = [
   "T201",     # allow `print()`
+  "PTH107",   # allow .`os.remove` until `Path.unlink` works on later Pythons
   "PTH123",   # allow `open()`
   "ISC001",   # Conflicts with formatter
   "PLR09",    # Too many <...>

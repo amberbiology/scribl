@@ -194,7 +194,7 @@ class GraphDBInstance:
             # FIXME: close and then delete manually, needed on Windows as per
             # https://stackoverflow.com/a/43283261
             zotero_csv.close()
-            Path.unlink(zotero_csv.name)
+            os.remove(zotero_csv.name)
 
     def get_zotero_csv_exports(self):
         exports = []

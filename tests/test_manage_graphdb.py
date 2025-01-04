@@ -6,6 +6,7 @@ __author__ = "Amber Biology"
 import os
 import time
 from xml.etree import ElementTree as ET  # for GraphML checking
+from pathlib import Path
 
 import pytest
 
