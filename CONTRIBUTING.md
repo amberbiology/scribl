@@ -144,14 +144,14 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/amberb
 
 Next, clone the main repository to your local machine:
 
-```
+```shell
 git clone https://github.com/amberbiology/scrib.git
 cd scribl
 ```
 
 Add your fork as an upstream repository:
 
-```
+```shell
 git remote add myfork git://github.com/YOUR-USERNAME/scribl.git
 git fetch myfork
 ```
@@ -160,7 +160,7 @@ git fetch myfork
 
 From the `main` branch create a new branch where to develop the new code.
 
-```
+```shell
 git checkout main
 git checkout -b new_branch
 ```
@@ -174,7 +174,7 @@ Now you are ready to make your changes. First, you need to build
 editable package (recommend using a virtual environment), along with
 the testing.
 
-```
+```shell
 pip install -e .[test]
 ```
 
@@ -182,7 +182,7 @@ Once you have done the installation and have verified that it works,
 you can start to develop the feature, or make the bug fix, and keep
 regular pushes to your fork with comprehensible commit messages.
 
-```
+```shell
 git status
 git add # (the files you want)
 git commit # (add a nice commit message)
@@ -196,7 +196,7 @@ ensure it passes the existing unit tests.
 
 You should keep your branch in sync with the upstream `main` branch. For that:
 
-```
+```shell
 git checkout main  # return to the main branch
 git pull  # retrieve the latest source from the main repository
 git checkout new_branch  # return to your devel branch
@@ -208,7 +208,7 @@ know how to do this, I suggest you start by reading the [official docs](https://
 
 You can push to your fork now if you wish:
 
-```
+```shell
 git push myfork new_branch
 ```
 
