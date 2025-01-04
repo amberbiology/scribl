@@ -3,6 +3,7 @@ from __future__ import annotations
 __author__ = "Amber Biology"
 
 import os
+from pathlib import Path
 
 import pytest
 
@@ -10,10 +11,9 @@ from scribl.scribl import main
 
 
 # fixture function to create unique sandbox directories
-@pytest.fixture(scope="function")
+@pytest.fixture
 def sandbox_paths(tmpdir_factory):
-    test_sandbox_dir = tmpdir_factory.mktemp("scribl_sandbox")
-    return test_sandbox_dir
+    return tmpdir_factory.mktemp("scribl_sandbox")
 
 
 def test_pyzotero_network(sandbox_paths):
@@ -39,8 +39,8 @@ def test_pyzotero_network(sandbox_paths):
 
     assert ret_val == 0
     # check generated files
-    assert os.path.exists("graphdb-visual.png") == True
-    assert os.path.exists("graphdb.xml") == True
-    assert os.path.exists("graphdb.cypher") == True
+    assert Path("graphdb-visual.png").exists()
+    assert Path("graphdb.xml").exists()
+    assert Path("graphdb.cypher").exists()
 
     os.chdir(curr_dir)

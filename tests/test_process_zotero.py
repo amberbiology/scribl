@@ -2,13 +2,13 @@ from __future__ import annotations
 
 __author__ = "Amber Biology"
 
-import os
+from pathlib import Path
 
 from scribl.process_zotero import ZoteroCSV
 
 test_data_dir = "tests/test_data"
 test_data_file = "2022_01_03_171311_zotero_data.csv"
-zotero_csv_data = os.path.join(test_data_dir, test_data_file)
+zotero_csv_data = Path(test_data_dir) / test_data_file
 
 
 def test_start():

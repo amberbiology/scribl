@@ -4,26 +4,27 @@ __author__ = "Amber Biology"
 
 import datetime
 import os
+from pathlib import Path
 
 import pytest
 
 import scribl
 from scribl.process_graphdb_data import GraphDB
 
-test_data_dir = "tests/test_data"
+test_data_dir = Path("tests/test_data")
 test_data_file = "zotero_export_1.csv"
 updated_test_data_file = "zotero_export_2.csv"
 error_data_file = "zotero_errors.csv"
-zotero_csv_data = os.path.join(test_data_dir, test_data_file)
-updated_csv_data = os.path.join(test_data_dir, updated_test_data_file)
-error_csv_data = os.path.join(test_data_dir, error_data_file)
+zotero_csv_data = test_data_dir / test_data_file
+updated_csv_data = test_data_dir / updated_test_data_file
+error_csv_data = test_data_dir / error_data_file
 
 
 # fixture function to create unique sandbox directories
-@pytest.fixture(scope="function")
+@pytest.fixture
 def sandbox_paths(tmpdir_factory):
     test_sandbox_dir = tmpdir_factory.mktemp("scribl_sandbox")
-    test_db_dir = os.path.join(test_sandbox_dir, "test_graphdb")
+    test_db_dir = test_sandbox_dir / "test_graphdb"
     return test_sandbox_dir, test_db_dir
 
 
@@ -111,7 +112,7 @@ def test_db_snapshots(sandbox_paths):
     gdb = GraphDB(zotero_csv_data)
     now = generate_timestamp()
     snapshot_filename = f"{now}_db_snapshot.dat"
-    snapshot_filepath = os.path.join(test_sandbox_dir, snapshot_filename)
+    snapshot_filepath = test_sandbox_dir / snapshot_filename
     gdb.save_db(snapshot_filepath)
     assert os.path.getsize(snapshot_filepath) == 35445
     loaded_snapshot = gdb.load_db(snapshot_filepath)
@@ -124,7 +125,7 @@ def test_db_diff(sandbox_paths):
     gdb = GraphDB(zotero_csv_data)
     now = generate_timestamp()
     snapshot_filename = f"{now}_db_snapshot.dat"
-    snapshot_filepath = os.path.join(test_sandbox_dir, snapshot_filename)
+    snapshot_filepath = test_sandbox_dir / snapshot_filename
     gdb.save_db(snapshot_filepath)
     # create new graph db with snapshot
     odb = GraphDB(snapshot_filepath, export_type=scribl.DB_EXPORT)
