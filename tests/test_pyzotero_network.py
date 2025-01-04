@@ -18,7 +18,7 @@ def sandbox_paths(tmpdir_factory):
 
 def test_pyzotero_network(sandbox_paths):
     test_sandbox_dir = sandbox_paths
-    curr_dir = os.getcwd()  # save current directory
+    curr_dir = Path.cwd()  # save current directory
 
     os.chdir(test_sandbox_dir)  # change current directory
     ret_val = main(
