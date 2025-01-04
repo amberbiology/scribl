@@ -4,6 +4,7 @@ __author__ = "Amber Biology"
 
 import copy
 import pickle
+from pathlib import Path
 from xml.sax.saxutils import escape
 
 import scribl
@@ -20,9 +21,9 @@ class GraphDB:
         zotero_keys=None,
         cypher_keys=None,
     ):
-        if zotero_keys == None:
+        if zotero_keys is None:
             zotero_keys = scribl.default_keymap["zotero_keys"]
-        if cypher_keys == None:
+        if cypher_keys is None:
             cypher_keys = scribl.default_keymap["cypher_keys"]
         if export_type == scribl.DB_EXPORT:
             self.db = self.load_db(db_data_filepath)
@@ -71,7 +72,7 @@ class GraphDB:
                 self.db["errors"][wekey] = copy.copy(parser.data["errors"])
             # capture categories and resources
             doing = {category_key: "RELATES", resource_key: "REFERENCES"}
-            for item_type in doing:
+            for item_type, relationship_label in doing.items():
                 item_key = item_type[len(scribl.statement_prefix) :]
                 for item in parser.data[item_type]:
                     if item not in self.db[item_key]:
@@ -81,7 +82,6 @@ class GraphDB:
                             if field_item not in self.db[item_key][item][field]:
                                 self.db[item_key][item][field].append(field_item)
                     # add article relationship
-                    relationship_label = doing[item_type]
                     relation = (article_key, item)
                     if relation not in self.db["relationships"][relationship_label]:
                         self.db["relationships"][relationship_label].append(relation)
@@ -143,8 +143,8 @@ class GraphDB:
 
     def show_relationships(self, item_type, item_name):
         try:
-            exists = self.db[item_type][item_name]
-        except:
+            self.db[item_type][item_name]
+        except Exception:
             return {}
         result = {"search": (item_type, item_name)}
         for rtype in self.db["relationships"]:
@@ -155,13 +155,12 @@ class GraphDB:
         return result
 
     def save_db(self, filepath):
-        with open(filepath, "wb") as dbfile:
+        with Path.open(filepath, "wb") as dbfile:
             pickle.dump(self.db, dbfile)
 
     def load_db(self, filepath):
-        with open(filepath, "rb") as dbfile:
-            loaded_db = pickle.load(dbfile)
-        return loaded_db
+        with Path.open(filepath, "rb") as dbfile:
+            return pickle.load(dbfile)
 
     def generate_db_diff(self, other):
         db_diff = {}
@@ -194,10 +193,7 @@ class GraphDB:
         return db_diff
 
     def generate_cypher(self, diff_db=None):
-        if diff_db == None:
-            use_db = self.db
-        else:
-            use_db = diff_db
+        use_db = self.db if diff_db is None else diff_db
         cypher = []
         # export articles
         for article_key in use_db["article"]:
@@ -326,10 +322,10 @@ class GraphDB:
                 if synonym not in synonyms:
                     synonyms[synonym] = []
                 synonyms[synonym].append(agent)
-        for synonym in synonyms:
-            if len(synonyms[synonym]) > 1:
+        for synonym, synonym_list in synonyms.items():
+            if len(synonym_list) > 1:
                 result["synonym appears in different agents"][synonym] = copy.copy(
-                    synonyms[synonym]
+                    synonym_list
                 )
             if synonym in agents:
                 result["synonym appears as an agent"].append(synonym)
@@ -360,7 +356,7 @@ class GraphDB:
 
         return "\n".join(xmlnode_list)
 
-    def generate_graphml(self, diff_db=None):
+    def generate_graphml(self):
         use_db = self.db
         graphml = []
         # export articles
@@ -424,10 +420,11 @@ class GraphDB:
         for rtype in use_db["relationships"]:
             partner1_type = scribl.cypher_relationships[rtype][0]
             partner2_type = scribl.cypher_relationships[rtype][1]
-            if rtype in ["RELATES", "DESCRIBES", "REFERENCES", "MENTIONS"]:
-                match_field = "key"
-            else:
-                match_field = "name"
+            # FIXME: not currently needed in graphml
+            # if rtype in ["RELATES", "DESCRIBES", "REFERENCES", "MENTIONS"]:
+            #    match_field = "key"
+            # else:
+            #    match_field = "name"
             for relation in use_db["relationships"][rtype]:
                 graphml_list = [
                     f"""<edge id="{partner1_type}-{relation[0]}-{partner2_type}-{relation[1]}" source="{relation[0]}" target="{relation[1]}">"""

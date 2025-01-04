@@ -37,7 +37,6 @@ def test_pyzotero_network(sandbox_paths):
         ]
     )
 
-    # did script exit normally?
     assert ret_val == 0
     # check generated files
     assert os.path.exists("graphdb-visual.png") == True

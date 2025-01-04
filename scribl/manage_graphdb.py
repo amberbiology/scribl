@@ -421,8 +421,8 @@ class GraphDBInstance:
 
         return label_check
 
-    def export_graphml_text(self, diff=None, verbose=False, filepath=None):
-        graphml = self.graphdb.generate_graphml(diff_db=diff)
+    def export_graphml_text(self, verbose=False, filepath=None):
+        graphml = self.graphdb.generate_graphml()
         graphml_text = self.graphdb.export_graphml_text(graphml)
 
         if filepath:
