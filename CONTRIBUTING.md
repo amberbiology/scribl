@@ -1,4 +1,5 @@
 <!-- omit in toc -->
+
 # Contributing to scribl
 
 First off, thanks for taking the time to contribute!
@@ -6,12 +7,14 @@ First off, thanks for taking the time to contribute!
 All types of contributions are encouraged and valued. See the [Table of Contents](#table-of-contents) for different ways to help and details about how this project handles them. Please make sure to read the relevant section before making your contribution. It will make it a lot easier for us maintainers and smooth out the experience for all involved. The community looks forward to your contributions.
 
 > And if you like the project, but just don't have time to contribute, that's fine. There are other easy ways to support the project and show your appreciation, which we would also be very happy about:
+>
 > - Star the project
 > - Write a social media post about it.
 > - Refer this project in your project's readme
 > - Mention the project at local meetups and tell your friends/colleagues
 
 <!-- omit in toc -->
+
 ## Table of Contents
 
 - [I Have a Question](#i-have-a-question)
@@ -20,12 +23,12 @@ All types of contributions are encouraged and valued. See the [Table of Contents
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Your First Code Contribution](#your-first-code-contribution)
   - [Improving The Documentation](#improving-the-documentation)
+
 <!--
 - [Styleguides](#styleguides)
   - [Commit Messages](#commit-messages)
 - [Join The Project Team](#join-the-project-team)
 -->
-
 
 ## I Have a Question
 
@@ -59,11 +62,13 @@ Depending on how large the project is, you may want to outsource the questioning
 ## I Want To Contribute
 
 > ### Legal Notice <!-- omit in toc -->
+>
 > When contributing to this project, you must agree that you have authored 100% of the content, that you have the necessary rights to the content and that the content you contribute may be provided under the project license.
 
 ### Reporting Bugs
 
 <!-- omit in toc -->
+
 #### Before Submitting a Bug Report
 
 A good bug report shouldn't leave others needing to chase you up for more information. Therefore, we ask you to investigate carefully, collect information and describe the issue in detail in your report. Please complete the following steps in advance to help us fix any potential bug as fast as possible.
@@ -80,9 +85,11 @@ A good bug report shouldn't leave others needing to chase you up for more inform
   - Can you reliably reproduce the issue? And can you also reproduce it with older versions?
 
 <!-- omit in toc -->
+
 #### How Do I Submit a Good Bug Report?
 
 > You must never report security related issues, vulnerabilities or bugs including sensitive information to the issue tracker, or elsewhere in public. Instead sensitive bugs must be sent by email to <scribl@amberbiology.com>.
+
 <!-- You may add a PGP key to allow the messages to be sent encrypted as well. -->
 
 We use GitHub issues to track bugs and errors. If you run into an issue with the project:
@@ -105,6 +112,7 @@ Once it's filed:
 This section guides you through submitting an enhancement suggestion for scribl, **including completely new features and minor improvements to existing functionality**. Following these guidelines will help maintainers and the community to understand your suggestion and find related suggestions.
 
 <!-- omit in toc -->
+
 #### Before Submitting an Enhancement
 
 - Make sure that you are using the latest version.
@@ -113,6 +121,7 @@ This section guides you through submitting an enhancement suggestion for scribl,
 - Find out whether your idea fits with the scope and aims of the project. It's up to you to make a strong case to convince the project's developers of the merits of this feature. Keep in mind that we want features that will be useful to the majority of our users and not just a small subset. If you're just targeting a minority of users, consider writing an add-on/plugin library.
 
 <!-- omit in toc -->
+
 #### How Do I Submit a Good Enhancement Suggestion?
 
 Enhancement suggestions are tracked as [GitHub issues](https://github.com/amberbiology/scribl/issues).
@@ -135,40 +144,50 @@ Enhancement suggestions are tracked as [GitHub issues](https://github.com/amberb
 
 Next, clone the main repository to your local machine:
 
-    git clone https://github.com/amberbiology/scrib.git
-    cd scribl
+```shell
+git clone https://github.com/amberbiology/scrib.git
+cd scribl
+```
 
 Add your fork as an upstream repository:
 
-    git remote add myfork git://github.com/YOUR-USERNAME/scribl.git
-    git fetch myfork
+```shell
+git remote add myfork git://github.com/YOUR-USERNAME/scribl.git
+git fetch myfork
+```
 
 #### Make a new branch
 
 From the `main` branch create a new branch where to develop the new code.
 
-    git checkout main
-    git checkout -b new_branch
+```shell
+git checkout main
+git checkout -b new_branch
+```
 
 **Note** the `main` branch is from the main repository.
 
 #### Build locally and make your changes
 
-Now you are ready to make your changes.  First, you need to build
+Now you are ready to make your changes. First, you need to build
 `scribl` locally on your machine, and ensure it works. Install as an
 editable package (recommend using a virtual environment), along with
 the testing.
 
-    pip install -e .[test]
+```shell
+pip install -e .[test]
+```
 
 Once you have done the installation and have verified that it works,
 you can start to develop the feature, or make the bug fix, and keep
 regular pushes to your fork with comprehensible commit messages.
 
-    git status
-    git add # (the files you want)
-    git commit # (add a nice commit message)
-    git push myfork new_branch
+```shell
+git status
+git add # (the files you want)
+git commit # (add a nice commit message)
+git push myfork new_branch
+```
 
 While you are developing, you should regularly execute `pytest` to
 ensure it passes the existing unit tests.
@@ -177,17 +196,21 @@ ensure it passes the existing unit tests.
 
 You should keep your branch in sync with the upstream `main` branch. For that:
 
-    git checkout main  # return to the main branch
-    git pull  # retrieve the latest source from the main repository
-    git checkout new_branch  # return to your devel branch
-    git merge --no-ff main  # merge the new code to your branch
+```shell
+git checkout main  # return to the main branch
+git pull  # retrieve the latest source from the main repository
+git checkout new_branch  # return to your devel branch
+git merge --no-ff main  # merge the new code to your branch
+```
 
 At this point you may need to solve merge conflicts if they exist. If you don't
 know how to do this, I suggest you start by reading the [official docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github).
 
 You can push to your fork now if you wish:
 
-    git push myfork new_branch
+```shell
+git push myfork new_branch
+```
 
 And, continue doing your developments are previously discussed. When you are ready to submit upstream, you can submit this branch as a pull-request.
 
@@ -198,7 +221,7 @@ include Setup of env, IDE and typical getting started instructions?
 
 ### Improving The Documentation
 
-Please submit a suggested change to as a [GitHub issue](https://github.com/amberbiology/scribl/issues). If the change is to the `README.md`, it could be in form of a pull-request (see above).  Otherwise please indicate the change needed, with the page number of the PDF.
+Please submit a suggested change to as a [GitHub issue](https://github.com/amberbiology/scribl/issues). If the change is to the `README.md`, it could be in form of a pull-request (see above). Otherwise please indicate the change needed, with the page number of the PDF.
 
 <!-- TODO
 ## Styleguides
@@ -208,5 +231,7 @@ Please submit a suggested change to as a [GitHub issue](https://github.com/amber
 -->
 
 <!-- omit in toc -->
+
 ## Attribution
+
 This guide is based on the **contributing-gen**. [Make your own](https://github.com/bttger/contributing-gen)!
