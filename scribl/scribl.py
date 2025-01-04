@@ -7,18 +7,18 @@ __author__ = "Amber Biology"
 # it illustrates how to use the GraphDBInstance features in your own Python code, to create,
 # update, and examine a scribl DB
 
-import os
 import sys
 from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
-
-# insert the path to the python scribl package, computed from the current file
-DIR = os.path.abspath(os.path.dirname(__file__))
-sys.path.insert(0, os.path.join(DIR, ".."))
-
-debug = False
+from pathlib import Path
 
 from scribl import __version__ as version
 from scribl.manage_graphdb import GraphDBInstance
+
+# insert the path to the python scribl package, computed from the current file
+DIR = Path(__file__).parent.resolve()
+sys.path.insert(0, Path(DIR) / "..")
+
+debug = False
 
 
 # define a main() function so we can use as an entry_point for an installable script
@@ -169,8 +169,7 @@ def main(argv=sys.argv):
         )
     except FileExistsError:
         print(
-            'directory "%s" exists, but is not a valid existing scribl database, so cannot be either read or overwritten, aborting'
-            % scribl_graphdb_path
+            f'directory "{scribl_graphdb_path}" exists, but is not a valid existing scribl database, so cannot be either read or overwritten, aborting'
         )
         return -1
 
@@ -230,9 +229,7 @@ def main(argv=sys.argv):
 
     if graphml_filename:
         # generate GraphML representation (incomplete)
-        graphml_text = gdb.export_graphml_text(
-            verbose=verbosity, filepath=graphml_filename
-        )
+        gdb.export_graphml_text(verbose=verbosity, filepath=graphml_filename)
 
     if networkx_fig:
         # generate visualization using NetworkX
