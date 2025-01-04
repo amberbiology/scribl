@@ -56,7 +56,7 @@ def test_parser_errors():
     assert len(sp.data["errors"]) == 1
     assert (
         sp.data["errors"][0]
-        == "Line: 0 Unable to parse statment [::categry neuroinflammation]"
+        == "Line: 0 Unable to parse statement [::categry neuroinflammation]"
     )
     print(" Unknown entity in relationship ...")
     line = "::category lysosomal clearance; ::process autophagosome formation @ ulk1 complex"

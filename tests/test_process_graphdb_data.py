@@ -225,7 +225,7 @@ def test_db_errors():
     assert len(ddb.db["errors"]) == 3
     ref = {
         ("GAKQTWWR", "Exosome secretion is a key pathway for clearance o"): [
-            "Line: 0 Unable to parse statment [::category ::category ::agent :protein]"
+            "Line: 0 Unable to parse statement [::category ::category ::agent :protein]"
         ],
         ("NP7Q3SDK", "Dynamic Modeling of the Interaction Between Autoph"): [
             'Unrecognized entity "diddly squat" in relationship: ::agent atg1-atg13 complex ... | diddly squat'

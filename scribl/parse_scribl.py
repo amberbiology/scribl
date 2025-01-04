@@ -2,7 +2,18 @@ from __future__ import annotations
 
 __author__ = "Amber Biology"
 
-from pyparsing import *
+from pyparsing import (
+    Combine,
+    Group,
+    Literal,
+    OneOrMore,
+    Word,
+    ZeroOrMore,
+    alphanums,
+    delimitedList,
+    oneOf,
+    printables,
+)
 
 import scribl
 
@@ -41,7 +52,7 @@ class ScriblParser:
     # initiate parser (optionally with scribl_code text block)
     def __init__(self, scribl_text=None):
         self.reset()
-        if scribl_text != None:
+        if scribl_text is not None:
             self.parse(scribl_text)
 
     def reset(self):
@@ -52,7 +63,7 @@ class ScriblParser:
         self.data["warnings"] = []
 
     def parse(self, scribl_text, split_text=None):
-        if split_text != None:
+        if split_text is not None:
             scribl_text = scribl_text.split(split_text)
         for nline in range(len(scribl_text)):
             line = scribl_text[nline].strip()
@@ -64,10 +75,11 @@ class ScriblParser:
                 self.data["warnings"].append(warning)
             try:
                 parse_data = ScriblParser.statement.parseString(line)
-            except:
-                error = f"Line: {nline:d} Unable to parse statment [{line}]"
+            except Exception:
+                error = f"Line: {nline:d} Unable to parse statement [{line}]"
                 self.data["errors"].append(error)
                 continue
+
             item_type = parse_data.header
             item_name = " ".join(parse_data.name)
             # parse urls
@@ -160,13 +172,13 @@ class ScriblParser:
     def get(self, item_type, item_name):
         try:
             return self.data[item_type][item_name]
-        except:
+        except Exception:
             return None
 
     def catalog(self, item_type):
         try:
             return list(self.data[item_type].keys())
-        except:
+        except Exception:
             return []
 
     def parse_summary(self):

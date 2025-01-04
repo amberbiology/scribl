@@ -102,7 +102,7 @@ isort.required-imports = ["from __future__ import annotations"]
 skip = './tests/test_data'
 count = true
 quiet-level = 3
-ignore-words-list = 'exportin'
+ignore-words-list = 'exportin,als'
 
 [tool.mdformat]
 number = true
