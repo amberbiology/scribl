@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: "v4.5.0"
+    rev: "v5.0.0"
     hooks:
       - id: check-added-large-files
       - id: check-case-conflict
@@ -14,3 +14,26 @@ repos:
         args: ["--pytest-test-first"]
       - id: requirements-txt-fixer
       - id: trailing-whitespace
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: "v0.8.5"
+    hooks:
+      - id: ruff
+        args: ["--show-fixes", "--exit-zero"]
+      - id: ruff-format
+  - repo: https://github.com/hukkin/mdformat
+    rev: 0.7.21  # Use the ref you want to point at
+    hooks:
+      - id: mdformat
+        # Optionally add plugins
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-black
+  - repo: https://github.com/codespell-project/codespell
+    rev: "v2.3.0"
+    hooks:
+      - id: codespell
+        additional_dependencies:
+          - tomli
+
+ci:
+  autoupdate_commit_msg: 'chore: update pre-commit hooks'
