@@ -6,6 +6,24 @@ will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.8.2] - 2025-01-29
+
+### Internal
+
+- Update pyzotero requirement from \<=1.6.4 to \<=1.6.8 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#45](https://github.com/amberbiology/scribl/pull/45))
+- Update pyzotero requirement from \<=1.6.3 to \<=1.6.4 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#44](https://github.com/amberbiology/scribl/pull/44))
+- Update pyzotero requirement from \<=1.6.2 to \<=1.6.3 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#43](https://github.com/amberbiology/scribl/pull/43))
+- cleanup codebase using pre-commit checks: `ruff`, `codespell` by @alexlancaster ([#42](https://github.com/amberbiology/scribl/pull/42))
+- Update pyzotero requirement from \<=1.6.1 to \<=1.6.2 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#41](https://github.com/amberbiology/scribl/pull/41))
+- Update pyparsing requirement from \<=3.2.0 to \<=3.2.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#40](https://github.com/amberbiology/scribl/pull/40))
+- Update pyzotero requirement from \<=1.5.28 to \<=1.6.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#39](https://github.com/amberbiology/scribl/pull/39))
+- Update matplotlib requirement from \<=3.9.3 to \<=3.10.0 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#38](https://github.com/amberbiology/scribl/pull/38))
+- Update matplotlib requirement from \<=3.9.2 to \<=3.9.3 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#37](https://github.com/amberbiology/scribl/pull/37))
+- Update pyzotero requirement from \<=1.5.25 to \<=1.5.28 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#36](https://github.com/amberbiology/scribl/pull/36))
+- Update networkx requirement from \<=3.4.1 to \<=3.4.2 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#35](https://github.com/amberbiology/scribl/pull/35))
+
+[0.8.2]: https://github.com/amberbiology/scribl/releases/tag/v0.8.2
+
 ## [0.8.1] - 2024-10-21
 
 ### Features
