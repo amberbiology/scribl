@@ -4,7 +4,7 @@ prerelease: false
 include-pre-releases: false
 #prerelease-identifier: 'rc'
 version-template: '$COMPLETE'
-commitish: 'main'
+commitish: 'main'   # codespell:ignore commitish
 categories:
   - title: 'Features'
     labels:
