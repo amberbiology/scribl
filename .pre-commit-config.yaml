@@ -36,7 +36,7 @@ repos:
           - tomli
 
 # global excludes for all hooks
-exclude: 'tests/test_data/.*'
+exclude: 'tests/test_data/.*|paper/.*'
 
 ci:
   autoupdate_commit_msg: 'chore: update pre-commit hooks'

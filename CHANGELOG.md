@@ -22,8 +22,6 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 - Update pyzotero requirement from \<=1.5.25 to \<=1.5.28 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#36](https://github.com/amberbiology/scribl/pull/36))
 - Update networkx requirement from \<=3.4.1 to \<=3.4.2 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#35](https://github.com/amberbiology/scribl/pull/35))
 
-[0.8.2]: https://github.com/amberbiology/scribl/releases/tag/v0.8.2
-
 ## [0.8.1] - 2024-10-21
 
 ### Features
@@ -46,8 +44,6 @@ and this project adheres to [Semantic Versioning](https://semver.org).
 ### Documentation
 
 - Post-publication updates: add details + DOI + merge in manuscript files by @alexlancaster ([#24](https://github.com/amberbiology/scribl/pull/24))
-
-[0.8.1]: https://github.com/amberbiology/scribl/releases/tag/v0.8.1
 
 ## [0.8.0] - 2024-07-11
 
@@ -86,3 +82,5 @@ First production release of `scribl`
 - implement best-practice conventions as per `repo-review` by @alexlancaster ([#2](https://github.com/amberbiology/scribl/pull/2))
 
 [0.8.0]: https://github.com/amberbiology/scribl/releases/tag/v0.8.0
+[0.8.1]: https://github.com/amberbiology/scribl/releases/tag/v0.8.1
+[0.8.2]: https://github.com/amberbiology/scribl/releases/tag/v0.8.2
