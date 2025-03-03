@@ -20,6 +20,8 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/release-drafter.yml'
       - '.gitattributes'
+      - '.pre-commit-config.yaml'
+      - '.mdformat.toml'
 
   pull_request:
     paths-ignore:
@@ -35,6 +37,8 @@ on:
       - '.github/ISSUE_TEMPLATE/**'
       - '.github/workflows/release-drafter.yml'
       - '.gitattributes'
+      - '.pre-commit-config.yaml'
+      - '.mdformat.toml'
 
   release:
     types:
