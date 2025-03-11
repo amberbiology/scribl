@@ -1,6 +1,6 @@
 <!-- omit in toc -->
 
-# Contributing to scribl
+# Contributing to `scribl`
 
 First off, thanks for taking the time to contribute!
 
