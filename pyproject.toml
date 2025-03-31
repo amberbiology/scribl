@@ -20,7 +20,7 @@ classifiers = [
 ]
 
 dependencies = [
-    "pyparsing <= 3.2.2",
+    "pyparsing <= 3.2.3",
     "pandas <= 2.2.3",
     "pyzotero <= 1.6.11",
     "networkx <= 3.4.2",
