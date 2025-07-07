@@ -509,4 +509,4 @@ class GraphDBInstance:
 
         plt.tight_layout()
         plt.axis("off")
-        plt.savefig(filepath)
+        plt.savefig(filepath, format="png")
