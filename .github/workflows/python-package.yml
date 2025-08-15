@@ -63,7 +63,7 @@ jobs:
     if: github.event.release.target_commitish == 'main' && github.event_name == 'release' && github.event.action == 'published' && github.event.release.prerelease == false
     steps:
       - name: Checkout the contents of your repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Upsert the version and related ids in the metadata in .zenodo.json
         run: |
           echo "GITHUB_REF_NAME = $GITHUB_REF_NAME | GITHUB_REF = $GITHUB_REF | GITHUB_EVENT_PATH = $GITHUB_EVENT_PATH"
@@ -128,7 +128,7 @@ jobs:
         python-version: ["3.13", "3.12", "3.11", "3.10", "3.9"]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         fetch-depth: 0
     - name: Set up Python ${{ matrix.python-version }}
@@ -168,7 +168,7 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && !cancelled() && !failure()
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           fetch-depth: 0
       - uses: hynek/build-and-inspect-python-package@v2
@@ -184,7 +184,7 @@ jobs:
     #if: false
     if: github.event_name == 'release' && github.event.action == 'published' && always() && !cancelled() && !failure()
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: Packages
           path: dist
@@ -202,7 +202,7 @@ jobs:
       id-token: write
     if: github.event.release.target_commitish == 'main' && github.event_name == 'release' && github.event.action == 'published' && always()  && !cancelled() && !failure()
     steps:
-      - uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v5
         with:
           name: Packages
           path: dist
