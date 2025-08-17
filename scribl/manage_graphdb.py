@@ -8,6 +8,10 @@ import shutil
 import tempfile
 from pathlib import Path
 
+import matplotlib
+
+matplotlib.use("Agg")  # must come before pyplot import
+
 import matplotlib.pyplot as plt
 import networkx as nx
 from dateutil import parser as dateparser
