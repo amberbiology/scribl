@@ -7,7 +7,9 @@ concurrency:
 on:
   workflow_dispatch:
   push:
-    paths-ignore:
+    branches:
+      - "**"          # all branches
+    paths-ignore: &ignore_paths
       - '**.md'
       - '**.rst'
       - '**.pdf'
@@ -22,19 +24,7 @@ on:
       - '.mdformat.toml'
 
   pull_request:
-    paths-ignore:
-      - '**.md'
-      - '**.rst'
-      - '**.pdf'
-      - '**.png'
-      - 'CITATION.cff'
-      - '.zenodo.json'
-      - 'paper/**'
-      - '.github/**'
-      - '!.github/workflows/python-package.yml'
-      - '.gitattributes'
-      - '.pre-commit-config.yaml'
-      - '.mdformat.toml'
+    paths-ignore: *ignore_paths
 
   release:
     types:
