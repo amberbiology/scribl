@@ -52,7 +52,7 @@ template: |
 
   [$RESOLVED_VERSION]: https://github.com/$OWNER/$REPOSITORY/releases/tag/v$RESOLVED_VERSION
 
-  <!-- END cut-and-paste to NEWS.md -->
+  <!-- END cut-and-paste to CHANGELOG.md -->
 
   A full history of changes is available in [`CHANGELOG.md`](https://github.com/$OWNER/$REPOSITORY/blob/main/CHANGELOG.md).
 
