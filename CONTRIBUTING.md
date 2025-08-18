@@ -1,6 +1,6 @@
 <!-- omit in toc -->
 
-# Contributing to scribl
+# Contributing to `scribl`
 
 First off, thanks for taking the time to contribute!
 
@@ -23,6 +23,8 @@ All types of contributions are encouraged and valued. See the [Table of Contents
   - [Suggesting Enhancements](#suggesting-enhancements)
   - [Your First Code Contribution](#your-first-code-contribution)
   - [Improving The Documentation](#improving-the-documentation)
+- [Developer Tasks](#developer-tasks)
+  - [Making a Release](#making-a-release)
 
 <!--
 - [Styleguides](#styleguides)
@@ -226,9 +228,87 @@ Please submit a suggested change to as a [GitHub issue](https://github.com/amber
 <!-- TODO
 ## Styleguides
 ### Commit Messages
-
-## Join The Project Team
 -->
+
+## Developer Tasks
+
+### Making a Release
+
+[`nox`](https://nox.thea.codes/) is now used to automate common
+developer tasks, including running tests building wheels, and there
+are also some tasks for release managers (these will require
+[`gh`](https://cli.github.com/) to be installed, setup and configured)
+that can be `nox`-assisted. To install run:
+
+```shell
+pip install nox
+```
+
+Then run the following to see a complete list of commands:
+
+```shell
+nox --list
+```
+
+> Note that most of these tasks require interactive input, and the
+> tasks will ask you to double check `git diff` output and similar to
+> ensure that everything looks correct.
+
+Release notes are automatically accumulated as PRs are merged through
+using the [Release
+Drafter](https://github.com/marketplace/actions/release-drafter)
+GitHub Action, so that they can be quickly pushed out upon tagging and
+building. However this release information should be included in the
+`CHANGELOG.md` file and included in the release itself.
+
+### Updating `CHANGELOG.md`
+
+Rather than cut and pasting from the GitHub release window, you can
+run the following which will pull it down and insert the release notes
+into the local checkout:
+
+```shell
+nox -s update_changelog
+```
+
+This also handles updating the date `YYYY-MM-DD` placeholder to today.
+
+### Pushing `CHANGELOG.md`
+
+This command will commit and push, back to the current branch of the
+repo, if there were any changes made to `CHANGELOG.md`. This includes any
+minor formatting changes that `pre-commit` tools like `ruff` run
+before the commit.
+
+```shell
+nox -s push_changelog
+```
+
+### Preparing a release
+
+```shell
+nox -s prepare_release
+```
+
+This automates a lot of the above manual steps of preparing a release
+for you. It will run the above `update_changelog` and `push_changelog`
+so that it is synced with the release notes, then it will also update
+the date in the release notes to be today's date, and adjust the
+branch if you are not pushing from `main` (useful sometimes when
+testing).
+
+At this point you should be able to visit the release in the GitHub
+editor and double-check everything looks good and then press the
+"Release" button manually.
+
+### Publish release
+
+```shell
+nox -s publish_release
+```
+
+This runs the above release prep, and then publish it for you. **Only
+run this if you are very confident everything looks good.**
 
 <!-- omit in toc -->
 

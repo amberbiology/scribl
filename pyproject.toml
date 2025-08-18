@@ -16,15 +16,15 @@ classifiers = [
 "Programming Language :: Python :: 3",
 "Intended Audience :: Science/Research",
 "Topic :: Scientific/Engineering :: Bio-Informatics",
-"License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
 ]
 
 dependencies = [
-    "pyparsing <= 3.2.1",
-    "pandas <= 2.2.3",
-    "pyzotero <= 1.6.2",
+    "pyparsing <= 3.2.3",
+    "pandas <= 2.3.1",
+    "pyzotero <= 1.6.11",
     "networkx <= 3.4.2",
-    "matplotlib <= 3.10.0"
+    "matplotlib <= 3.10.1",
+    "Pillow <= 11.2.1", # FIXME: pin to older Pillow to workaround matplotlib bug
 ]
 
 [project.optional-dependencies]
@@ -112,3 +112,11 @@ exclude = [
 	"CHANGELOG.md",
 	"paper/**"
 	]
+
+[tool.repo-review.ignore]
+PY004 = "docs in website not `docs` folder"
+PC111 = "doesn't use blacken directly (uses ruff)"
+PC140 = "doesn't use typechecker"
+PC170 = "no rST files"
+MY = "no typechecker"
+RTD = "doesn't use read the docs"

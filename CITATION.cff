@@ -31,8 +31,8 @@ keywords:
   - bioinformatics
   - computational biology
 license: AGPL-3.0-or-later
-version: v0.8.1
-doi: 10.5281/zenodo.13963648
+version: v0.8.2
+doi: 10.5281/zenodo.14768812
 message: >-
   If you use this software, please cite our article in the Journal of Open
   Source Software.
