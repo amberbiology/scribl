@@ -114,7 +114,7 @@ exclude = [
 	]
 
 [tool.repo-review.ignore]
-PY004 = "docs in website not `docs` folder"
+PY004 = "docs in 'website' folder"
 PC111 = "doesn't use blacken directly (uses ruff)"
 PC140 = "doesn't use typechecker"
 PC170 = "no rST files"
