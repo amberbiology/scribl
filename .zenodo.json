@@ -39,13 +39,13 @@
     },
     {
       "scheme": "url",
-      "identifier": "https://github.com/amberbiology/scribl/tree/v0.8.2",
+      "identifier": "https://github.com/amberbiology/scribl/tree/v0.8.3",
       "relation": "isSupplementTo",
       "resource_type": "software"
     },
     {
       "scheme": "url",
-      "identifier": "https://pypi.org/project/scribl/0.8.2",
+      "identifier": "https://pypi.org/project/scribl/0.8.3",
       "relation": "isSourceOf",
       "resource_type": "software"
     }
@@ -60,5 +60,5 @@
   ],
   "title": "scribl: A system for the semantic capture of relationships in biological literature",
   "upload_type": "software",
-  "version": "v0.8.2"
+  "version": "v0.8.3"
 }
