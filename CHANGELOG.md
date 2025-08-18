@@ -6,6 +6,22 @@ will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.8.3] - 2025-08-18
+
+### Features
+
+- Add `nox` for tasks, and updates for `reporeview` by @alexlancaster ([#76](https://github.com/amberbiology/scribl/pull/76))
+
+### Internal
+
+- Bump the actions group with 2 updates by @[dependabot[bot]](https://github.com/apps/dependabot) ([#75](https://github.com/amberbiology/scribl/pull/75))
+- Update pandas requirement from \<=2.2.3 to \<=2.3.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#67](https://github.com/amberbiology/scribl/pull/67))
+- Update pyparsing requirement from \<=3.2.2 to \<=3.2.3 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#54](https://github.com/amberbiology/scribl/pull/54))
+- Update pyzotero requirement from \<=1.6.9 to \<=1.6.11 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#53](https://github.com/amberbiology/scribl/pull/53))
+- Update pyparsing requirement from \<=3.2.1 to \<=3.2.2 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#52](https://github.com/amberbiology/scribl/pull/52))
+- Update matplotlib requirement from \<=3.10.0 to \<=3.10.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#49](https://github.com/amberbiology/scribl/pull/49))
+- Update pyzotero requirement from \<=1.6.8 to \<=1.6.9 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#46](https://github.com/amberbiology/scribl/pull/46))
+
 ## [0.8.2] - 2025-01-29
 
 ### Internal
@@ -84,3 +100,4 @@ First production release of `scribl`
 [0.8.0]: https://github.com/amberbiology/scribl/releases/tag/v0.8.0
 [0.8.1]: https://github.com/amberbiology/scribl/releases/tag/v0.8.1
 [0.8.2]: https://github.com/amberbiology/scribl/releases/tag/v0.8.2
+[0.8.3]: https://github.com/amberbiology/scribl/releases/tag/v0.8.3
