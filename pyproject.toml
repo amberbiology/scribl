@@ -23,7 +23,7 @@ dependencies = [
     "pandas <= 2.3.3",
     "pyzotero <= 1.6.17",
     "networkx <= 3.5",
-    "matplotlib <= 3.10.6",
+    "matplotlib <= 3.10.7",
     "Pillow <= 11.2.1", # FIXME: pin to older Pillow to workaround matplotlib bug
 ]
 
