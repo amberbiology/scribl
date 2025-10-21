@@ -24,7 +24,6 @@ dependencies = [
     "pyzotero <= 1.7.3",
     "networkx <= 3.5",
     "matplotlib <= 3.10.7",
-    #"Pillow <= 11.2.1", # FIXME: pin to older Pillow to workaround matplotlib bug
 ]
 
 [project.optional-dependencies]
