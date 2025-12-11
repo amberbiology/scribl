@@ -111,9 +111,6 @@ jobs:
     needs: [publish_zenodo, skip_publish_zenodo]
     if: always() && !cancelled() && !failure()
     runs-on: ${{ matrix.os }}
-    env:
-      PYTHONDATACLASS_NO_SLOTS: "1"
-
     strategy:
       fail-fast: false
       matrix:
@@ -127,7 +124,9 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v6
       with:
-        python-version: ${{ matrix.python-version }}
+        # python-version: ${{ matrix.python-version }}
+        python-version: ${{ matrix.os == 'macos-latest' && matrix.python-version == '3.14' && '3.14.0' || matrix.python-version }}
+
         allow-prereleases: true
     - name: Build wheel and sdist
       run: |
