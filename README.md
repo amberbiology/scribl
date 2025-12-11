@@ -1,5 +1,25 @@
 [![status](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51/status.svg)](https://joss.theoj.org/papers/1c9701c5d909d9b8255b754677b2ea51) [![PyPI version shields.io](https://img.shields.io/pypi/v/scribl.svg)](https://pypi.python.org/pypi/scribl/) [![Build scribl](https://github.com/amberbiology/scribl/actions/workflows/python-package.yml/badge.svg?branch=main)](https://github.com/amberbiology/scribl/actions/workflows/python-package.yml) [![GitHub license](https://img.shields.io/github/license/amberbiology/scribl.svg)](https://github.com/amberbiology/scribl/blob/master/LICENSE) <!-- [![Citation Badge](https://api.juleskreuer.eu/citation-badge.php?doi=10.21105/joss.06645)](https://juleskreuer.eu/citation-badge/) -->
 
+### ⚠️ macOS Python 3.14.1 Compatibility Notice
+
+**scribl** is fully compatible with Python **3.14.0** and **3.14.2+**,
+but **Python 3.14.1 on macOS** contains a regression in the Python standard library’s
+`dataclasses` module (see [CPython issue #142214](https://github.com/python/cpython/issues/142214)).
+
+This upstream bug affects any project that imports a `slots=True` dataclass, including
+NetworkX, and can cause import-time failures such as:
+
+```
+AttributeError: 'wrapper_descriptor' object has no attribute 'annotate'
+```
+
+If you encounter this error on macOS:
+
+- Install **Python 3.14.0**, or
+- Upgrade to **Python 3.14.2+** once available.
+
+Linux and Windows builds are **not affected**.
+
 # scribl
 
 ## A system for the semantic capture of relationships in biological literature
