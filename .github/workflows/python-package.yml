@@ -141,6 +141,8 @@ jobs:
       # force use of bash on all platforms, so wildcard expansion works on Windows
       # (otherwise would use powershell on Windows, which fails)
       shell: bash
+      env:
+        PYTHONDATACLASS_NO_SLOTS: "1"
       run: |
         pip install --only-binary ":all:" --no-binary sgmllib3k,bibtexparser dist/scribl*.whl
         pytest -v tests
