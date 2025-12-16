@@ -177,7 +177,7 @@ jobs:
     #if: false
     if: github.event_name == 'release' && github.event.action == 'published' && always() && !cancelled() && !failure()
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: Packages
           path: dist
@@ -195,7 +195,7 @@ jobs:
       id-token: write
     if: github.event.release.target_commitish == 'main' && github.event_name == 'release' && github.event.action == 'published' && always()  && !cancelled() && !failure()
     steps:
-      - uses: actions/download-artifact@v6
+      - uses: actions/download-artifact@v7
         with:
           name: Packages
           path: dist
