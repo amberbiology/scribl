@@ -57,7 +57,8 @@ xfail_strict = true
 filterwarnings = [
   "error",
     # pyparsing legacy API used by third-party libs (e.g. matplotlib on py3.9)
-  "ignore:'oneOf' deprecated - use 'one_of':DeprecationWarning"
+  "ignore:'oneOf' deprecated - use 'one_of':DeprecationWarning",
+  "ignore:'parseString' deprecated - use 'parse_string':DeprecationWarning"
 ]
 
 [tool.ruff]
