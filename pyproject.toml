@@ -54,7 +54,11 @@ testpaths = ["tests",]
 minversion = "7"
 log_cli_level = "INFO"
 xfail_strict = true
-filterwarnings = ["error"]
+filterwarnings = [
+  "error",
+    # pyparsing legacy API used by third-party libs (e.g. matplotlib on py3.9)
+  "ignore:'oneOf' deprecated - use 'one_of':DeprecationWarning"
+]
 
 [tool.ruff]
 target-version = "py39"
