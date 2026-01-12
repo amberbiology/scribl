@@ -10,8 +10,8 @@ from pyparsing import (
     Word,
     ZeroOrMore,
     alphanums,
-    delimitedList,
-    oneOf,
+    DelimitedList,
+    one_of,
     printables,
 )
 
@@ -19,35 +19,36 @@ import scribl
 
 
 class ScriblParser:
-    header = oneOf(scribl.statements).setResultsName("header")
-    labels = oneOf(scribl.agents).setResultsName("labels", listAllMatches=True)
-    reserved_words = oneOf(scribl.relationships)
+    header = one_of(scribl.statements).set_results_name("header")
+    labels = one_of(scribl.agents).set_results_name("labels", list_all_matches=True)
+    reserved_words = one_of(scribl.relationships)
+
     name_word = ~reserved_words + Word(
-        alphanums, printables, excludeChars=scribl.prefix + ","
+        alphanums, printables, exclude_chars=scribl.prefix + ","
     )
     name = Group(OneOrMore(name_word))
-    relationship_header = oneOf(scribl.relationships)
-    relationships = (relationship_header + name).setResultsName(
-        "relationships", listAllMatches=True
+    relationship_header = one_of(scribl.relationships)
+
+    relationships = (relationship_header + name).set_results_name(
+        "relationships", list_all_matches=True
     )
     url_header = Literal(scribl.fields["url"])
     url_start = Literal("http://") | Literal("https://")
-    url_address = Combine(url_start + Word(printables)).setResultsName(
-        "url", listAllMatches=True
+    url_address = Combine(url_start + Word(printables)).set_results_name(
+        "url", list_all_matches=True
     )
     url = url_header + url_address
     tags_header = Literal(scribl.fields["tag"])
-    tag_list = delimitedList(name).setResultsName("tags", listAllMatches=True)
+    tag_list = DelimitedList(name).set_results_name("tags", list_all_matches=True)
     tags = tags_header + tag_list
     notes_header = Literal(scribl.fields["txt"])
-    notes = notes_header + name.setResultsName("notes", listAllMatches=True)
+    notes = notes_header + name.set_results_name("notes", list_all_matches=True)
     synonyms_header = Literal(scribl.fields["syn"])
-    synonyms = synonyms_header + delimitedList(name).setResultsName(
-        "synonyms", listAllMatches=True
+    synonyms = synonyms_header + DelimitedList(name).set_results_name(
+        "synonyms", list_all_matches=True
     )
-    # synonyms = synonyms_header + name.setResultsName('synonyms', listAllMatches=True)
     optional_items = labels | url | relationships | notes | synonyms | tags
-    statement = header + name.setResultsName("name") + ZeroOrMore(optional_items)
+    statement = header + name.set_results_name("name") + ZeroOrMore(optional_items)
 
     # initiate parser (optionally with scribl_code text block)
     def __init__(self, scribl_text=None):
@@ -74,7 +75,7 @@ class ScriblParser:
                 warning = f"Line: {nline:d} Statement length exceeds max. for Zotero syncing: {line}"
                 self.data["warnings"].append(warning)
             try:
-                parse_data = ScriblParser.statement.parseString(line)
+                parse_data = ScriblParser.statement.parse_string(line)
             except Exception:
                 error = f"Line: {nline:d} Unable to parse statement [{line}]"
                 self.data["errors"].append(error)
