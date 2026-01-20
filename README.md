@@ -77,6 +77,17 @@ We recommend installing in a virtual environment.
 pip install scribl
 ```
 
+> ⚠️ **macOS Python 3.14.1 Compatibility**
+>
+> On **macOS**, Python **3.14.1** has an upstream `dataclasses` regression
+> ([CPython #142214](https://github.com/python/cpython/issues/142214)) that can break
+> imports using `slots=True` (e.g. via NetworkX), causing errors like:
+>
+> `AttributeError: 'wrapper_descriptor' object has no attribute 'annotate'`
+>
+> **Workaround:** use **Python 3.14.0** or **3.14.2+**.
+> **Linux and Windows are not affected.**
+
 ### Install via GitHub repo
 
 ```shell
