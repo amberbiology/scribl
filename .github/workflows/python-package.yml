@@ -125,9 +125,6 @@ jobs:
       uses: actions/setup-python@v6
       with:
         python-version: ${{ matrix.python-version }}
-        # TODO: remove restriction when fixed: https://github.com/amberbiology/scribl/issues/112
-        # python-version: ${{ matrix.os == 'macos-latest' && matrix.python-version == '3.14' && '3.14.0' || matrix.python-version }}
-
         allow-prereleases: true
     - name: Build wheel and sdist
       run: |
