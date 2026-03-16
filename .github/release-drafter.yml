@@ -3,7 +3,7 @@ tag-template: 'v$RESOLVED_VERSION'
 prerelease: false
 include-pre-releases: false
 #prerelease-identifier: 'rc'
-version-template: '$COMPLETE'
+#version-template: '$COMPLETE'
 commitish: 'main'   # codespell:ignore commitish
 categories:
   - title: 'Features'
