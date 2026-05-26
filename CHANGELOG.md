@@ -6,6 +6,28 @@ will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org).
 
+## [0.8.5] - 2026-05-26
+
+### Internal
+
+- Update pyzotero requirement from \<=1.11.1 to \<=1.12.0 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#150](https://github.com/amberbiology/scribl/pull/150))
+- Update pandas requirement from \<=3.0.2 to \<=3.0.3 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#147](https://github.com/amberbiology/scribl/pull/147))
+- Update pyzotero requirement from \<=1.11.0 to \<=1.11.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#146](https://github.com/amberbiology/scribl/pull/146))
+- Update matplotlib requirement from \<=3.10.8 to \<=3.10.9 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#145](https://github.com/amberbiology/scribl/pull/145))
+- Update pandas requirement from \<=3.0.1 to \<=3.0.2 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#141](https://github.com/amberbiology/scribl/pull/141))
+- Update pyzotero requirement from \<=1.10.0 to \<=1.11.0 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#138](https://github.com/amberbiology/scribl/pull/138))
+- Bump release-drafter/release-drafter from 6 to 7 in the actions group by @[dependabot[bot]](https://github.com/apps/dependabot) ([#136](https://github.com/amberbiology/scribl/pull/136))
+- Bump the actions group with 2 updates by @[dependabot[bot]](https://github.com/apps/dependabot) ([#133](https://github.com/amberbiology/scribl/pull/133))
+- Update pandas requirement from \<=3.0.0 to \<=3.0.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#131](https://github.com/amberbiology/scribl/pull/131))
+- Update pyzotero requirement from \<=1.8.0 to \<=1.10.0 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#128](https://github.com/amberbiology/scribl/pull/128))
+- Update pyparsing requirement from \<=3.3.1 to \<=3.3.2 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#126](https://github.com/amberbiology/scribl/pull/126))
+- Update pandas requirement from \<=2.3.3 to \<=3.0.0 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#125](https://github.com/amberbiology/scribl/pull/125))
+- Remove Python 3.14.0 pin on MacOS, 3.14.2+ has been released by @alexlancaster ([#123](https://github.com/amberbiology/scribl/pull/123))
+- Update pyzotero requirement from \<=1.7.6 to \<=1.8.0 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#122](https://github.com/amberbiology/scribl/pull/122))
+- Update pyparsing requirement from \<=3.2.5 to \<=3.3.1 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#119](https://github.com/amberbiology/scribl/pull/119))
+- Bump the actions group with 2 updates by @[dependabot[bot]](https://github.com/apps/dependabot) ([#116](https://github.com/amberbiology/scribl/pull/116))
+- Update matplotlib requirement from \<=3.10.7 to \<=3.10.8 by @[dependabot[bot]](https://github.com/apps/dependabot) ([#115](https://github.com/amberbiology/scribl/pull/115))
+
 ## [0.8.4] - 2025-12-11
 
 ### Bug Fixes
@@ -129,3 +151,4 @@ First production release of `scribl`
 [0.8.2]: https://github.com/amberbiology/scribl/releases/tag/v0.8.2
 [0.8.3]: https://github.com/amberbiology/scribl/releases/tag/v0.8.3
 [0.8.4]: https://github.com/amberbiology/scribl/releases/tag/v0.8.4
+[0.8.5]: https://github.com/amberbiology/scribl/releases/tag/v0.8.5
