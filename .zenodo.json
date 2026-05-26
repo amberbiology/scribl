@@ -1,3 +1,68 @@
 {
-  "version": "v0.8.5"
+  "creators": [
+    {
+      "affiliation": "Amber Biology LLC",
+      "name": "Webster, Gordon",
+      "orcid": "0009-0009-2862-0467"
+    },
+    {
+      "affiliations": [
+        {
+          "name": "Amber Biology LLC"
+        },
+        {
+          "id": "000xkb537",
+          "name": "RIIS 2.0"
+        },
+        {
+          "id": "01643wd06",
+          "name": "Institute for Globally Distributed Open Research and Education"
+        }
+      ],
+      "name": "Lancaster, Alexander K.",
+      "orcid": "0000-0002-0002-9263"
+    }
+  ],
+  "description": "<p>scribl (Semantic Capture of Relationships in Biological Literature) is a Python software pipeline and API that transforms a <a href=\"https://www.zotero.org/\">Zotero</a> literature database with entries annotated with tags in the scribl language to create a graph data structure, suitable for import into a graph database platform, such as <a href=\"https://neo4j.com\">Neo4j</a>, or Python's <a href=\"https://networkx.org/\">NetworkX</a>.</p> The scribl language was designed for the curation from scientific articles, to capture the relationships between the various biological agents and the processes that they describe in a connected network.",
+  "keywords": [
+    "systems biology",
+    "network biology",
+    "bioinformatics",
+    "computational biology",
+    "literature mining"
+  ],
+  "license": {
+    "id": "agpl-3.0-or-later"
+  },
+  "related_identifiers": [
+    {
+      "scheme": "url",
+      "identifier": "http://amberbiology.com/",
+      "relation": "isSupplementedBy",
+      "resource_type": "other"
+    },
+    {
+      "scheme": "url",
+      "identifier": "https://github.com/amberbiology/scribl/tree/v0.8.4",
+      "relation": "isSupplementTo",
+      "resource_type": "software"
+    },
+    {
+      "scheme": "url",
+      "identifier": "https://pypi.org/project/scribl/0.8.4",
+      "relation": "isSourceOf",
+      "resource_type": "software"
+    }
+  ],
+  "additional_descriptions": [
+    {
+      "description": "<p>If you use this software, please cite both the software itself, as well as the article: Webster GD, Lancaster AK. (2024) <a href=\"https://doi.org/10.21105/joss.06645\">scribl: A system for the semantic capture of relationships in biological literature</a>. <i>Journal of Open Source Software.</i> <b>9</b>(99):6645. doi:10.21105/joss.06645</p><p>Development is on GitHub: <a href=\"https://github.com/amberbiology/scribl\">https://github.com/amberbiology/scribl</a></p><p>Binary packages are available on PyPI: <a href=\"https://pypi.org/project/scribl/\">https://pypi.org/project/scribl/</a>.&nbsp;</p>",
+      "type": {
+        "id": "notes"
+      }
+    }
+  ],
+  "title": "scribl: A system for the semantic capture of relationships in biological literature",
+  "upload_type": "software",
+  "version": "v0.8.4"
 }
