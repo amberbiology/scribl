@@ -118,7 +118,7 @@ jobs:
         python-version: ["3.14", "3.13", "3.12", "3.11", "3.10", "3.9"]
 
     steps:
-    - uses: actions/checkouto@v6
+    - uses: actions/checkout@v6
       with:
         fetch-depth: 0
         # FIXME: if on a release, use the tag name, not original SHA because it might be changed (somewhat hacky)
@@ -163,9 +163,9 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          fetch-depth: 0
           # FIXME: if on a release, use the tag name, not original SHA because it might be changed (somewhat hacky)
           ref: ${{ (github.event_name == 'release' && github.event.action == 'published') && github.ref_name || '' }}
+          fetch-depth: 0
       - uses: hynek/build-and-inspect-python-package@v2
 
   upload_test_pypi:
