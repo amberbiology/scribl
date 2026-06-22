@@ -53,7 +53,7 @@ jobs:
     if: github.event.release.target_commitish == 'main' && github.event_name == 'release' && github.event.action == 'published' && github.event.release.prerelease == false
     steps:
       - name: Checkout the contents of your repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Upsert the version and related ids in the metadata in .zenodo.json
         run: |
           echo "GITHUB_REF_NAME = $GITHUB_REF_NAME | GITHUB_REF = $GITHUB_REF | GITHUB_EVENT_PATH = $GITHUB_EVENT_PATH"
@@ -118,7 +118,7 @@ jobs:
         python-version: ["3.14", "3.13", "3.12", "3.11", "3.10", "3.9"]
 
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v7
       with:
         fetch-depth: 0
         # FIXME: if on a release, use the tag name, not original SHA because it might be changed (somewhat hacky)
@@ -161,7 +161,7 @@ jobs:
     runs-on: ubuntu-latest
     if: always() && !cancelled() && !failure()
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@v7
         with:
           # FIXME: if on a release, use the tag name, not original SHA because it might be changed (somewhat hacky)
           ref: ${{ (github.event_name == 'release' && github.event.action == 'published') && github.ref_name || '' }}
