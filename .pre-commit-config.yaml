@@ -17,7 +17,7 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: "v0.16.3"
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: ["--show-fixes", "--exit-zero"]
       - id: ruff-format
   - repo: https://github.com/hukkin/mdformat
@@ -40,3 +40,5 @@ exclude: 'tests/test_data/.*|paper/.*'
 
 ci:
   autoupdate_commit_msg: 'chore: update pre-commit hooks'
+  autofix_commit_msg: 'style: pre-commit fixes'
+  autoupdate_schedule: weekly

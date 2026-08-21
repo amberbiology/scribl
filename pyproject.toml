@@ -53,6 +53,7 @@ version_scheme = "post-release"
 addopts = ["--import-mode=importlib", "-ra", "--strict-config", "--strict-markers"]
 testpaths = ["tests",]
 minversion = "7"
+log_level = "INFO"
 log_cli_level = "INFO"
 xfail_strict = true
 filterwarnings = ["error"]
@@ -120,3 +121,6 @@ PC140 = "doesn't use typechecker"
 PC170 = "no rST files"
 MY = "no typechecker"
 RTD = "doesn't use read the docs"
+SEC001 = "no enabled yet"
+PP006 = "not using uv and using cibuildwheel"
+NOX201 = "does not use uv to bootstrap"

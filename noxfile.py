@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+"""nox commands."""
+
 import json
 import re
 import subprocess
@@ -5,13 +8,16 @@ from datetime import date
 from pathlib import Path
 
 import nox
+from zoneinfo import ZoneInfo
 
-nox.options.sessions = ["precommit"]  # default session
+nox.needs_version = ">=2025.10.14"
+nox.options.default_venv_backend = "virtualenv"
 
 ## helper functions
 
 
 def run_git_command(session, *args):
+    """Run git command with arguments."""
     session.run("git", *args, external=True)
 
 
@@ -24,6 +30,7 @@ def file_was_modified(filename):
 
 
 def commit_with_retry(session, filename, message):
+    """Use git to commit to repo, and retry."""
     committed = True  # whether a commit was done
     try:
         run_git_command(session, "commit", filename, "-m", message)
@@ -45,31 +52,31 @@ def commit_with_retry(session, filename, message):
     return committed
 
 
-@nox.session
+@nox.session(default=True)
 def precommit(session):
-    """
-    Run all pre-commit hooks (code formatting, spell check, linting).
+    """Run all pre-commit hooks (code formatting, spell check, linting).
+
     This mirrors checks applied in CI and on pull requests.
     """
     session.install("pre-commit")
     session.run("pre-commit", "run", "--all-files")
 
 
-@nox.session
+@nox.session(default=False)
 def build(session):
     """Build the package (including binary extensions)."""
     session.install("build")
     session.run("python", "-m", "build")
 
 
-@nox.session
+@nox.session(default=False)
 def tests(session):
     """Run tests using pytest."""
     session.install(".[test]")  # assumes [test] includes pytest, etc.
     session.run("pytest", *session.posargs)
 
 
-@nox.session
+@nox.session(default=False)
 def sdist_test(session):
     """Build sdist, install with test extras, and run tests."""
     session.install("build")
@@ -95,7 +102,7 @@ def sdist_test(session):
     session.run("pytest", *session.posargs)
 
 
-@nox.session
+@nox.session(default=False)
 def update_changelog(session):
     """Update CHANGELOG.md in local checkout from latest GitHub *draft* release notes (if not already present)."""
 
@@ -162,7 +169,7 @@ def update_changelog(session):
     return "CHANGELOG.md"
 
 
-@nox.session
+@nox.session(default=False)
 def push_changelog(session):
     """Commit and push local changes to CHANGELOG.md back to repo"""
 
@@ -189,10 +196,9 @@ def push_changelog(session):
             session.warn("no changes were committed, skipping git push...")
 
 
-@nox.session
+@nox.session(default=False)
 def bump_release_date(session):
     """Bump release date in draft release to today."""
-
     session.log("Fetching draft releases...")
     result = subprocess.run(
         ["gh", "api", "/repos/:owner/:repo/releases"],
@@ -261,7 +267,7 @@ def bump_release_date(session):
     return tag_name
 
 
-@nox.session
+@nox.session(default=False)
 def prepare_release(session):
     """Prepare latest release draft with correct tag, target, and CHANGELOG.md update."""
 
@@ -318,7 +324,7 @@ def prepare_release(session):
     return tag_name
 
 
-@nox.session
+@nox.session(default=False)
 def publish_release(session):
     """Finalize publishing the release after preparing it."""
     tag_name = prepare_release(session)
@@ -336,3 +342,7 @@ def publish_release(session):
             "gh", "release", "edit", f"{tag_name}", "--draft=false", external=True
         )
         session.log(f"Release: {tag_name} published.")
+
+
+if __name__ == "__main__":
+    nox.main()
