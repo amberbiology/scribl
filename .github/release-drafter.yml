@@ -1,8 +1,10 @@
-name-template: 'scribl $RESOLVED_VERSION'
+#name-template: 'PyPop $NEXT_PATCH_VERSION'
+name-template: 'PyPop $RESOLVED_VERSION'
+#tag-template: 'v$NEXT_PATCH_VERSION'
 tag-template: 'v$RESOLVED_VERSION'
 prerelease: false
-include-pre-releases: false
 #prerelease-identifier: 'rc'
+include-pre-releases: false
 #version-template: '$COMPLETE'
 commitish: 'main'   # codespell:ignore commitish
 categories:
@@ -26,7 +28,7 @@ categories:
 exclude-labels:
   - 'skip-changelog'
 category-template: '### $TITLE'
-change-template: '- $TITLE by @$AUTHOR ([#$NUMBER]($URL))'
+change-template: '- $TITLE ([#$NUMBER]($URL))'
 change-title-escapes: '\<*_&' # You can add # and @ to disable mentions, and add ` to disable code blocks.
 version-resolver:
   major:
@@ -53,6 +55,8 @@ template: |
   [$RESOLVED_VERSION]: https://github.com/$OWNER/$REPOSITORY/releases/tag/v$RESOLVED_VERSION
 
   <!-- END cut-and-paste to CHANGELOG.md -->
+
+  **Committers:**  $CONTRIBUTORS
 
   A full history of changes is available in [`CHANGELOG.md`](https://github.com/$OWNER/$REPOSITORY/blob/main/CHANGELOG.md).
 
