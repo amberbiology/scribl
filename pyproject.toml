@@ -22,7 +22,7 @@ dependencies = [
     "pyparsing < 3.3.0; python_version < '3.10'",
     "pyparsing <= 3.3.3; python_version >= '3.10'",
     "pandas <= 3.0.6",
-    "pyzotero <= 1.15.2",
+    "pyzotero <= 1.16.0",
     "networkx <= 3.7",
     "matplotlib <= 3.11.2",
 ]
